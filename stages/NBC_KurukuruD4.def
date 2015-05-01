@@ -1,0 +1,416 @@
+;----------------------------------------------------------------------;
+;ƒlƒIƒWƒIƒoƒgƒ‹ƒRƒƒVƒA?  ƒNƒ‹ƒNƒ‹?ƒEƒ“ƒXƒe?ƒW D4”Å  byJAM
+;----------------------------------------------------------------------;
+[Info]
+name= "NBC_Kurukuru"    ;MUGENã‚É?Ž¦‚³‚ê‚é–¼‘O
+
+;----------------------------------------------------------------------;
+;¡ƒJƒƒ‰
+[Camera]
+startx         = 0                ;ˆê”ÔÅ‰‚Ì¶Ò??u(XŽ²)
+starty         = 0????????;ˆê”ÔÅ‰‚Ì¶Ò??u(YŽ²)
+boundleft      = -70              ;¶‰æ–Ê?‚Ì‹——£
+boundright     = 70              ;‰E‰æ–Ê?‚Ì‹——£
+boundhigh      = -18               ;ã‚É½¸Û°?·‚?——£B0‚¾‚Æ½¸Û°?µ‚??
+boundlow       = .05????   ??;‰º‰æ–Ê?‚Ì‹——£
+verticalfollow = .08               ;¼Þ¬ÝÌß‚µ‚½ŽžA½Ã°¼?S‘Ì‚ªã‰º‚·‚é‹­‚³
+tension        = 60               ;ÄÞ?”‚¾‚¯‰æ–Ê?‚És‚­‚ÆA½¸Û°?·‚?
+
+;-----------------------------------------------------------------------;
+;¡ƒLƒƒƒ‰
+[PlayerInfo]
+;--- Player 1 ---
+p1startx   = -80                  ;1PƒLƒƒƒ‰‚ÌÅ‰‚Ì—§‚¿ˆÊ’uXŽ²
+p1starty   = 0                    ;1PƒLƒƒƒ‰‚ÌÅ‰‚Ì—§‚¿ˆÊ’uYŽ²
+p1startz   = 0                    ;Žg—p‚µ‚È‚¢
+p1facing   = 1                    ;1PƒLƒƒƒ‰‚ÌÅ‰‚ÌŒü‚«B1‚¾‚ÆA¶Œü‚« 
+;--- Player 2 ---
+p2startx   = 80
+p2starty   = 0
+p2startz   = 0
+p2facing   = -1
+;--- Common ---????         ?;•Ï‚¦‚é•K—v–³‚µ
+leftbound  = -1000          
+rightbound =  1000           
+topbound   =  0           
+botbound   =  0            
+
+;---------------------------------------------------------------------------------;
+;‘å‚«‚³
+[Scaling]               ;‚±‚±‚Ì?–Ú‚Í“ÁŽê‚ÈƒXƒe?ƒWì‚éŽžˆÈŠO‚Í‚¢‚¶‚ç‚È‚­‚Ä—Ç‚¢
+topz     = 0            ;
+botz     = 50        ;
+topscale = 1            ;ƒLƒƒƒ‰‚ÌkŽÚ‚ðÝ’è‚Å‚«‚éi”ñ„§j
+botscale = 1.2          ;
+
+;-------------------------------------------------------------------------------------;
+;À•W
+[Bound]                   
+screenleft  = 15                  ;¶‰æ–Ê?‚Ì•Ç‚Ì‘¶Ý‹——£
+screenright = 15                  ;‰E‰æ–Ê?‚Ì•Ç‚Ì‘¶Ý‹——£
+
+;-----------------------------------------------------------------------------------------;
+;î•ñ
+[StageInfo]
+zoffset  = 218            
+autoturn = 1                       ;·¬?ªŽ©“®“I‚ÉU‚èŒü‚­‚©(1‚ÅU‚èŒü‚­BŠî?“I‚É1
+resetBG  = 0                       ;×³ÝÄ?I—¹Œã±Æ?ðØ¾¯Ä‚·‚??1‚Åon)
+HIres = 1                          ;D4ƒXƒe?ƒW”FŽ¯ƒtƒ‰ƒO
+localcoord = 427,240
+
+;-------------------------------------------------------------------------------------;
+;‰e
+[Shadow]
+color = 100, 100, 100              ;‰e‚Ì¶×?   
+yscale = .1                        ;‰e‚Ì»²½Þ             
+reflect = 0                        ;‰e‚Ì”½ŽË            
+
+;----------------------------------------------------------------------------------------;
+;‰¹º
+[Music]
+bgmusic= sound/01ReachOutToTheTruth-Instversion-.mp3
+bgvolume = 255                     ;BGM‚Ì‰¹—Ê
+
+;-------------------------------------------------------------------------------------;
+;‰æ‘œƒt?ƒCƒ‹‚ÌŽw’è
+[BGdef]
+spr=stages/NBC_KurukuruD4.sff         ;½Ã°¼???œÌ§²??w’è
+debugbg = 0  ????????      ;1‚É‚·‚é‚ÆA‰æ‘œ‚ª–³‚¢•”•ª‚ÉAŽc‘œ‚ª‚Â‚©‚È‚¢B
+
+;====================================================================
+;ƒXƒe?ƒW‰æ‘œˆÊ’u“™
+;====================================================================
+;ƒƒCƒ“”wŒi‘«ê
+[BG 00]
+type        = Normal    ;‰æ‘œ?Ž¦?ƒCƒvBNormal=Ã?‰æAAnim=ƒAƒjƒ‰æAParallax=—§‘ÌÃ?‰æiˆê?“§Ž‹??j
+spriteNo    = 0,0       ;‰æ‘œƒt?ƒCƒ‹i*.sffj‚Ì‰æ‘œ‚ð?Ž¦BAnim‚ÌŽž‚Í•K—v–³‚µ
+layerNo     = 0         ;ƒŒƒCƒ„?‘®«B0=‰œA1=Žè‘O‚É?Ž¦
+start       = -1,-1     ;Ž²ˆÊ’uB‚±‚Ìdefƒt?ƒCƒ‹‚ÅÝ’è‚µ‚½Ž²ˆÊ’u‚©‚ç”‚¦‚é
+delta       = 2.0,2.0   ;ƒLƒƒƒ‰‚ª“®‚¢‚½Žž‚ÌƒXƒNƒ?ƒ‹ƒXƒs?ƒhB¬”?ˆÈ‰º‰Â?
+trans       = None      ;“§‰ßˆ—BAdd=‰ÁŽZˆ—i‹P‚­”¼“§–¾j,Add1=”¼“§–¾,Sub=Œ¸ŽZˆ—i‰e‚Ì”¼“§–¾j,None=“§‰ß‚µ‚È‚¢
+mask        = 1         ;‰æ‘œ‚Ì”wŒiF‚ð“§‰ß‚³‚¹‚é‚©‚Ç‚¤‚©B1=Yes,0=No
+tile        = 0,0       ;?ƒCƒ‹‰»‚µ‚Ä“¯‚¶‰æ‘œ‚ð•¡”?Ž¦‚³‚¹‚é‚©‚Ç‚¤‚©i‚»‚ê‚¼‚êX,Yj
+tilespacing = 0,0       ;?ƒCƒ‹‰»‚µ‚½‰æ‘œ“¯Žm‚ÌŠÔŠuB
+ActionNo    = 0         ;Žg—p‚·‚éƒAƒjƒ‚Ìƒiƒ“ƒo?B
+velocity    = 0,0       ;‰æ‘œ‚ÌˆÚ“®‘¬“x
+
+;====================================================================
+;”wŒi?ƒJ?ƒJƒp?ƒc1
+[BG 01]
+type        = Anim   ? ;‰æ‘œ?Ž¦?ƒCƒvBNormal=Ã?‰æAAnim=ƒAƒjƒ‰æAParallax=—§‘ÌÃ?‰æiˆê?“§Ž‹??j
+spriteNo    = 11,0       ;‰æ‘œƒt?ƒCƒ‹i*.sffj‚Ì‰æ‘œ‚ð?Ž¦BAnim‚ÌŽž‚Í•K—v–³‚µ
+layerNo     = 0         ;ƒŒƒCƒ„?‘®«B0=‰œA1=Žè‘O‚É?Ž¦
+start       = -1,-1     ;Ž²ˆÊ’uB‚±‚Ìdefƒt?ƒCƒ‹‚ÅÝ’è‚µ‚½Ž²ˆÊ’u‚©‚ç”‚¦‚é
+delta       = 2.0,2.0   ;ƒLƒƒƒ‰‚ª“®‚¢‚½Žž‚ÌƒXƒNƒ?ƒ‹ƒXƒs?ƒhB¬”?ˆÈ‰º‰Â?
+trans       = None      ;“§‰ßˆ—BAdd=‰ÁŽZˆ—i‹P‚­”¼“§–¾j,Add1=”¼“§–¾,Sub=Œ¸ŽZˆ—i‰e‚Ì”¼“§–¾j,None=“§‰ß‚µ‚È‚¢
+mask        = 1         ;‰æ‘œ‚Ì”wŒiF‚ð“§‰ß‚³‚¹‚é‚©‚Ç‚¤‚©B1=Yes,0=No
+tile        = 0,0       ;?ƒCƒ‹‰»‚µ‚Ä“¯‚¶‰æ‘œ‚ð•¡”?Ž¦‚³‚¹‚é‚©‚Ç‚¤‚©i‚»‚ê‚¼‚êX,Yj
+tilespacing = 0,0       ;?ƒCƒ‹‰»‚µ‚½‰æ‘œ“¯Žm‚ÌŠÔŠuB
+ActionNo    = 01         ;Žg—p‚·‚éƒAƒjƒ‚Ìƒiƒ“ƒo?B
+velocity    = 0,0       ;‰æ‘œ‚ÌˆÚ“®‘¬“x
+
+;====================================================================
+;”wŒi?ƒJ?ƒJƒp?ƒc2
+[BG 02]
+type        = Anim   ? ;‰æ‘œ?Ž¦?ƒCƒvBNormal=Ã?‰æAAnim=ƒAƒjƒ‰æAParallax=—§‘ÌÃ?‰æiˆê?“§Ž‹??j
+spriteNo    = 11,1       ;‰æ‘œƒt?ƒCƒ‹i*.sffj‚Ì‰æ‘œ‚ð?Ž¦BAnim‚ÌŽž‚Í•K—v–³‚µ
+layerNo     = 0         ;ƒŒƒCƒ„?‘®«B0=‰œA1=Žè‘O‚É?Ž¦
+start       = -1,-1     ;Ž²ˆÊ’uB‚±‚Ìdefƒt?ƒCƒ‹‚ÅÝ’è‚µ‚½Ž²ˆÊ’u‚©‚ç”‚¦‚é
+delta       = 2.0,2.0   ;ƒLƒƒƒ‰‚ª“®‚¢‚½Žž‚ÌƒXƒNƒ?ƒ‹ƒXƒs?ƒhB¬”?ˆÈ‰º‰Â?
+trans       = None      ;“§‰ßˆ—BAdd=‰ÁŽZˆ—i‹P‚­”¼“§–¾j,Add1=”¼“§–¾,Sub=Œ¸ŽZˆ—i‰e‚Ì”¼“§–¾j,None=“§‰ß‚µ‚È‚¢
+mask        = 1         ;‰æ‘œ‚Ì”wŒiF‚ð“§‰ß‚³‚¹‚é‚©‚Ç‚¤‚©B1=Yes,0=No
+tile        = 0,0       ;?ƒCƒ‹‰»‚µ‚Ä“¯‚¶‰æ‘œ‚ð•¡”?Ž¦‚³‚¹‚é‚©‚Ç‚¤‚©i‚»‚ê‚¼‚êX,Yj
+tilespacing = 0,0       ;?ƒCƒ‹‰»‚µ‚½‰æ‘œ“¯Žm‚ÌŠÔŠuB
+ActionNo    = 02         ;Žg—p‚·‚éƒAƒjƒ‚Ìƒiƒ“ƒo?B
+velocity    = 0,0       ;‰æ‘œ‚ÌˆÚ“®‘¬“x
+
+;====================================================================
+;”wŒi?ƒJ?ƒJƒp?ƒc3
+[BG 03]
+type        = Anim   ? ;‰æ‘œ?Ž¦?ƒCƒvBNormal=Ã?‰æAAnim=ƒAƒjƒ‰æAParallax=—§‘ÌÃ?‰æiˆê?“§Ž‹??j
+spriteNo    = 11,2       ;‰æ‘œƒt?ƒCƒ‹i*.sffj‚Ì‰æ‘œ‚ð?Ž¦BAnim‚ÌŽž‚Í•K—v–³‚µ
+layerNo     = 0         ;ƒŒƒCƒ„?‘®«B0=‰œA1=Žè‘O‚É?Ž¦
+start       = -1,-1     ;Ž²ˆÊ’uB‚±‚Ìdefƒt?ƒCƒ‹‚ÅÝ’è‚µ‚½Ž²ˆÊ’u‚©‚ç”‚¦‚é
+delta       = 2.0,2.0   ;ƒLƒƒƒ‰‚ª“®‚¢‚½Žž‚ÌƒXƒNƒ?ƒ‹ƒXƒs?ƒhB¬”?ˆÈ‰º‰Â?
+trans       = None      ;“§‰ßˆ—BAdd=‰ÁŽZˆ—i‹P‚­”¼“§–¾j,Add1=”¼“§–¾,Sub=Œ¸ŽZˆ—i‰e‚Ì”¼“§–¾j,None=“§‰ß‚µ‚È‚¢
+mask        = 1         ;‰æ‘œ‚Ì”wŒiF‚ð“§‰ß‚³‚¹‚é‚©‚Ç‚¤‚©B1=Yes,0=No
+tile        = 0,0       ;?ƒCƒ‹‰»‚µ‚Ä“¯‚¶‰æ‘œ‚ð•¡”?Ž¦‚³‚¹‚é‚©‚Ç‚¤‚©i‚»‚ê‚¼‚êX,Yj
+tilespacing = 0,0       ;?ƒCƒ‹‰»‚µ‚½‰æ‘œ“¯Žm‚ÌŠÔŠuB
+ActionNo    = 03         ;Žg—p‚·‚éƒAƒjƒ‚Ìƒiƒ“ƒo?B
+velocity    = 0,0       ;‰æ‘œ‚ÌˆÚ“®‘¬“x
+
+;====================================================================
+;”wŒi?ƒJ?ƒJƒp?ƒc4
+[BG 04]
+type        = Anim   ? ;‰æ‘œ?Ž¦?ƒCƒvBNormal=Ã?‰æAAnim=ƒAƒjƒ‰æAParallax=—§‘ÌÃ?‰æiˆê?“§Ž‹??j
+spriteNo    = 11,3       ;‰æ‘œƒt?ƒCƒ‹i*.sffj‚Ì‰æ‘œ‚ð?Ž¦BAnim‚ÌŽž‚Í•K—v–³‚µ
+layerNo     = 0         ;ƒŒƒCƒ„?‘®«B0=‰œA1=Žè‘O‚É?Ž¦
+start       = -1,-1     ;Ž²ˆÊ’uB‚±‚Ìdefƒt?ƒCƒ‹‚ÅÝ’è‚µ‚½Ž²ˆÊ’u‚©‚ç”‚¦‚é
+delta       = 2.0,2.0   ;ƒLƒƒƒ‰‚ª“®‚¢‚½Žž‚ÌƒXƒNƒ?ƒ‹ƒXƒs?ƒhB¬”?ˆÈ‰º‰Â?
+trans       = None      ;“§‰ßˆ—BAdd=‰ÁŽZˆ—i‹P‚­”¼“§–¾j,Add1=”¼“§–¾,Sub=Œ¸ŽZˆ—i‰e‚Ì”¼“§–¾j,None=“§‰ß‚µ‚È‚¢
+mask        = 1         ;‰æ‘œ‚Ì”wŒiF‚ð“§‰ß‚³‚¹‚é‚©‚Ç‚¤‚©B1=Yes,0=No
+tile        = 0,0       ;?ƒCƒ‹‰»‚µ‚Ä“¯‚¶‰æ‘œ‚ð•¡”?Ž¦‚³‚¹‚é‚©‚Ç‚¤‚©i‚»‚ê‚¼‚êX,Yj
+tilespacing = 0,0       ;?ƒCƒ‹‰»‚µ‚½‰æ‘œ“¯Žm‚ÌŠÔŠuB
+ActionNo    = 04         ;Žg—p‚·‚éƒAƒjƒ‚Ìƒiƒ“ƒo?B
+velocity    = 0,0       ;‰æ‘œ‚ÌˆÚ“®‘¬“x
+
+;====================================================================
+;”wŒi?ƒJ?ƒJƒp?ƒc5
+[BG 05]
+type        = Anim   ? ;‰æ‘œ?Ž¦?ƒCƒvBNormal=Ã?‰æAAnim=ƒAƒjƒ‰æAParallax=—§‘ÌÃ?‰æiˆê?“§Ž‹??j
+spriteNo    = 11,4       ;‰æ‘œƒt?ƒCƒ‹i*.sffj‚Ì‰æ‘œ‚ð?Ž¦BAnim‚ÌŽž‚Í•K—v–³‚µ
+layerNo     = 0         ;ƒŒƒCƒ„?‘®«B0=‰œA1=Žè‘O‚É?Ž¦
+start       = -1,-1     ;Ž²ˆÊ’uB‚±‚Ìdefƒt?ƒCƒ‹‚ÅÝ’è‚µ‚½Ž²ˆÊ’u‚©‚ç”‚¦‚é
+delta       = 2.0,2.0   ;ƒLƒƒƒ‰‚ª“®‚¢‚½Žž‚ÌƒXƒNƒ?ƒ‹ƒXƒs?ƒhB¬”?ˆÈ‰º‰Â?
+trans       = None      ;“§‰ßˆ—BAdd=‰ÁŽZˆ—i‹P‚­”¼“§–¾j,Add1=”¼“§–¾,Sub=Œ¸ŽZˆ—i‰e‚Ì”¼“§–¾j,None=“§‰ß‚µ‚È‚¢
+mask        = 1         ;‰æ‘œ‚Ì”wŒiF‚ð“§‰ß‚³‚¹‚é‚©‚Ç‚¤‚©B1=Yes,0=No
+tile        = 0,0       ;?ƒCƒ‹‰»‚µ‚Ä“¯‚¶‰æ‘œ‚ð•¡”?Ž¦‚³‚¹‚é‚©‚Ç‚¤‚©i‚»‚ê‚¼‚êX,Yj
+tilespacing = 0,0       ;?ƒCƒ‹‰»‚µ‚½‰æ‘œ“¯Žm‚ÌŠÔŠuB
+ActionNo    = 05         ;Žg—p‚·‚éƒAƒjƒ‚Ìƒiƒ“ƒo?B
+velocity    = 0,0       ;‰æ‘œ‚ÌˆÚ“®‘¬“x
+
+;====================================================================
+;”wŒi?ƒJ?ƒJƒp?ƒc6
+[BG 06]
+type        = Anim   ? ;‰æ‘œ?Ž¦?ƒCƒvBNormal=Ã?‰æAAnim=ƒAƒjƒ‰æAParallax=—§‘ÌÃ?‰æiˆê?“§Ž‹??j
+spriteNo    = 11,4       ;‰æ‘œƒt?ƒCƒ‹i*.sffj‚Ì‰æ‘œ‚ð?Ž¦BAnim‚ÌŽž‚Í•K—v–³‚µ
+layerNo     = 0         ;ƒŒƒCƒ„?‘®«B0=‰œA1=Žè‘O‚É?Ž¦
+start       = -1,-1     ;Ž²ˆÊ’uB‚±‚Ìdefƒt?ƒCƒ‹‚ÅÝ’è‚µ‚½Ž²ˆÊ’u‚©‚ç”‚¦‚é
+delta       = 2.0,2.0   ;ƒLƒƒƒ‰‚ª“®‚¢‚½Žž‚ÌƒXƒNƒ?ƒ‹ƒXƒs?ƒhB¬”?ˆÈ‰º‰Â?
+trans       = None      ;“§‰ßˆ—BAdd=‰ÁŽZˆ—i‹P‚­”¼“§–¾j,Add1=”¼“§–¾,Sub=Œ¸ŽZˆ—i‰e‚Ì”¼“§–¾j,None=“§‰ß‚µ‚È‚¢
+mask        = 1         ;‰æ‘œ‚Ì”wŒiF‚ð“§‰ß‚³‚¹‚é‚©‚Ç‚¤‚©B1=Yes,0=No
+tile        = 0,0       ;?ƒCƒ‹‰»‚µ‚Ä“¯‚¶‰æ‘œ‚ð•¡”?Ž¦‚³‚¹‚é‚©‚Ç‚¤‚©i‚»‚ê‚¼‚êX,Yj
+tilespacing = 0,0       ;?ƒCƒ‹‰»‚µ‚½‰æ‘œ“¯Žm‚ÌŠÔŠuB
+ActionNo    = 06         ;Žg—p‚·‚éƒAƒjƒ‚Ìƒiƒ“ƒo?B
+velocity    = 0,0       ;‰æ‘œ‚ÌˆÚ“®‘¬“x
+
+;====================================================================
+;”wŒi?ƒJ?ƒJƒp?ƒcƒAƒjƒ?ƒVƒ‡ƒ“ŠÇ—
+;====================================================================
+[Begin Action 01]
+0,0,0,0,2
+2,0,0,0,2
+
+[Begin Action 02]
+0,0,0,0,2
+2,1,0,0,2
+
+[Begin Action 03]
+0,0,0,0,2
+2,2,0,0,2
+
+[Begin Action 04]
+0,0,0,0,2
+2,3,0,0,2
+
+[Begin Action 05]
+0,0,0,0,2
+2,4,0,0,2
+
+[Begin Action 06]
+0,0,0,0,2
+2,5,0,0,3
+
+;====================================================================
+;¶ã‚Ìƒoƒ‹?ƒ“
+[BG 06]
+type        = Normal ? ;‰æ‘œ?Ž¦?ƒCƒvBNormal=Ã?‰æAAnim=ƒAƒjƒ‰æAParallax=—§‘ÌÃ?‰æiˆê?“§Ž‹??j
+spriteNo    = 1,0       ;‰æ‘œƒt?ƒCƒ‹i*.sffj‚Ì‰æ‘œ‚ð?Ž¦BAnim‚ÌŽž‚Í•K—v–³‚µ
+layerNo     = 0         ;ƒŒƒCƒ„?‘®«B0=‰œA1=Žè‘O‚É?Ž¦
+start       = -1,-1     ;Ž²ˆÊ’uB‚±‚Ìdefƒt?ƒCƒ‹‚ÅÝ’è‚µ‚½Ž²ˆÊ’u‚©‚ç”‚¦‚é
+delta       = 2.0,2.0   ;ƒLƒƒƒ‰‚ª“®‚¢‚½Žž‚ÌƒXƒNƒ?ƒ‹ƒXƒs?ƒhB¬”?ˆÈ‰º‰Â?
+trans       = None      ;“§‰ßˆ—BAdd=‰ÁŽZˆ—i‹P‚­”¼“§–¾j,Add1=”¼“§–¾,Sub=Œ¸ŽZˆ—i‰e‚Ì”¼“§–¾j,None=“§‰ß‚µ‚È‚¢
+mask        = 1         ;‰æ‘œ‚Ì”wŒiF‚ð“§‰ß‚³‚¹‚é‚©‚Ç‚¤‚©B1=Yes,0=No
+tile        = 0,0       ;?ƒCƒ‹‰»‚µ‚Ä“¯‚¶‰æ‘œ‚ð•¡”?Ž¦‚³‚¹‚é‚©‚Ç‚¤‚©i‚»‚ê‚¼‚êX,Yj
+tilespacing = 0,0       ;?ƒCƒ‹‰»‚µ‚½‰æ‘œ“¯Žm‚ÌŠÔŠuB
+ActionNo    = 0         ;Žg—p‚·‚éƒAƒjƒ‚Ìƒiƒ“ƒo?B
+velocity    = 0,0       ;‰æ‘œ‚ÌˆÚ“®‘¬“x
+
+;====================================================================
+;ƒLƒƒƒƒ‹ (•—?–ÙŽ¦?‚æ‚èAŒ´ìƒQ??‚Å‚Í”­‚È‚¢—«ƒLƒƒƒ‰BBBj
+[BG 07]
+type        = Anim      ;‰æ‘œ?Ž¦?ƒCƒvBNormal=Ã?‰æAAnim=ƒAƒjƒ‰æAParallax=—§‘ÌÃ?‰æiˆê?“§Ž‹??j
+spriteNo    = 9,0       ;‰æ‘œƒt?ƒCƒ‹i*.sffj‚Ì‰æ‘œ‚ð?Ž¦BAnim‚ÌŽž‚Í•K—v–³‚µ
+layerNo     = 0         ;ƒŒƒCƒ„?‘®«B0=‰œA1=Žè‘O‚É?Ž¦
+start       = -1, -1    ;Ž²ˆÊ’uB‚±‚Ìdefƒt?ƒCƒ‹‚ÅÝ’è‚µ‚½Ž²ˆÊ’u‚©‚ç”‚¦‚é
+delta       = 2.0, 2.0  ;ƒLƒƒƒ‰‚ª“®‚¢‚½Žž‚ÌƒXƒNƒ?ƒ‹ƒXƒs?ƒhB¬”?ˆÈ‰º‰Â?
+trans       = None      ;“§‰ßˆ—BAdd=‰ÁŽZˆ—i‹P‚­”¼“§–¾j,Add1=”¼“§–¾,Sub=Œ¸ŽZˆ—i‰e‚Ì”¼“§–¾j,None=“§‰ß‚µ‚È‚¢
+mask        = 1         ;‰æ‘œ‚Ì”wŒiF‚ð“§‰ß‚³‚¹‚é‚©‚Ç‚¤‚©B1=Yes,0=No
+tile        = 0,0       ;?ƒCƒ‹‰»‚µ‚Ä“¯‚¶‰æ‘œ‚ð•¡”?Ž¦‚³‚¹‚é‚©‚Ç‚¤‚©i‚»‚ê‚¼‚êX,Yj
+tilespacing = 0,0       ;?ƒCƒ‹‰»‚µ‚½‰æ‘œ“¯Žm‚ÌŠÔŠuB
+ActionNo    = 07         ;Žg—p‚·‚éƒAƒjƒ‚Ìƒiƒ“ƒo?B
+velocity    = 0,0       ;‰æ‘œ‚ÌˆÚ“®‘¬“x
+
+;====================================================================
+;ƒLƒƒƒƒ‹ƒAƒjƒ?ƒVƒ‡ƒ“ŠÇ—(‚±‚±‚©‚ç‚Í‚Ýo‚¿‚á‘Ê–Ú‚æš‚Ý‚½‚¢‚È...)
+;====================================================================
+[Begin Action 07]
+9,0,0,0,5
+9,1,0,0,5
+9,2,0,0,5
+9,3,0,0,5
+9,4,0,0,5
+9,3,0,0,5
+9,2,0,0,5
+9,1,0,0,5
+
+;====================================================================
+;‰ž‰‡‚·‚éŒZ‚³‚ñ(ƒ”?ƒ“‰½‚¾‚©ƒ‰ƒ“ƒuƒ‹ƒtƒBƒbƒVƒ…‚È‚ñ‚¼‚ÅŒ©‚½—l‚ÈBBB)
+[BG 08]
+type        = Anim      ;‰æ‘œ?Ž¦?ƒCƒvBNormal=Ã?‰æAAnim=ƒAƒjƒ‰æAParallax=—§‘ÌÃ?‰æiˆê?“§Ž‹??j
+spriteNo    = 8,0       ;‰æ‘œƒt?ƒCƒ‹i*.sffj‚Ì‰æ‘œ‚ð?Ž¦BAnim‚ÌŽž‚Í•K—v–³‚µ
+layerNo     = 0         ;ƒŒƒCƒ„?‘®«B0=‰œA1=Žè‘O‚É?Ž¦
+start       = -1, -1    ;Ž²ˆÊ’uB‚±‚Ìdefƒt?ƒCƒ‹‚ÅÝ’è‚µ‚½Ž²ˆÊ’u‚©‚ç”‚¦‚é
+delta       = 2.0, 2.0  ;ƒLƒƒƒ‰‚ª“®‚¢‚½Žž‚ÌƒXƒNƒ?ƒ‹ƒXƒs?ƒhB¬”?ˆÈ‰º‰Â?
+trans       = None      ;“§‰ßˆ—BAdd=‰ÁŽZˆ—i‹P‚­”¼“§–¾j,Add1=”¼“§–¾,Sub=Œ¸ŽZˆ—i‰e‚Ì”¼“§–¾j,None=“§‰ß‚µ‚È‚¢
+mask        = 1         ;‰æ‘œ‚Ì”wŒiF‚ð“§‰ß‚³‚¹‚é‚©‚Ç‚¤‚©B1=Yes,0=No
+tile        = 0,0       ;?ƒCƒ‹‰»‚µ‚Ä“¯‚¶‰æ‘œ‚ð•¡”?Ž¦‚³‚¹‚é‚©‚Ç‚¤‚©i‚»‚ê‚¼‚êX,Yj
+tilespacing = 0,0       ;?ƒCƒ‹‰»‚µ‚½‰æ‘œ“¯Žm‚ÌŠÔŠuB
+ActionNo    = 08         ;Žg—p‚·‚éƒAƒjƒ‚Ìƒiƒ“ƒo?B
+velocity    = 0,0       ;‰æ‘œ‚ÌˆÚ“®‘¬“x
+
+;====================================================================
+;ŒZ‚³‚ñƒAƒjƒ?ƒVƒ‡ƒ“ŠÇ—(ƒMƒƒƒ‰ƒŠ?‘Þ‹ü‚³‚¹‚ñ‚¶‚á–³‚¥‚º!!“I‚È)
+;====================================================================
+[Begin Action 08]
+8,0,0,0,4
+8,1,0,0,4
+8,2,0,0,4
+8,3,0,0,4
+8,4,0,0,4
+8,3,0,0,4
+8,2,0,0,4
+8,1,0,0,4
+
+;====================================================================
+;??ƒL?(‹Q˜T??ƒNƒIƒuƒUƒEƒ‹ƒ”ƒX‚æ‚èAƒPƒrƒ“‚Ìe—F‚Ì‘§ŽqBŒ´ì‚Å‚Íˆê¶Œœ–½‰ž‰‡‚µ‚Ä‚­‚ê‚Ü‚·B)
+[BG 09]
+type        = Anim      ;‰æ‘œ?Ž¦?ƒCƒvBNormal=Ã?‰æAAnim=ƒAƒjƒ‰æAParallax=—§‘ÌÃ?‰æiˆê?“§Ž‹??j
+spriteNo    = 7,0       ;‰æ‘œƒt?ƒCƒ‹i*.sffj‚Ì‰æ‘œ‚ð?Ž¦BAnim‚ÌŽž‚Í•K—v–³‚µ
+layerNo     = 0         ;ƒŒƒCƒ„?‘®«B0=‰œA1=Žè‘O‚É?Ž¦
+start       = -1, -1    ;Ž²ˆÊ’uB‚±‚Ìdefƒt?ƒCƒ‹‚ÅÝ’è‚µ‚½Ž²ˆÊ’u‚©‚ç”‚¦‚é
+delta       = 2.0, 2.0  ;ƒLƒƒƒ‰‚ª“®‚¢‚½Žž‚ÌƒXƒNƒ?ƒ‹ƒXƒs?ƒhB¬”?ˆÈ‰º‰Â?
+trans       = None      ;“§‰ßˆ—BAdd=‰ÁŽZˆ—i‹P‚­”¼“§–¾j,Add1=”¼“§–¾,Sub=Œ¸ŽZˆ—i‰e‚Ì”¼“§–¾j,None=“§‰ß‚µ‚È‚¢
+mask        = 1         ;‰æ‘œ‚Ì”wŒiF‚ð“§‰ß‚³‚¹‚é‚©‚Ç‚¤‚©B1=Yes,0=No
+tile        = 0,0       ;?ƒCƒ‹‰»‚µ‚Ä“¯‚¶‰æ‘œ‚ð•¡”?Ž¦‚³‚¹‚é‚©‚Ç‚¤‚©i‚»‚ê‚¼‚êX,Yj
+tilespacing = 0,0       ;?ƒCƒ‹‰»‚µ‚½‰æ‘œ“¯Žm‚ÌŠÔŠuB
+ActionNo    = 09         ;Žg—p‚·‚éƒAƒjƒ‚Ìƒiƒ“ƒo?B
+velocity    = 0,0       ;‰æ‘œ‚ÌˆÚ“®‘¬“x
+
+;====================================================================
+;??ƒL?ƒAƒjƒ?ƒVƒ‡ƒ“ŠÇ—(ƒN?ƒ‹‚ÉŸ‚Ä‚æ‚Á!!)
+;====================================================================
+[Begin Action 09]
+7,0,0,0,3
+7,1,0,0,3
+7,2,0,0,3
+7,3,0,0,3
+7,4,0,0,3
+7,3,0,0,3
+7,2,0,0,3
+7,1,0,0,3
+
+;====================================================================
+;?ƒu(RB‹Q˜TƒVƒŠ?ƒY‚æ‚èAƒJ?ƒGƒ‰‚ÌŽg‚¢Žè‚ÅŽÀ‚ÍƒpƒIƒpƒIƒJƒtƒF2†“X‚Å“X’·‚ð‚µ‚Ä‚é—z‹C‚ÈŒä•û)
+[BG 10]
+type        = Anim      ;‰æ‘œ?Ž¦?ƒCƒvBNormal=Ã?‰æAAnim=ƒAƒjƒ‰æAParallax=—§‘ÌÃ?‰æiˆê?“§Ž‹??j
+spriteNo    = 6,0       ;‰æ‘œƒt?ƒCƒ‹i*.sffj‚Ì‰æ‘œ‚ð?Ž¦BAnim‚ÌŽž‚Í•K—v–³‚µ
+layerNo     = 0         ;ƒŒƒCƒ„?‘®«B0=‰œA1=Žè‘O‚É?Ž¦
+start       = -1, -1    ;Ž²ˆÊ’uB‚±‚Ìdefƒt?ƒCƒ‹‚ÅÝ’è‚µ‚½Ž²ˆÊ’u‚©‚ç”‚¦‚é
+delta       = 2.0, 2.0  ;ƒLƒƒƒ‰‚ª“®‚¢‚½Žž‚ÌƒXƒNƒ?ƒ‹ƒXƒs?ƒhB¬”?ˆÈ‰º‰Â?
+trans       = None      ;“§‰ßˆ—BAdd=‰ÁŽZˆ—i‹P‚­”¼“§–¾j,Add1=”¼“§–¾,Sub=Œ¸ŽZˆ—i‰e‚Ì”¼“§–¾j,None=“§‰ß‚µ‚È‚¢
+mask        = 1         ;‰æ‘œ‚Ì”wŒiF‚ð“§‰ß‚³‚¹‚é‚©‚Ç‚¤‚©B1=Yes,0=No
+tile        = 0,0       ;?ƒCƒ‹‰»‚µ‚Ä“¯‚¶‰æ‘œ‚ð•¡”?Ž¦‚³‚¹‚é‚©‚Ç‚¤‚©i‚»‚ê‚¼‚êX,Yj
+tilespacing = 0,0       ;?ƒCƒ‹‰»‚µ‚½‰æ‘œ“¯Žm‚ÌŠÔŠuB
+ActionNo    = 10         ;Žg—p‚·‚éƒAƒjƒ‚Ìƒiƒ“ƒo?B
+velocity    = 0,0       ;‰æ‘œ‚ÌˆÚ“®‘¬“x
+
+;====================================================================
+;?ƒuƒAƒjƒ?ƒVƒ‡ƒ“ŠÇ—(ˆù‚Ý•¨‚Éƒnƒ“ƒo?ƒK?A?‰½‚Å‚·‚©?!!)
+;====================================================================
+[Begin Action 10]
+6,0,0,0,6
+6,1,0,0,6
+6,2,0,0,6
+6,3,0,0,6
+6,4,0,0,6
+6,3,0,0,6
+6,2,0,0,6
+6,1,0,0,6
+
+;====================================================================
+;?ƒtƒgƒNƒŠ??‚ð”„‚èž‚ÞƒIƒl?ƒTƒ“
+[BG 11]
+type        = Anim      ;‰æ‘œ?Ž¦?ƒCƒvBNormal=Ã?‰æAAnim=ƒAƒjƒ‰æAParallax=—§‘ÌÃ?‰æiˆê?“§Ž‹??j
+spriteNo    = 5,0       ;‰æ‘œƒt?ƒCƒ‹i*.sffj‚Ì‰æ‘œ‚ð?Ž¦BAnim‚ÌŽž‚Í•K—v–³‚µ
+layerNo     = 0         ;ƒŒƒCƒ„?‘®«B0=‰œA1=Žè‘O‚É?Ž¦
+start       = -1, -1    ;Ž²ˆÊ’uB‚±‚Ìdefƒt?ƒCƒ‹‚ÅÝ’è‚µ‚½Ž²ˆÊ’u‚©‚ç”‚¦‚é
+delta       = 2.0, 2.0  ;ƒLƒƒƒ‰‚ª“®‚¢‚½Žž‚ÌƒXƒNƒ?ƒ‹ƒXƒs?ƒhB¬”?ˆÈ‰º‰Â?
+trans       = None      ;“§‰ßˆ—BAdd=‰ÁŽZˆ—i‹P‚­”¼“§–¾j,Add1=”¼“§–¾,Sub=Œ¸ŽZˆ—i‰e‚Ì”¼“§–¾j,None=“§‰ß‚µ‚È‚¢
+mask        = 1         ;‰æ‘œ‚Ì”wŒiF‚ð“§‰ß‚³‚¹‚é‚©‚Ç‚¤‚©B1=Yes,0=No
+tile        = 0,0       ;?ƒCƒ‹‰»‚µ‚Ä“¯‚¶‰æ‘œ‚ð•¡”?Ž¦‚³‚¹‚é‚©‚Ç‚¤‚©i‚»‚ê‚¼‚êX,Yj
+tilespacing = 0,0       ;?ƒCƒ‹‰»‚µ‚½‰æ‘œ“¯Žm‚ÌŠÔŠuB
+ActionNo    = 11         ;Žg—p‚·‚éƒAƒjƒ‚Ìƒiƒ“ƒo?B
+velocity    = 0,0       ;‰æ‘œ‚ÌˆÚ“®‘¬“x
+
+;====================================================================
+;ƒIƒl?ƒTƒ“ƒAƒjƒ?ƒVƒ‡ƒ“ŠÇ—(”ü–¡‚µ‚¢‚í‚æ?)
+;====================================================================
+[Begin Action 11]
+5,0,0,0,4
+5,1,0,0,4
+5,2,0,0,4
+5,3,0,0,4
+5,4,0,0,4
+5,3,0,0,4
+5,2,0,0,4
+5,1,0,0,4
+
+;====================================================================
+;‰œ‚ÅƒRƒb?ƒŠŽB‰e‚µ‚Ä‚é‚¨‚Ë?‚³‚ñ
+[BG 12]
+type        = Anim      ;‰æ‘œ?Ž¦?ƒCƒvBNormal=Ã?‰æAAnim=ƒAƒjƒ‰æAParallax=—§‘ÌÃ?‰æiˆê?“§Ž‹??j
+spriteNo    = 4,0       ;‰æ‘œƒt?ƒCƒ‹i*.sffj‚Ì‰æ‘œ‚ð?Ž¦BAnim‚ÌŽž‚Í•K—v–³‚µ
+layerNo     = 0         ;ƒŒƒCƒ„?‘®«B0=‰œA1=Žè‘O‚É?Ž¦
+start       = -1, -1    ;Ž²ˆÊ’uB‚±‚Ìdefƒt?ƒCƒ‹‚ÅÝ’è‚µ‚½Ž²ˆÊ’u‚©‚ç”‚¦‚é
+delta       = 2.0, 2.0  ;ƒLƒƒƒ‰‚ª“®‚¢‚½Žž‚ÌƒXƒNƒ?ƒ‹ƒXƒs?ƒhB¬”?ˆÈ‰º‰Â?
+trans       = None      ;“§‰ßˆ—BAdd=‰ÁŽZˆ—i‹P‚­”¼“§–¾j,Add1=”¼“§–¾,Sub=Œ¸ŽZˆ—i‰e‚Ì”¼“§–¾j,None=“§‰ß‚µ‚È‚¢
+mask        = 1         ;‰æ‘œ‚Ì”wŒiF‚ð“§‰ß‚³‚¹‚é‚©‚Ç‚¤‚©B1=Yes,0=No
+tile        = 0,0       ;?ƒCƒ‹‰»‚µ‚Ä“¯‚¶‰æ‘œ‚ð•¡”?Ž¦‚³‚¹‚é‚©‚Ç‚¤‚©i‚»‚ê‚¼‚êX,Yj
+tilespacing = 0,0       ;?ƒCƒ‹‰»‚µ‚½‰æ‘œ“¯Žm‚ÌŠÔŠuB
+ActionNo    = 12         ;Žg—p‚·‚éƒAƒjƒ‚Ìƒiƒ“ƒo?B
+velocity    = 0,0       ;‰æ‘œ‚ÌˆÚ“®‘¬“x
+
+;====================================================================
+;‚¨‚Ë?‚³‚ñƒAƒjƒ?ƒVƒ‡ƒ“ŠÇ—(ƒoƒŒ‚Ä‚È‚¢ƒoƒŒ‚Ä‚È‚¢‚Á!!)
+;====================================================================
+[Begin Action 12]
+4,0,0,0,5
+4,1,0,0,5
+4,2,0,0,5
+4,3,0,0,5
+4,4,0,0,5
+
+;====================================================================
+;ˆÃ‚ª‚è‚Å‹tŒõ‚ð—‚Ñ‚È‚ª‚çŠÏí‚·‚éƒi?‚Ì‚Ë‚¦‚³‚ñ
+[BG 13]
+type        = Anim      ;‰æ‘œ?Ž¦?ƒCƒvBNormal=Ã?‰æAAnim=ƒAƒjƒ‰æAParallax=—§‘ÌÃ?‰æiˆê?“§Ž‹??j
+spriteNo    = 3,0       ;‰æ‘œƒt?ƒCƒ‹i*.sffj‚Ì‰æ‘œ‚ð?Ž¦BAnim‚ÌŽž‚Í•K—v–³‚µ
+layerNo     = 0         ;ƒŒƒCƒ„?‘®«B0=‰œA1=Žè‘O‚É?Ž¦
+start       = -1, -1    ;Ž²ˆÊ’uB‚±‚Ìdefƒt?ƒCƒ‹‚ÅÝ’è‚µ‚½Ž²ˆÊ’u‚©‚ç”‚¦‚é
+delta       = 2.0, 2.0  ;ƒLƒƒƒ‰‚ª“®‚¢‚½Žž‚ÌƒXƒNƒ?ƒ‹ƒXƒs?ƒhB¬”?ˆÈ‰º‰Â?
+trans       = None      ;“§‰ßˆ—BAdd=‰ÁŽZˆ—i‹P‚­”¼“§–¾j,Add1=”¼“§–¾,Sub=Œ¸ŽZˆ—i‰e‚Ì”¼“§–¾j,None=“§‰ß‚µ‚È‚¢
+mask        = 1         ;‰æ‘œ‚Ì”wŒiF‚ð“§‰ß‚³‚¹‚é‚©‚Ç‚¤‚©B1=Yes,0=No
+tile        = 0,0       ;?ƒCƒ‹‰»‚µ‚Ä“¯‚¶‰æ‘œ‚ð•¡”?Ž¦‚³‚¹‚é‚©‚Ç‚¤‚©i‚»‚ê‚¼‚êX,Yj
+tilespacing = 0,0       ;?ƒCƒ‹‰»‚µ‚½‰æ‘œ“¯Žm‚ÌŠÔŠuB
+ActionNo    = 13         ;Žg—p‚·‚éƒAƒjƒ‚Ìƒiƒ“ƒo?B
+velocity    = 0,0       ;‰æ‘œ‚ÌˆÚ“®‘¬“x
+
+;====================================================================
+;ƒi?‚Ì‚Ë‚¦‚³‚ñ‹tŒõƒAƒjƒ?ƒVƒ‡ƒ“ŠÇ—(...Žá‚¢‚Á‚Ä—Ç‚¢‚í‚Ë‚¥...BBB)
+;====================================================================
+[Begin Action 13]
+3,0,0,0,1
+3,1,0,0,2
+
+;====================================================================

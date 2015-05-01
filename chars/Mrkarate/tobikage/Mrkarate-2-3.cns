@@ -1,0 +1,581 @@
+;-----------------------------------------------------------------------------
+[Statedef -2];常時監視ステート(相手に行動を制御されても関係無く常に実行される)
+;-----------------------------------------------------------------------------
+;-----------------------------------------------------------------------------
+
+;ここでtrigger用に自分の初期ライフを確認します
+[State -2, ライフ確認]
+type = VarSet
+triggerall = RoundState = [0,1] ;開始前の間
+trigger1 = RoundNo = 1          ;一試合目
+trigger2 = TeamMode = Turns     ;5900でイントロを作らないと ↓
+trigger2 = RoundsExisted = 0    ;これは使えません
+v = 22
+value = Life   ;Var(22)に自分のライフを保存
+
+[State -2, ライフ取得ミス対策]
+type = VarSet
+triggerall = Var(22) = [0,100] ;ライフが100以下と認識されたら
+triggerall = Time = 1
+trigger1 = RoundNo = 1
+trigger2 = RoundsExisted = 0
+v = 22
+value = const(data.life) ;自分のデータに書かれたLifeにする
+
+
+;----------------------------------------------------------------------------
+;デバッグ支援記述集
+
+; ※ この一連の記述は、キャラが完成したら消すか";"を付けて無効化しましょう。
+;　　僅かにでも処理が重くなることが理由です。（ちなみにNullではダメです）
+
+
+;デバッグモードに白い文字の表示を加える
+[State -2, デバッグ表示]
+type = DisplayToClipboard
+trigger1 = 1
+text = "V50-C=%d,V3-J=%d,V4-D=%d,V5-B=%d,V20-A=%d"
+params = var(50),var(30),var(4),var(5),var(20)
+ignorehitpause = 1
+
+;表示を横に加える
+[State -2, デバッグ表示その2]
+type = AppendToClipboard
+trigger1 = 1
+text = " V22-L=%d,V21-R=%d,Pos X=%d,Y=%d"
+params = var(22),var(21),ceil(Pos X),floor(enemy,Pos Y)
+ignorehitpause = 1
+
+;表示を下に加える
+;[State -2, デバッグ表示その3]
+;type = AppendToClipboard
+;trigger1 = 1
+;text = "\nDist X=%d,Y=%d, Vel X=%d/10,Y=%d/10 : Power=%d"
+;params = floor(P2BodyDist X),ceil(P2BodyDist Y),ceil(Vel X*10),floor(Vel Y*10),Power
+;ignorehitpause = 1
+
+
+; ※ 関数説明：floor(1.5) = 1、ceil(1.5) = 2になります。 小数を含む場合によく使います。
+;　　小数を詳しく見たい場合は%dの代わりに%fを使います。 MUGENに限らず結構常識です。
+;　　Vel X*10に対し、表記はVel X=%d/10になっています。 10で割った数値が目安のVel Xです。
+;　　PosとDistはfloorとceilが逆になっています。
+
+
+
+
+;無人デバッグ用（かなり長時間CPUに任せるデバッグ法）
+;ウォッチ、サバイバル(ctrl+2使用)のチーム戦が良いと思う
+;[State -2, バグ発生警報]
+;type = VarSet
+;triggerall = RoundState = 2
+;triggerall = Var(20) >= 0
+;trigger1 = floor(Pos Y) < -5 ;よくあるバグとして、宙に浮かぶことが挙げられる
+;trigger1 = stateno = [0,22]  ;宙で立つ、しゃがむ、歩く
+;trigger1 = Time = 1
+;trigger2 = Anim != [5110,5120]
+;trigger2 = Ctrl = 0     ;行動不能のまま
+;trigger2 = Life > 0     ;まだ息があり
+;trigger2 = !Lose        ;負けていないのに
+;trigger2 = Time = 2047  ;長時間固まる
+;var(20)  = -4           ;上記バグが出るとセットされます。
+
+;[State -2, 永久戦闘デバッグ]
+;type = LifeAdd
+;trigger1 = TeamMode = Simul ;必要に応じて条件を変える
+;value = 20  ;HPが減らない
+;ignorehitpause = 1
+
+[State -2, 点滅]
+type = Palfx
+trigger1 = var(24) = 1
+trigger1 = gametime % 2 = 0
+time = 1
+add = 130,130,0
+color = 1
+ignorehitpause = 1
+
+[State -2,]
+type = Varset
+trigger1 = Movetype = H
+var(23) = 0
+
+[State -2,]
+type = Varset
+trigger1 = Movetype = H
+trigger2 = Anim = 0
+trigger3 = stateno = 0
+var(24) = 0
+
+[State -2, 残像]
+type = AfterImage
+trigger1 = Movetype = H
+time = 1
+
+[State -2,]
+type = StopSnd
+trigger1 = command != "holdfwd"
+trigger2 = Anim != 100
+channel = 6
+ignorehitpause = 1
+
+[State -2,]
+type = StopSnd
+trigger1 = Movetype = H
+channel = 4
+ignorehitpause = 1
+
+[State -2,]
+type = StopSnd
+trigger1 = Movetype = H
+channel = 8
+ignorehitpause = 1
+
+[State 1000, 音を鳴らす]
+type = PlaySnd
+trigger1 = P2Movetype = H
+trigger1 = P2Stateno = 311
+trigger1 = P2Statetype = A
+trigger1 = enemy, Pos Y >= 0
+trigger1 = enemy, Vel Y > 0
+trigger2 = P2Movetype = H
+trigger2 = P2Stateno = 2140
+trigger2 = P2Statetype = A
+trigger2 = enemy, Pos Y >= 0
+trigger2 = enemy, Vel Y > 0
+value = s12,19
+
+[State -2,]
+type = Varset
+trigger1 = (command = "holdx" && command = "holda" && command = "holdy")
+var(17) = 0
+
+[State -2,]
+type = Varset
+trigger1 = (command = "holdc" && command = "holdz")
+var(17) = 1
+
+[State -2,]
+type = Varset
+trigger1 = command = "holdxy"
+var(23) = 0
+
+[State -2,]
+type = Varset
+trigger1 = command = "holdc"
+var(23) = 1
+
+;---------------------------------------------------------------------------------
+
+[State -3,]
+type = PlaySnd
+triggerall = alive = 1
+triggerall = random <= 250
+triggerall = time = 1
+trigger1 = stateno = 5000
+trigger1 = anim = 5000 || anim = 5010
+trigger2 = stateno = 5010
+trigger2 = anim = 5020
+value = s11,1
+
+[State -3,]
+type = PlaySnd
+triggerall = alive = 1
+triggerall = random <= 250
+triggerall = time = 1
+trigger1 = stateno = 5000
+trigger1 = anim = 5002 || anim = 5012
+trigger2 = stateno = 5010
+trigger2 = anim = 5022
+value = s11,1
+
+[State -3,]
+type = PlaySnd
+triggerall = alive = 1
+triggerall = random <= 250
+triggerall = time = 1
+trigger1 = stateno = 5101
+value = s11,2
+
+;---------------------------------------------------------------------------
+
+[State 1000, ヘルパーを出す]
+type = Helper
+trigger1 = Projhit1000 = 1
+trigger2 = Projhit2000 = 1
+trigger3 = Projhit3000 = 1
+trigger4 = Stateno = 3015
+trigger4 = AnimElem = 2
+trigger5 = ProjHitTime(3300) = 5
+name = "Slow"
+stateno = 4900
+ID = 4900
+helpertype = normal
+pos = 0,0
+postype = p1
+keyctrl = 0
+ownpal = 1
+ignorehitpause = 1
+
+;---------------------------------------------------------------------------------
+
+[State 1000, ヘルパーを出す]
+type = null;Helper
+triggerall = stateno = 3300
+trigger1 = Anim = 3300
+trigger1 = time = 30
+name = "MAX3"
+stateno = 8000
+ID = 8000
+helpertype = normal
+pos = 0,0
+postype = p2
+keyctrl = 0
+ownpal = 1
+ignorehitpause = 1
+
+[State 1000, ヘルパーを出す]
+type = null;Helper
+triggerall = stateno = 3300
+trigger1 = Anim = 3300
+trigger1 = Animtime = 0
+name = "MAX3END"
+stateno = 8010
+ID = 8010
+helpertype = normal
+pos = 0,0
+postype = p2
+keyctrl = 0
+ownpal = 1
+ignorehitpause = 1
+persistent = 0
+
+[State 1000, ヘルパーを出す]
+type = null;Helper
+triggerall = stateno = 3315
+trigger1 = Projhit3300 = 1
+name = "MAX3END"
+stateno = 8010
+ID = 8010
+helpertype = normal
+pos = 0,0
+postype = p2
+keyctrl = 0
+ownpal = 1
+ignorehitpause = 1
+persistent = 0
+
+[State -2, ｸﾞﾀﾎﾇ?ﾛｻ?ｼｺ]
+type = Helper
+trigger1 = !numhelper(100000)
+ID = 100000
+name = "Main_Controler"
+postype = P1
+pos = 0,0
+sprpriority = -9
+stateno = 100000
+helpertype = normal
+keyctrl = 0
+persistent = 1
+ignorehitpause = 1
+ownpal = 1
+
+[State -2, ｰｭﾁｦｳ?ﾌｼｳﾁ､(ｰｭﾁｦﾂ??]
+type = ChangeState
+trigger1 = Stateno != 105
+trigger1 = Stateno != 1100
+trigger1 = Stateno != 1150
+trigger1 = Stateno != 1175
+trigger1 = Stateno != 1200
+trigger1 = Stateno != 1210
+trigger1 = Stateno != 1250
+trigger1 = Stateno != 1255
+trigger1 = Stateno != 1275
+trigger1 = Stateno != 1305
+trigger1 = Stateno != 1310
+trigger1 = Stateno != 1360
+trigger1 = Stateno != 1380
+trigger1 = Stateno != 2100
+trigger1 = Stateno != 2150
+trigger1 = Stateno != 2140
+trigger1 = Stateno != 3000
+trigger1 = Stateno != 3010
+trigger1 = Stateno != 3025
+trigger1 = Vel Y > 0
+trigger1 = Movetype !=H
+trigger1 = Pos Y >= Helper(100000),var(0)
+value = 52
+
+[State -2, ｰｭﾁｦｳ?ﾌｼｳﾁ､(ｽｺﾅｸﾆｮ)]
+type = Posset
+triggerall = numhelper(100000)
+trigger1 = numhelper(100100)
+trigger1 = helper(100100),time > 118
+trigger2 = Stateno = 5900
+trigger2 = !numhelper(100100)
+trigger2 = Stateno = 5900
+trigger3 = stateno = 0
+trigger3 = ctrl = 0
+Y = Helper(100000),var(0)
+
+[State -2, ｹﾙｴﾚｺﾘｱｫ(ﾀﾏｹﾝ)]
+type = ChangeState
+triggerall = Statetype != A
+;triggerall = Movetype != H
+triggerall = pos Y !=0
+triggerall = Helper(100000),var(0) = 0
+triggerall = Stateno != [40,50]
+triggerall = Stateno != 5100 && Stateno != 5101 && Stateno != 5102 && Stateno != 5110
+trigger1 = numhelper(100001)
+trigger2 = ID !=56
+trigger2 = PlayerID(56),numhelper(100001)
+value = 50
+
+[State -2, ｹﾙｴﾚｺﾘｱｫ(ﾀﾏｹﾝ2)]
+type = ChangeState
+triggerall = Statetype != A
+triggerall = Movetype != H
+triggerall = pos Y !=0
+triggerall = Helper(100000),var(0) = 0
+triggerall = Stateno != [40,50]
+triggerall = Stateno != 5100 && Stateno != 5101 && Stateno != 5102 && Stateno != 5110
+trigger1 = numhelper(100002)
+trigger2 = ID !=56
+trigger2 = PlayerID(56),numhelper(100002)
+value = 50
+
+[State -2, ｹﾙｴﾚｺﾘｱｫ(ｴｩｿ?]
+type = ChangeState
+triggerall = Stateno = 5100 || Stateno = 5101 || Stateno = 5110
+;triggerall = pos Y != 0
+triggerall = Helper(100000),var(0) = 0
+trigger1 = numhelper(100001)
+trigger2 = ID !=56
+trigger2 = PlayerID(56),numhelper(100001)
+value = 5102
+
+[State -2, ﾀﾜｻ?ｦｰﾅ]
+type = AfterImage
+trigger1 = Movetype = H
+time = 1
+
+[State -2, No Air Guard]
+type = AssertSpecial
+trigger1 = 1
+flag = noairguard
+
+[State -2, Guard KO]
+type = ChangeState
+trigger1 = Stateno != 5002 && Stateno != 5150
+trigger1 = Stateno = [5000,5200]
+trigger1 = prevstateno = [120,159]
+trigger1 = Life = 0
+value = 5002
+
+[State -2, ｽﾃﾁ｡ｺｯﾈｯ]
+type = ScreenBound
+triggerall = Statetype = A
+triggerall = stateno != [5160,5179]
+trigger1 = Movetype = H
+trigger1 = Life != 0
+trigger2 = Stateno = [5000,5499]
+value = 1
+movecamera = 1,0
+
+[State -2, ｽｺﾆｮｶ?ﾌﾄｿ ｰｭﾁｦｺｯﾈｯ]
+type = ChangeState
+triggerall = helper(100000),var(11) != 0
+triggerall = !win && !lose && !DrawGame
+triggerall = partner,life != 0
+trigger1 = ctrl
+value = 5610
+ctrl = 0
+
+[State -2, ﾈｭｸ鯤ｭｸ鮨ﾃ ｻ｡ｸｮ ｳﾑｾ?｡ﾀﾚ.]
+type = ChangeState
+trigger1 = numhelper(100300)
+trigger1 = helper(100300),time >= 53
+trigger1 = stateno != 180
+trigger1 = movetype != H
+value = 180
+ctrl = 1
+
+
+;---------------------------------------------------------------------------
+;極限虎煌エフェクト
+
+[Statedef 1076]
+type     = A
+movetype = I
+physics  = N
+ctrl     = 0
+anim     = 9999
+sprpriority = 15
+
+[State 170, 無敵]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State 1001, 特殊効果]
+type = AssertSpecial
+trigger1 = 1
+flag = NoShadow ;影を消す
+
+[State 1000, ]
+type = Velset
+trigger1 = time >= 0
+x = 8
+
+[State 3000]
+type = Explod
+trigger1 = (GameTime%10) = 0
+anim = 1085
+pos = 0,0
+postype = p1
+sprpriority = 15
+ownpal = 1
+
+[State 1001, このヘルパーを消す]
+type = DestroySelf
+trigger1 = Root,numprojID(1000) = 0
+
+;---------------------------------------------------------------------------------
+; MAX3演出用ヘルパー
+
+[Statedef 8000]
+type     = A
+movetype = I
+physics  = N
+ctrl     = 0
+anim     = 9999
+sprpriority = -50
+
+[State 181, 特殊効果]
+type = AssertSpecial
+trigger1 = 1
+flag = noBG
+flag2 = noFG
+flag3 = noshadow
+
+[State 2000]
+type = Explod
+trigger1 = time = 0
+anim = 8000
+ID = 8000
+pos = 0,0
+postype = back
+ownpal = 1
+bindtime = -1
+removetime = -1
+supermove = 1
+sprpriority = -100
+
+[State 2000]
+type = Explod
+trigger1 = time = 0
+anim = 8000
+ID = 8000
+pos = -320,0
+postype = back
+ownpal = 1
+bindtime = -1
+removetime = -1
+supermove = 1
+sprpriority = -100
+
+[State 1000,]
+type = RemoveExplod
+trigger1 = root,stateno != [3300,3315]
+trigger2 = root,stateno = 3315
+trigger2 = root,ProjHitTime(3300) = 1
+ID = 8000
+
+[State 800, ステート変更]
+type = DestroySelf
+trigger1 = root,stateno != [3300,3315]
+trigger2 = root,stateno = 3315
+trigger2 = root,ProjHitTime(3300) = 1
+
+;---------------------------------------------------------------------------------
+; MAX3演出用ヘルパー
+; パリーン
+
+[Statedef 8010]
+type     = A
+movetype = I
+physics  = N
+juggle   = 0
+ctrl     = 0
+anim     = 9999
+sprpriority = -50
+
+[State 200,]
+type = Posset
+trigger1 = time = 0
+x = 0
+y = 0
+
+[State 181, 特殊効果]
+type = AssertSpecial
+trigger1 = time = [0,6]
+flag = noBG
+
+[State 181, 特殊効果]
+type = AssertSpecial
+trigger1 = 1
+flag = noFG
+flag2 = noshadow
+
+[State 2000]
+type = Explod
+trigger1 = time = 0
+anim = 8010
+ID = 8010
+pos = 0,0
+postype = back
+ownpal = 1
+bindtime = -1
+supermove = 1
+sprpriority = -100
+
+[State 1000, 音を鳴らす]
+type = PlaySnd
+trigger1 = time = 7
+value = s12,20
+
+[State 1000,]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 8000
+
+[State 4110, DestroySelf]
+type = DestroySelf
+trigger1 = time = 8
+
+;---------------------------------------------------------------------------
+;スロー処理
+
+[Statedef 4900]
+type     = A
+movetype = I
+physics  = N
+juggle   = 0
+ctrl     = 0
+anim     = 4900
+sprpriority = 1
+
+[State 1001,]
+type = Pause
+trigger1 = (GameTime%3) = 0
+trigger1 = time = [0,20]
+time = 1
+
+[State 1001,]
+type = Pause
+trigger1 = (GameTime%6) = 0
+trigger1 = time = [21,30]
+time = 1
+
+[State 4110, DestroySelf]
+type = DestroySelf
+trigger1 = Animtime = 0

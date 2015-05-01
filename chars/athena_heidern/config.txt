@@ -1,0 +1,87 @@
+[statedef 7777]
+type = A
+movetype = I
+physics = N
+ctrl=0
+anim=1010
+
+;*****************************
+;        config
+;*****************************
+
+;///////////////////////////////////////
+;  bust morphing(もぎたてのぷるぷるよ♪)
+;///////////////////////////////////////
+;This character has normal version and bust morphing version.
+;anyone wants to use normal version can use it
+;it's only effects on victory position, but anything else.
+;要約：このアテナには揺れるバージョンと揺れないバージョンがあるよ
+;      揺らしたい人は使うといいよ
+;      勝った時に揺れるよ！！そこはかとなく揺れるよ！！
+
+;bust morphing or not
+;おっぱいおっぱい！！
+[state 7777]
+type = varset
+trigger1 = time = 0
+var(0) = 0  ;<-- change this number  ここを変えるといいよ
+                       ; 0 normal mode    揺れない
+                       ; 1 bust morphing  揺れる
+
+
+
+
+
+
+;///////////////////////////////
+; command type  (コマンド入力方式)
+;///////////////////////////////
+;This character has same skills but it's command pattern divided into 3.
+;These are Athena's command , Heidern's command and normal command.
+;Normal command means Athena's command + Heidern command.
+;If anyone wants to use original, it's fine.
+;it's just different in command pattern.
+;要約：このアテナはなんと３つのモードからコマンドパターンを選べちゃいます。
+;      アテナっぽいコマンドのアテナモード、ハイデルンっぽいコマンドのハイデルンモード
+;      そして！！その二つを組み合わせた全く新しいノーマルモード！！
+;      コマンドモードを選べるなんてお得だわ～
+
+;Choose your command pattern!!
+;コマンドパターンを選んでね
+[state 7777]
+type = varset
+trigger1 = time = 0
+var(1) = 0   ;<--change this number  ここを変えてね
+                       ; 0 normal command   ノーマルモード
+                       ; 1 athena command   アテナモード
+                       ; 2 heidern command  ハイデルンモード
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;日本語添付：馬の骨
+
+;-----------------------------------------------
+;Don't change under here  ここから下は変えないで
+;-----------------------------------------------
+[state 7777]
+type = parentvarset
+trigger1 = time = 1
+var(0) = 1 + 2*var(0) + 4*var(1)
+
+[state 7777]
+type = destroyself
+trigger1 = time >= 2
+trigger1 = parent,var(0) > 0

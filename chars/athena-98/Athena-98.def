@@ -1,0 +1,36 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "Athena"
+displayname = "Athena Ayamiya"
+versiondate = 05,28,2008
+mugenversion = 1.0
+author = "Zelgadis"
+pal.defaults = 1,2,3,4,5,6
+localcoord = 427,240
+
+[Files]
+sprite = Athena-98.sff
+anim = Athena-98.air
+sound = Athena-98.snd
+cmd = Athena-98.cmd
+cns = Athena-98.cns
+stcommon = common1.cns
+st = Athena-98.cns
+st1 = Athena-98-N.cns
+st2 = Athena-98-S.cns
+st3 = Athena-98-H.cns
+st4 = Athena-98-2-3.cns
+pal1 = Paletas\Athena-98-Original.act
+pal2 = Paletas\Athena-98-2.act
+pal3 = Paletas\Athena-98-3.act
+pal4 = Paletas\Athena-98-1.act
+pal5 = Paletas\Athena-98-5.act
+pal6 = Paletas\Athena-98-6.act
+
+[Arcade]
+intro.storyboard = History.def
+ending.storyboard = 

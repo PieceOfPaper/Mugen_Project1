@@ -1,0 +1,251 @@
+;---------------------------------------------------------------------
+[Characters]
+;======================================================================
+;Line1
+;======================================================================
+Reichel_TP, stages/Reichel_Stage.def, order=3
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;야시로
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;셸미
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;크리스
+/
+kfm, stages/KOFXIII_Outside_Coliseum_Mugen1_NOINTRO.def, order=9;미정
+kfm, stages/KOFXIII_Outside_Coliseum_Mugen1_NOINTRO.def, order=9;바이스
+kfm, stages/KOFXIII_Outside_Coliseum_Mugen1_NOINTRO.def, order=9;메튜
+Iori-Yagami, stages/KOFXIII_Outside_Coliseum_Mugen1_NOINTRO.def, order=9
+/
+kfm, stages/Port_Sunset.def, order=9;신고
+kfm, stages/Port_Sunset.def, order=9;고로
+kfm, stages/Port_Sunset.def, order=9;베니
+Nests Kyo-KOFM, stages/Port_Sunset.def, order=9
+/
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;류
+Ken, random, order=9
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;춘리
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;가일
+/
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;베가
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;발로그
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;시가트
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;미정
+/
+kfm, stages/TOWER.def, order=9;무명이
+K-BLOOD, stages/TOWER.def, order=9
+Clone-Angel, stages/TOWER.def, order=9
+kfm, stages/TOWER.def, order=9;미정
+;======================================================================
+;Line2
+;======================================================================
+/
+/
+/
+KOFzerokoW, stages/XX'ABSOLUTE'ZERO'XX.def, order=9
+kfm, stages/XX'ABSOLUTE'ZERO'XX.def, order=9;사구
+kfm, stages/XX'ABSOLUTE'ZERO'XX.def, order=9;앙헬
+kfm, stages/XX'ABSOLUTE'ZERO'XX.def, order=9;폭시
+
+/
+whip, stages/Kofxi_America_stage.def, order=9
+ccikula, stages/Kofxi_America_stage.def, order=9
+kfm, stages/Kofxi_America_stage.def, order=9;맥심
+K', stages/Kofxi_America_stage.def, order=9
+/
+/
+/
+/
+/
+2003terry, stages/Field_SunsetFinal.def, order=9;아랑전설
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;죠
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;앤디
+Rock, stages/Field_SunsetFinal.def, order=9
+/
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;호타루
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;가토
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;쟈넷
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;티족
+/
+/
+/
+;======================================================================
+;Line3
+;======================================================================
+/
+/
+J_shion, stages/KOFXIII_Saiki_Dark_Palace_NOINTRO.def, order=2
+magaki, stages/KOFXIII_Saiki_Dark_Palace_NOINTRO.def, order=2
+Mukai XI, stages/KOFXIII_Saiki_Dark_Palace_NOINTRO.def, order=2
+kfm, stages/KOFXIII_Saiki_Dark_Palace_NOINTRO.def, order=10;사이키
+/
+Oswald_MA, stages/NBC_ColumnD4.def, order=9
+duolon, stages/NBC_ColumnD4.def, order=9;둬령
+Shen, stages/NBC_ColumnD4.def, order=9
+xi_elisabeth, stages/NBC_ColumnD4.def, order=9
+/
+/
+/
+RandomSelect
+/
+/
+/
+Mrkarate-2nd, random, order=9;가라테
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;로버트
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;유리
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;킹
+/
+athena-98, random, order=9
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;켄수
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;친
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;바오
+/
+/
+;======================================================================
+;Line4
+;======================================================================
+/
+/
+/
+/
+orochi_kyo, stages/Element-The-Nightmare.def, order=1
+Orochi iori, stages/Element-The-Nightmare.def, order=1
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;폭주류
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;폭주켄
+/
+Syo-Kirishima, stages/YDA_CVS_Snk(Neo-Geo)_Beta.def, order=9
+kain3, stages/stage0-720.def, music=sound/song.mp3, order=10
+Mrkarate, stages/DESTROYED_TEMPLE.def, order=5
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10
+/
+/
+/
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;레오나
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;랄프
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;클락
+athena_heidern, random, order=9
+/
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;재훈
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;동환
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;번개
+kfm, stages/stage0-720.def, music=sound/song.mp3, order=10;거한
+/
+/
+/
+/
+;======================================================================
+;Line5
+;======================================================================
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+////
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+;======================================================================
+;Line6
+;======================================================================
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+00fdeath, 
+stages/Hilda's_Destruction.def, order=9
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+/
+athena, stages/NBC_KurukuruD4.def, order=9
+N-Geese, random, order=4
+
+
+
+;-----------------------
+[ExtraStages]
+
+stages/stage0-720.def
+
+;Normal
+stages/XX'ABSOLUTE'ZERO'XX.def
+stages/Kofxi_America_stage.def
+stages/NBC_ColumnD4.def
+stages/KOFXIII_Outside_Coliseum_Mugen1_NOINTRO.def
+stages/TOWER.def
+stages/Port_Sunset.def
+stages/DESTROYED_TEMPLE.def
+
+stages/CAFE_DISS.def
+stages/Field_SunsetFinal.def
+stages/XX'ICE'XX.def
+stages/Imperial_City.def
+stages/[MBAC]Temple_the_Seventh_Heaven.def
+stages/YDA_CVS_Snk(Neo-Geo)_Beta.def
+stages/JB_Chicago.def
+stages/NBC_KurukuruD4.def
+stages/TK3_NYC.def
+stages/MBAA_spiral_uroboros.def
+stages/XX'LIFE'XX.def
+stages/NIGHTRIDING.def
+stages/CityNeverSleeps.def
+stages/ElevatorRed.def
+stages/DESERTED_TEMPLE.def
+
+
+;Boss
+stages/Reichel_Stage.def
+stages/Element-The-Nightmare.def
+stages/KOFXIII_Saiki_Dark_Palace_NOINTRO.def
+stages/Hilda's_Destruction.def
+
+;---------------------------------------------------------------------
+[Options]
+ ;Here you set the maximum number of matches to fight before game ends
+ ;in Arcade Mode. The first number is the number of matches against
+ ;characters with order=1, followed by order=2 and order=3 respectively.
+ ;For example, for 4,3,1 you will fight up to 4 randomly-picked
+ ;characters who have order=1, followed by 3 with order=2 and 1 with
+ ;order=3.
+arcade.maxmatches = 1,1,1,0,0,0,0,0,0,0
+
+ ;Maximum number of matches to fight before game ends in Team Mode.
+ ;Like arcade.maxmatches, but applies to Team Battle.
+team.maxmatches = 1,1,1,1,1,1,1,1,1,0

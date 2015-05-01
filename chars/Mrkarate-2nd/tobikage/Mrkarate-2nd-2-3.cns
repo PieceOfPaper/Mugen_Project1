@@ -1,0 +1,521 @@
+;-----------------------------------------------------------------------------
+[Statedef -2];íŠÄ‹ƒXƒe[ƒg(‘Šè‚És“®‚ğ§Œä‚³‚ê‚Ä‚àŠÖŒW–³‚­í‚ÉÀs‚³‚ê‚é)
+;-----------------------------------------------------------------------------
+;-----------------------------------------------------------------------------
+
+[State -2, “ñl–Ú‚ÌƒCƒ“ƒgƒ]
+type = ChangeState             ;“ñl–Ú‚Å‚àƒCƒ“ƒgƒ‚ğì‚é
+value = 190                    ;ƒCƒ“ƒgƒ‚Ö
+triggerall = RoundsExisted = 0 ;©•ª‚ª‰Qí
+triggerall = TeamMode = Turns  ;ƒ^[ƒ“ƒ‚[ƒh
+trigger1 = stateno = 5900      ;5900”Ô
+
+
+;‚±‚±‚Åtrigger—p‚É©•ª‚Ì‰Šúƒ‰ƒCƒt‚ğŠm”F‚µ‚Ü‚·
+[State -2, ƒ‰ƒCƒtŠm”F]
+type = VarSet
+triggerall = RoundState = [0,1] ;ŠJn‘O‚ÌŠÔ
+trigger1 = RoundNo = 1          ;ˆê‡–Ú
+trigger2 = TeamMode = Turns     ;5900‚ÅƒCƒ“ƒgƒ‚ğì‚ç‚È‚¢‚Æ «
+trigger2 = RoundsExisted = 0    ;‚±‚ê‚Íg‚¦‚Ü‚¹‚ñ
+v = 22
+value = Life   ;Var(22)‚É©•ª‚Ìƒ‰ƒCƒt‚ğ•Û‘¶
+
+[State -2, ƒ‰ƒCƒtæ“¾ƒ~ƒX‘Îô]
+type = VarSet
+triggerall = Var(22) = [0,100] ;ƒ‰ƒCƒt‚ª100ˆÈ‰º‚Æ”F¯‚³‚ê‚½‚ç
+triggerall = Time = 1
+trigger1 = RoundNo = 1
+trigger2 = RoundsExisted = 0
+v = 22
+value = const(data.life) ;©•ª‚Ìƒf[ƒ^‚É‘‚©‚ê‚½Life‚É‚·‚é
+
+
+;----------------------------------------------------------------------------
+;ƒfƒoƒbƒOx‰‡‹LqW
+
+; ¦ ‚±‚Ìˆê˜A‚Ì‹Lq‚ÍAƒLƒƒƒ‰‚ªŠ®¬‚µ‚½‚çÁ‚·‚©";"‚ğ•t‚¯‚Ä–³Œø‰»‚µ‚Ü‚µ‚å‚¤B
+;@@‹Í‚©‚É‚Å‚àˆ—‚ªd‚­‚È‚é‚±‚Æ‚ª——R‚Å‚·Bi‚¿‚È‚İ‚ÉNull‚Å‚Íƒ_ƒ‚Å‚·j
+
+
+;ƒfƒoƒbƒOƒ‚[ƒh‚É”’‚¢•¶š‚Ì•\¦‚ğ‰Á‚¦‚é
+[State -2, ƒfƒoƒbƒO•\¦]
+type = null;DisplayToClipboard
+trigger1 = 1
+text = "V1-C=%d,V3-J=%d,V4-D=%d,V5-B=%d,V20-A=%d"
+params = var(1),var(3),var(4),var(5),var(20)
+ignorehitpause = 1
+
+;•\¦‚ğ‰¡‚É‰Á‚¦‚é
+;[State -2, ƒfƒoƒbƒO•\¦‚»‚Ì2]
+;type = AppendToClipboard
+;trigger1 = 1
+;text = " V22-L=%d,V21-R=%d,Pos X=%d,Y=%d"
+;params = var(22),var(21),ceil(Pos X),floor(Pos Y)
+;ignorehitpause = 1
+
+;•\¦‚ğ‰º‚É‰Á‚¦‚é
+[State -2, ƒfƒoƒbƒO•\¦‚»‚Ì3]
+type = null;AppendToClipboard
+trigger1 = 1
+text = "\nDist X=%d,Y=%d, Vel X=%d/10,Y=%d/10 pos X = %f"
+params = floor(P2BodyDist X),ceil(P2BodyDist Y),ceil(Vel X*10),floor(Vel Y*10),Pos X
+ignorehitpause = 1
+
+; ¦ ŠÖ”à–¾Ffloor(1.5) = 1Aceil(1.5) = 2‚É‚È‚è‚Ü‚·B ¬”‚ğŠÜ‚Şê‡‚É‚æ‚­g‚¢‚Ü‚·B
+;@@¬”‚ğÚ‚µ‚­Œ©‚½‚¢ê‡‚Í%d‚Ì‘ã‚í‚è‚É%f‚ğg‚¢‚Ü‚·B MUGEN‚ÉŒÀ‚ç‚¸Œ‹\í¯‚Å‚·B
+;@@Vel X*10‚É‘Î‚µA•\‹L‚ÍVel X=%d/10‚É‚È‚Á‚Ä‚¢‚Ü‚·B 10‚ÅŠ„‚Á‚½”’l‚ª–ÚˆÀ‚ÌVel X‚Å‚·B
+;@@Pos‚ÆDist‚Ífloor‚Æceil‚ª‹t‚É‚È‚Á‚Ä‚¢‚Ü‚·B
+
+
+
+
+;–³lƒfƒoƒbƒO—pi‚©‚È‚è’·ŠÔCPU‚É”C‚¹‚éƒfƒoƒbƒO–@j
+;ƒEƒHƒbƒ`AƒTƒoƒCƒoƒ‹(ctrl+2g—p)‚Ìƒ`[ƒ€í‚ª—Ç‚¢‚Æv‚¤
+;[State -2, ƒoƒO”­¶Œx•ñ]
+;type = VarSet
+;triggerall = RoundState = 2
+;triggerall = Var(20) >= 0
+;trigger1 = floor(Pos Y) < -5 ;‚æ‚­‚ ‚éƒoƒO‚Æ‚µ‚ÄA’ˆ‚É•‚‚©‚Ô‚±‚Æ‚ª‹“‚°‚ç‚ê‚é
+;trigger1 = stateno = [0,22]  ;’ˆ‚Å—§‚ÂA‚µ‚á‚ª‚ŞA•à‚­
+;trigger1 = Time = 1
+;trigger2 = Anim != [5110,5120]
+;trigger2 = Ctrl = 0     ;s“®•s”\‚Ì‚Ü‚Ü
+;trigger2 = Life > 0     ;‚Ü‚¾‘§‚ª‚ ‚è
+;trigger2 = !Lose        ;•‰‚¯‚Ä‚¢‚È‚¢‚Ì‚É
+;trigger2 = Time = 2047  ;’·ŠÔŒÅ‚Ü‚é
+;var(20)  = -4           ;ã‹LƒoƒO‚ªo‚é‚ÆƒZƒbƒg‚³‚ê‚Ü‚·B
+
+;[State -2, ‰i‹ví“¬ƒfƒoƒbƒO]
+;type = LifeAdd
+;trigger1 = TeamMode = Simul ;•K—v‚É‰‚¶‚ÄğŒ‚ğ•Ï‚¦‚é
+;value = 20  ;HP‚ªŒ¸‚ç‚È‚¢
+;ignorehitpause = 1
+
+[State -2, c‘œ]
+type = AfterImage
+trigger1 = Movetype = H
+time = 1
+
+[State -2,]
+type = StopSnd
+trigger1 = !Var(20)
+trigger1 = command != "holdfwd"
+trigger2 = Anim != 100
+channel = 6
+ignorehitpause = 1
+
+[State -2,]
+type = StopSnd
+trigger1 = Movetype = H
+channel = 4
+ignorehitpause = 1
+
+[State -2,]
+type = StopSnd
+trigger1 = Movetype = H
+channel = 8
+ignorehitpause = 1
+
+[State 1000, ‰¹‚ğ–Â‚ç‚·]
+type = PlaySnd
+trigger1 = P2Movetype = H
+trigger1 = P2Stateno = 825
+trigger1 = P2Statetype = A
+trigger1 = enemy, Pos Y >= 0
+trigger1 = enemy, Vel Y > 0
+value = s12,16
+
+[State -2,]
+type = Varset
+trigger1 = !Var(20)
+trigger1 = (command = "holdx" && command = "holda" && command = "holdy")
+var(17) = 0
+
+[State -2,]
+type = Varset
+trigger1 = !Var(20)
+trigger1 = (command = "holdc" && command = "holdz")
+var(17) = 1
+
+[State -2,]
+type = Varset
+trigger1 = !Var(20)
+trigger1 = command = "holdxy"
+var(23) = 0
+
+[State -2,]
+type = Varset
+trigger1 = !Var(20)
+trigger1 = command = "holdc"
+var(23) = 1
+
+;---------------------------------------------------------------------------------
+
+[State -3,]
+type = PlaySnd
+triggerall = alive = 1
+triggerall = random <= 250
+triggerall = time = 1
+trigger1 = stateno = 5000
+trigger1 = anim = 5000 || anim = 5010
+trigger2 = stateno = 5010
+trigger2 = anim = 5020
+value = s11,1
+
+[State -3,]
+type = PlaySnd
+triggerall = alive = 1
+triggerall = random <= 250
+triggerall = time = 1
+trigger1 = stateno = 5000
+trigger1 = anim = 5002 || anim = 5012
+trigger2 = stateno = 5010
+trigger2 = anim = 5022
+value = s11,4
+
+[State -3,]
+type = PlaySnd
+triggerall = alive = 1
+triggerall = random <= 250
+triggerall = time = 1
+trigger1 = stateno = 5101
+value = s11,3
+
+;---------------------------------------------------------------------------
+
+[State 1000, ƒwƒ‹ƒp[‚ğo‚·]
+type = Helper
+trigger1 = Projhit1000 = 1
+trigger2 = Projhit2000 = 1
+trigger3 = Projhit3000 = 1
+name = "Slow"
+stateno = 4900
+ID = 4900
+helpertype = normal
+pos = 0,0
+postype = p1
+keyctrl = 0
+ownpal = 1
+ignorehitpause = 1
+
+;---------------------------------------------------------------------------------
+
+[State 1000, ƒwƒ‹ƒp[‚ğo‚·]
+type = Helper
+triggerall = stateno = 3300
+trigger1 = Anim = 3300
+trigger1 = time = 30
+name = "MAX3"
+stateno = 8000
+ID = 8000
+helpertype = normal
+pos = 0,0
+postype = p2
+keyctrl = 0
+ownpal = 1
+ignorehitpause = 1
+
+[State 1000, ƒwƒ‹ƒp[‚ğo‚·]
+type = Helper
+triggerall = stateno = 3300
+trigger1 = Anim = 3300
+trigger1 = Animtime = 0
+name = "MAX3END"
+stateno = 8010
+ID = 8010
+helpertype = normal
+pos = 0,0
+postype = p2
+keyctrl = 0
+ownpal = 1
+ignorehitpause = 1
+persistent = 0
+
+[State 1000, ƒwƒ‹ƒp[‚ğo‚·]
+type = Helper
+triggerall = stateno = 3310
+trigger1 = Anim = 3310
+trigger1 = AnimElem = 68
+name = "MAX3END"
+stateno = 8010
+ID = 8010
+helpertype = normal
+pos = 0,0
+postype = p2
+keyctrl = 0
+ownpal = 1
+ignorehitpause = 1
+persistent = 0
+
+[State -2, ¸ŞÀÎÇïÆÛ»ı¼º]
+type = Helper
+trigger1 = !numhelper(100000)
+ID = 100000
+name = "Main_Controler"
+postype = P1
+pos = 0,0
+sprpriority = -9
+stateno = 100000
+helpertype = normal
+keyctrl = 0
+persistent = 1
+ignorehitpause = 1
+ownpal = 1
+
+[State -2, °­Á¦³ôÀÌ¼³Á¤(°­Á¦ÂøÁö)]
+type = ChangeState
+trigger1 = Stateno != 105
+trigger1 = Stateno != 1100
+trigger1 = Stateno != 1150
+trigger1 = Stateno != 1400
+trigger1 = Stateno != 1450
+trigger1 = Stateno != 1270
+trigger1 = Stateno != 1280
+trigger1 = Stateno != 1200
+trigger1 = Stateno != 1255
+trigger1 = Stateno != 1900
+trigger1 = Stateno != 1950
+trigger1 = Stateno != 2300
+trigger1 = Stateno != 3310
+trigger1 = Vel Y > 0
+trigger1 = Movetype !=H
+trigger1 = Pos Y >= Helper(100000),var(0)
+value = 52
+
+[State -2, °­Á¦³ôÀÌ¼³Á¤(½ºÅ¸Æ®)]
+type = Posset
+triggerall = numhelper(100000)
+trigger1 = numhelper(100100)
+trigger1 = helper(100100),time > 118
+trigger2 = Stateno = 5900
+trigger2 = !numhelper(100100)
+trigger2 = Stateno = 5900
+trigger3 = stateno = 0
+trigger3 = ctrl = 0
+Y = Helper(100000),var(0)
+
+[State -2, ¹Ù´ÚºØ±«(ÀÏ¹İ)]
+type = ChangeState
+triggerall = Statetype != A
+;triggerall = Movetype != H
+triggerall = pos Y !=0
+triggerall = Helper(100000),var(0) = 0
+triggerall = Stateno != [40,50]
+triggerall = Stateno != 5100 && Stateno != 5101 && Stateno != 5102 && Stateno != 5110
+trigger1 = numhelper(100001)
+trigger2 = ID !=56
+trigger2 = PlayerID(56),numhelper(100001)
+value = 50
+
+[State -2, ¹Ù´ÚºØ±«(ÀÏ¹İ2)]
+type = ChangeState
+triggerall = Statetype != A
+triggerall = Movetype != H
+triggerall = pos Y !=0
+triggerall = Helper(100000),var(0) = 0
+triggerall = Stateno != [40,50]
+triggerall = Stateno != 5100 && Stateno != 5101 && Stateno != 5102 && Stateno != 5110
+trigger1 = numhelper(100002)
+trigger2 = ID !=56
+trigger2 = PlayerID(56),numhelper(100002)
+value = 50
+
+[State -2, ¹Ù´ÚºØ±«(´©¿ò)]
+type = ChangeState
+triggerall = Stateno = 5100 || Stateno = 5101 || Stateno = 5110
+;triggerall = pos Y != 0
+triggerall = Helper(100000),var(0) = 0
+trigger1 = numhelper(100001)
+trigger2 = ID !=56
+trigger2 = PlayerID(56),numhelper(100001)
+value = 5102
+
+[State -2, ÀÜ»óÁ¦°Å]
+type = AfterImage
+trigger1 = Movetype = H
+time = 1
+
+[State -2, No Air Guard]
+type = AssertSpecial
+trigger1 = 1
+flag = noairguard
+
+[State -2, Guard KO]
+type = ChangeState
+trigger1 = Stateno != 5002 && Stateno != 5150
+trigger1 = Stateno = [5000,5200]
+trigger1 = prevstateno = [120,159]
+trigger1 = Life = 0
+value = 5002
+
+[State -2, ½ÃÁ¡º¯È¯]
+type = ScreenBound
+triggerall = Statetype = A
+triggerall = stateno != [5160,5179]
+trigger1 = Movetype = H
+trigger1 = Life != 0
+trigger2 = Stateno = [5000,5499]
+value = 1
+movecamera = 1,0
+
+[State -2, ½ºÆ®¶óÀÌÄ¿ °­Á¦º¯È¯]
+type = ChangeState
+triggerall = helper(100000),var(11) != 0
+triggerall = !win && !lose && !DrawGame
+triggerall = partner,life != 0
+trigger1 = ctrl
+value = 5610
+ctrl = 0
+
+[State -2, È­¸éÈ­¸é½Ã »¡¸® ³Ñ¾î°¡ÀÚ.]
+type = ChangeState
+trigger1 = numhelper(100300)
+trigger1 = helper(100300),time >= 53
+trigger1 = stateno != 180
+trigger1 = movetype != H
+value = 180
+ctrl = 1
+
+
+;---------------------------------------------------------------------------------
+; MAX3‰‰o—pƒwƒ‹ƒp[
+
+[Statedef 8000]
+type     = A
+movetype = I
+physics  = N
+ctrl     = 0
+anim     = 9999
+sprpriority = -50
+
+[State 181, “ÁêŒø‰Ê]
+type = AssertSpecial
+trigger1 = 1
+flag = noBG
+flag2 = noFG
+flag3 = noshadow
+
+[State 2000]
+type = Explod
+trigger1 = time = 0
+anim = 8000
+ID = 8000
+pos = 0,0
+postype = back
+ownpal = 1
+bindtime = -1
+removetime = -1
+supermove = 1
+sprpriority = -100
+
+[State 2000]
+type = Explod
+trigger1 = time = 0
+anim = 8000
+ID = 8000
+pos = -320,0
+postype = back
+ownpal = 1
+bindtime = -1
+removetime = -1
+supermove = 1
+sprpriority = -100
+
+[State 1000,]
+type = RemoveExplod
+trigger1 = root,stateno != [3300,3310]
+trigger2 = root,stateno = 3310
+trigger2 = root,AnimElem = 68
+ID = 8000
+
+[State 800, ƒXƒe[ƒg•ÏX]
+type = DestroySelf
+trigger1 = root,stateno != [3300,3310]
+trigger2 = root,stateno = 3310
+trigger2 = root,AnimElem = 68
+
+;---------------------------------------------------------------------------------
+; MAX3‰‰o—pƒwƒ‹ƒp[
+; ƒpƒŠ[ƒ“
+
+[Statedef 8010]
+type     = A
+movetype = I
+physics  = N
+juggle   = 0
+ctrl     = 0
+anim     = 9999
+sprpriority = -50
+
+[State 200,]
+type = Posset
+trigger1 = time = 0
+x = 0
+y = 0
+
+[State 181, “ÁêŒø‰Ê]
+type = AssertSpecial
+trigger1 = time = [0,6]
+flag = noBG
+
+[State 181, “ÁêŒø‰Ê]
+type = AssertSpecial
+trigger1 = 1
+flag = noFG
+flag2 = noshadow
+
+[State 2000]
+type = Explod
+trigger1 = time = 0
+anim = 8010
+ID = 8010
+pos = 0,0
+postype = back
+ownpal = 1
+bindtime = -1
+supermove = 1
+sprpriority = -100
+
+[State 1000, ‰¹‚ğ–Â‚ç‚·]
+type = PlaySnd
+trigger1 = time = 7
+value = s12,18
+
+[State 1000,]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 8000
+
+[State 4110, DestroySelf]
+type = DestroySelf
+trigger1 = time = 8
+
+;---------------------------------------------------------------------------
+;ƒXƒ[ˆ—
+
+[Statedef 4900]
+type     = A
+movetype = I
+physics  = N
+juggle   = 0
+ctrl     = 0
+anim     = 4900
+sprpriority = 1
+
+[State 1001,]
+type = Pause
+trigger1 = (GameTime%3) = 0
+trigger1 = time = [0,20]
+time = 1
+
+[State 1001,]
+type = Pause
+trigger1 = (GameTime%6) = 0
+trigger1 = time = [21,30]
+time = 1
+
+[State 4110, DestroySelf]
+type = DestroySelf
+trigger1 = Animtime = 0
+

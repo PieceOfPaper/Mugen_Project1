@@ -1,0 +1,36 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "Orochi Kyo"
+displayname = "Kyo Kusanagi"
+versiondate = 03,15,2007
+mugenversion = 1.0
+author = "OPIRUS"
+pal.defaults = 4,1,2,3,5,6
+localcoord = 427,240
+
+[Files]
+sprite = Orochi Kyo.sff
+anim = Orochi Kyo.air
+sound = Orochi Kyo.snd
+cmd = Orochi Kyo.cmd
+cns = Orochi Kyo.cns
+stcommon = common1.cns
+st = Orochi Kyo.cns
+st1 = Orochi Kyo-N.cns
+st2 = Orochi Kyo-S.cns
+st3 = Orochi Kyo-H.cns
+st4 = Orochi Kyo-2-3.cns
+pal1 = Paletas\Orochi.act
+pal2 = Paletas\Kyo-KOFM-02.act
+pal3 = Paletas\Kyo-KOFM-03.act
+pal4 = Paletas\Kyo-KOFM-04.act
+pal5 = Paletas\Kyo-KOFM-01.act
+pal6 = Paletas\Kyo-KOFM-06.act
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

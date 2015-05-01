@@ -1,0 +1,255 @@
+; Diving Kick (initial)
+[Statedef 1700]
+type    = A
+movetype= A
+physics = N
+poweradd= 35
+velset = 0,0
+ctrl = 0
+anim = 1700
+
+[State 215, 3]
+type = Posfreeze
+trigger1 = animelem <= 2
+
+[State 1000, 1]
+type = PlaySnd
+trigger1 = time = 0
+value = 100,12
+
+[State 215, 3]
+type = ChangeState
+trigger1 = animelem = 3
+value = 1701
+
+; Diving Kick (attacking)
+[Statedef 1701]
+type    = A
+movetype= A
+physics = N
+juggle  = 3
+ctrl = 0
+anim = 1701
+velset = 7.5,7.5
+
+[State 1000, 1]
+type = PlaySnd
+trigger1 = time = 0
+value = 230,10
+
+
+
+
+
+[State 215, 1]
+type = Gravity
+trigger1 = time = 1
+;value = S0,13
+
+;ノ?
+[State 1053, 2]
+type = HitDef
+triggerall = palno < 8
+trigger1 = AnimElem = 2
+trigger1 = moveguarded != 1
+trigger1 = movehit != 1
+attr = S, NA
+animtype  = hard
+damage    = 90,8
+hitflag = MAFD
+guardflag = HA
+pausetime = 11,10
+sparkno = -1
+guard.sparkno = -1
+hitsound   = S230,0
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 18
+ground.hittime  = 18
+ground.velocity = -6
+air.velocity = -6,6
+;fall = 1
+air.fall = 1
+fall.recover = 0
+;PalFX
+palfx.time = 40
+palfx.add = -100,-100,7
+palfx.sinadd = 30,30,0,10
+palfx.color = 0
+palfx.invertall = 1
+
+
+;カ?７
+[State 1053, 2]
+type = HitDef
+triggerall = palno >= 8
+trigger1 = AnimElem = 2
+trigger1 = moveguarded != 1
+trigger1 = movehit != 1
+attr = S, NA
+animtype  = hard
+damage    = 90,8
+hitflag = MAFD
+guardflag = MA
+pausetime = 11,10
+sparkno = -1
+guard.sparkno = -1
+hitsound   = S230,0
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 18
+ground.hittime  = 18
+ground.velocity = -4
+air.velocity = -6,6
+;fall = 1
+air.fall = 1
+fall.recover = 0
+;PalFX
+palfx.time = 40
+palfx.add = -100,-100,-100
+palfx.sinadd = 30,30,0,10
+palfx.color = 0
+palfx.invertall = 1
+
+;?ヒットスパク１
+[State 7020, 4]
+type = Explod
+trigger1 = movehit = 1
+persistent = 0
+anim = 7030
+pos = 55,-55
+postype = p1
+sprpriority = 4
+bindtime = 15
+ignorehitpause = 1
+ownpal = 1
+
+;??手が燃える（繰返し）
+[State 7020, 4]
+type = Explod
+trigger1 = movehit = 1
+persistent = 0
+anim = 7040
+pos = 0,20
+postype = p2
+sprpriority = 2
+bindtime = 51
+ignorehitpause = 1
+facing = -1
+ownpal = 1
+
+;ガドスパク１
+[State 1053, 4]
+type = Explod
+trigger1 = moveguarded = 1
+persistent = 0
+anim = 7121
+pos = 10,0
+postype = p2
+sprpriority = 2
+bindtime = 1
+ignorehitpause = 1
+ownpal = 1
+
+;?エフェクト２（シ???ツパ?ツ用）
+[State 1000, 4]
+type = Explod
+trigger1 = time = 0
+persistent = 0
+anim = 7021
+pos = 12,12
+postype = p1
+sprpriority = 2
+bindtime = 1
+ignorehitpause = 1
+ownpal = 1
+Vel = -3
+
+;?エフェクト２（シ???ツパ?ツ用）
+[State 1000, 4]
+type = Explod
+trigger1 = time = 6
+persistent = 0
+anim = 7021
+pos = 12,14
+postype = p1
+sprpriority = 2
+bindtime = 1
+ignorehitpause = 1
+ownpal = 1
+Vel = -3
+
+;?エフェクト３（シ???ツパ?ツ用）（繰返し）
+[State 1000, 4]
+type = Explod
+trigger1 = time = 0
+persistent = 0
+anim = 7022
+pos = 15,14
+postype = p1
+sprpriority = 3
+bindtime = 4
+ignorehitpause = 1
+ownpal = 1
+removetime = 4
+Vel = -3
+
+;?エフェクト３（シ???ツパ?ツ用）（繰返し）?たった?
+[State 1000, 4]
+type = Explod
+trigger1 = movehit = 1
+persistent = 0
+anim = 7022
+pos = 15,14
+postype = p1
+sprpriority = 3
+bindtime = 24
+ignorehitpause = 1
+ownpal = 1
+removetime = 24
+Vel = -3
+ID = 7022
+
+;カ?７ (hard)
+[State 207, 4]
+type = EnvShake
+triggerall = palno >= 7
+trigger1 = movehit = 1
+time = 12
+ampl = -4
+freq = 40
+phase = 15
+ignorehitpause = 1
+bindtime = 15
+
+[State 215, 3]
+type = ChangeState
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 5
+value = 1702
+
+; Dive Attack STOP
+[Statedef 1702]
+type    = S
+physics = N
+velset = 1.1,0
+ctrl = 0
+anim = 1702
+
+
+[State 101, 2] ;Friction after initial dash
+type = VelMul
+trigger1 = time = 21
+x = .2
+
+
+[state 101, Postioning Correction]
+type = PosSet
+trigger1 = time = 0
+y = 0
+
+[State 101, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1

@@ -1,0 +1,290 @@
+;--------------------------------------------------------
+[Info]
+Name = "Riding On The Night"
+Author = "GLB"
+
+;--------------------------------------------------------
+[Camera]
+startx = 0
+starty = 0
+boundleft = -80
+boundright = 80
+boundhigh = -250
+boundlow = 0
+verticalfollow = .95
+floortension = 55
+tension = 50
+
+
+;--------------------------------------------------------
+[PlayerInfo]
+p1startx = -70          ;Starting x coordinates
+p1starty = 0            ;Starting y coordinates
+p1startz = 0            ;Starting z coordinates
+p1facing = 1            ;Direction player faces: 1=right, -1=left
+
+;--- Player 2 ---
+p2startx = 70
+p2starty = 0
+p2startz = 0
+p2facing = -1
+
+;--- Common ---
+leftbound  = -1000 ;Left bound (x-movement)
+rightbound =  1000 ;Right bound
+topbound  =  0     ;Top bound (z-movement)
+botbound  =  0     ;Bottom bound
+
+;--------------------------------------------------------
+[Scaling]
+topz     = 0       ;Top z-coordinate for scaling
+botz     = 50      ;Bottom z-coordinate for scaling
+topscale = 1       ;Scale to use at top
+botscale = 1.2     ;Scale to use at bottom
+
+;--------------------------------------------------------
+[Bound]
+screenleft = 15    ;Dist from left of screen that player can move to
+screenright = 15   ;Right edge
+
+;--------------------------------------------------------
+[StageInfo]
+zoffset = 219
+zoffsetlink = 2
+autoturn = 1
+resetBG = 0
+hires = 1
+localcoord = 427,240
+
+;--------------------------------------------------------
+[Shadow]
+intensity = 35
+color = 0,0,0
+yscale = .2
+fade.range = 0,0
+
+;--------------------------------------------------------
+[Reflection]
+intensity = 0
+
+;--------------------------------------------------------
+[Music]
+bgmusic = sound/10_speeder.mp3
+bgvolume = 255
+
+;--------------------------------------------------------Main background definition
+[BGdef]
+spr = NIGHTRIDING.sff
+debugbg = 0
+
+[BG Stars]
+type  = normal
+spriteno = 6,0
+start = 0,-300
+delta = 1,1
+mask = 1
+layerno = 0 
+
+[BG Flicker]
+type = anim
+actionno = 1
+start = 0,-100
+delta = 1,1
+[Begin Action 1]
+6,0,0,0,5,,AS12D256
+6,0,0,0,5,,AS32D256
+6,0,0,0,5,,AS52D256
+6,0,0,0,5,,AS72D256
+6,0,0,0,5,,AS92D256
+6,0,0,0,5,,AS112D256
+6,0,0,0,5,,AS132D256
+6,0,0,0,5,,AS152D256
+6,0,0,0,5,,AS172D256 
+loopstart
+6,0,0,0,3,,AS140D256
+6,0,0,0,2,,AS160D256
+6,0,0,0,2,,AS200D256
+6,0,0,0,2,,AS180D256 
+
+
+[BG Moon]
+type  = normal
+spriteno = 5,0
+start = -200,0
+delta = .90, 1
+mask = 1
+layerno = 0 
+
+[BG NEWAGE CRAFT]
+type = normal
+spriteno = 4,0
+start = 0,20
+delta = 1.5,1.5
+mask = 1 
+tile = 1,0
+velocity = 4,0 
+sin.y = 10,400
+tilespacing = 6000 
+
+[BG Build3]
+type  = normal
+spriteno = 2,0
+start = 0,70
+delta = 1.10, 1.60
+mask = 1
+tile = 1,0
+velocity = -15,0;-7.5,0
+layerno = 0
+
+[BG Build2]
+type  = normal
+spriteno = 3,0
+start = 0,200
+delta = .90, 1.40
+mask = 1
+tile = 1,0
+velocity = -12,0;-6,0
+layerno = 0
+
+[BG Build]
+type  = normal
+spriteno = 2,0
+start = 0,100
+delta = 1.40, 1.80
+mask = 1
+tile = 1,0
+velocity = -14,0;-7,0
+layerno = 0 
+
+[BG Billboard 0] ;Black Lagoon
+type  = normal
+start = 1930,0
+spriteno = 7,0
+delta = 1.50,1.90
+tile = 1, 0
+tilespacing = 53676,0
+velocity = -12,0;-6,0
+mask = 1
+
+[BG Billboard 1] ;Chun Li
+type  = normal
+start = 9688,0
+spriteno = 7,1
+delta = 1.50,1.90
+tile = 1, 0
+tilespacing = 53676,0
+velocity = -12,0;-6,0
+mask = 1
+
+[BG Billboard 2] ;DeadPool
+type  = normal
+start = 18256,0
+spriteno = 7,2
+delta = 1.50,1.90
+tile = 1, 0
+tilespacing = 53676,0
+velocity = -12,0;-6,0
+mask = 1
+
+[BG Billboard 3] ;Sonic
+type  = normal
+start = 25924,0
+spriteno = 7,3
+delta = 1.50,1.90
+tile = 1, 0
+tilespacing = 53676,0
+velocity = -12,0;-6,0
+mask = 1
+
+[BG Billboard 4] ;Strider
+type  = normal
+start = 33592,0
+spriteno = 7,4
+delta = 1.50,1.90
+tile = 1, 0
+tilespacing = 53676,0
+velocity = -12,0;-6,0
+mask = 1
+
+[BG Billboard 5] ;Magneto
+type  = normal
+start = 41260,0
+spriteno = 7,5
+delta = 1.50,1.90
+tile = 1,0
+tilespacing = 53676,0
+velocity = -12,0;-6,0
+mask = 1
+
+[BG Billboard 6] ;Nanaya
+type  = normal
+start = 48928,0
+spriteno = 7,6
+delta = 1.50,1.90
+tile = 1,0
+tilespacing = 53676,0
+velocity = -12,0;-6,0
+mask = 1 
+
+[BG Billboard 7] ;Punk
+type  = normal
+start = 54672,0
+spriteno = 7,7
+delta = 1.50,1.90
+tile = 1, 0
+tilespacing = 53676,0
+velocity = -12,0;-6,0
+mask = 1 
+
+[BG Billboard 8] ;Spirits into night sky
+type  = normal
+start = 61589,0
+spriteno = 7,8
+delta = 1.50,1.90
+tile = 1,0
+tilespacing = 53676,0
+velocity = -12,0;-6,0
+mask = 1 
+
+[BG Billboard 9] ;Troll Samas
+type  = normal
+start = 69690,0
+spriteno = 7,9
+delta = 1.50,1.90
+tile = 1,0
+tilespacing = 53676,0
+velocity = -12,0;-6,0
+mask = 1 
+
+[BG Billboard 10] ;Wildstyle Graffiti
+type  = normal
+start = 734582,0
+spriteno = 7,10
+delta = 1.50,1.90
+tile = 1,0
+tilespacing = 53676,0
+velocity = -12,0;-6,0
+mask = 1
+
+
+[BG Trees]
+type = normal
+start = 1900,120
+spriteno = 8,0
+delta = 1.75,1.9
+mask = 1
+velocity = -18,0;-9,0
+tile = 1,0
+
+[BG Floor]
+type  = normal
+spriteno = 1,0
+start = 0,350
+delta = 2,2
+mask = 1
+tile = 1,0
+layerno = 0
+ID = 1 
+
+
+

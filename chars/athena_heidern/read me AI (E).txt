@@ -1,0 +1,45 @@
+This AI is for Atena Heidern made by Mr. S.Y.D .
+
+[How to use]
+You can adjust AI level.
+This AI has 10+1 levels.
+1~10 AI made by UMA   easy1---->5---->10hard
+-1      AI made by Mr.S.Y.D
+
+[How to adjust AI level]
+First at all, edit AI.txt with editer like notepad , wordpad ,emacs, or so on.
+And serch the words like under this sentense
+
+[State -3, AIフラグセット]
+type = VarSet
+triggerall = !var(59)
+triggerall = RoundState = [1,2]
+trigger1 = Command = "cpu"|| Command = "cpu2"|| Command = "cpu3"|| Command = "cpu4"|| Command = "cpu50"
+trigger2 = Command = "cpu5"|| Command = "cpu6"|| Command = "cpu7"|| Command = "cpu8"|| Command = "cpu9"
+・
+・
+trigger10 = Command = "cpu45"|| Command = "cpu46"|| Command = "cpu47"|| Command = "cpu48"|| Command = "cpu49"
+trigger11 = numhelper(10000)>0
+Trigger11 = Helper(10000),var(59)
+trigger11 = roundno != 1 || power < powermax || enemynear,power < enemynear,powermax || life < lifemax || enemynear,life < enemynear,lifemax
+var(59) = 10 ;  ←AI Level. 
+
+So, this  number ,default is 10, is the Level.
+You may change this number from1 to 10 or -1.
+0 is no AI. 
+
+[SuperCancel & DreamCancel]
+I put states to adjust power loss under the AI switch state.
+You can adjust power loss at SuperCancel and DreamCancel.
+And I put "how to adjust" in there, so please refer it. 
+
+written by UMA no HONE (Horse's bone)
+e-mail:umadesu@hotmail.co.jp
+weblog:http://umanohone99.blog61.fc2.com/
+Please tell me when you find bugs.
+
+And I would like to thank Mr.S.Y.D for making such a wonderful character"Athena Heidern"
+and for allowing me to open this AI for public.
+I'm very happy to make AI of this character!!
+
+Last update 22/Mar/2008

@@ -1,0 +1,457 @@
+
+;------------------------------------------------------------------------------------------
+[Info]
+name= "Spiral Uroboros"
+author= XTRM
+;------------------------------------------------------------------------------------------
+[Camera]
+startx= 0
+starty= 0
+boundleft= -40
+boundright= 40
+boundhigh= -1500
+boundlow= 0
+verticalfollow= 1.0425;.65
+floortension= 60
+tension= 50
+;------------------------------------------------------------------------------------------
+[PlayerInfo]
+;--- Player 1 ---
+p1startx = -70          
+p1starty = 0            
+p1startz = 0            
+p1facing = 1            
+ ;------------------------------------------------------------------------------------------
+;--- Player 2 ---
+p2startx = 70
+p2starty = 0
+p2startz = 0
+p2facing = -1
+ ;------------------------------------------------------------------------------------------
+;--- Common ---
+leftbound  = -1000 
+rightbound =  1000 
+topbound  =  0     
+botbound  =  0
+;------------------------------------------------------------------------------------------
+[Scaling]
+topz     = 0       
+botz     = 50      
+topscale = 1       
+botscale = 1.2
+;------------------------------------------------------------------------------------------
+[Bound]
+screenleft = 15  ;Dist from left of screen that player can move to
+screenright = 15  ;Right edge
+;------------------------------------------------------------------------------------------
+[StageInfo]
+zoffset = 220
+autoturn = 1
+resetBG = 1
+Hires = 1
+localcoord = 427,240
+;------------------------------------------------------------------------------------------
+[Shadow]
+intensity = 60
+color = 0,0,0
+yscale = .3
+fade.range = 0,0
+;------------------------------------------------------------------------------------------
+[Reflection]
+intensity = 0
+;------------------------------------------------------------------------------------------
+[Music]
+bgmusic=sound/39-Dimension_Theory.mp3
+bgmvolume= 255
+;------------------------------------------------------------------------------------------
+[BGDef]
+spr = MBAA_spiral_uroboros.sff
+debugbg=0
+;------------------------------------------------------------------------------------------
+
+[BG BlackField]
+type = normal
+spriteno = 2000,0
+start = 0,0
+delta = 1,1
+tile = 1,1
+
+;[BG Sky]
+;type= normal
+;spriteno= 0,0
+;start = -88,0
+;delta=2,2
+
+;[BG Sky ]
+;type= normal
+;spriteno= 0,1
+;start = -88,0
+;delta=2,2
+
+[BG LeftBackground]
+type = normal
+spriteno = 1,0
+start = -88,0
+delta = 2,2
+mask=1
+
+[BG Center Background]
+type = normal
+spriteno = 1,1
+start = -88,0
+delta = 2,2
+mask=1
+
+[BG Right Background]
+type = normal
+spriteno = 1,2
+start = -88,0
+delta = 2,2
+mask=1
+
+[BG Left Upper]
+type = normal
+spriteno = 2,0
+start = -88,0
+delta = 2,2
+mask=1
+
+[BG Center Upper]
+type = normal
+spriteno = 2,1
+start = -88,0
+delta = 2,2
+mask=1
+
+[BG Right Upper]
+type = normal
+spriteno = 2,2
+start = -88,0
+delta = 2,2
+mask=1
+
+[BG Left Upper]
+type = normal
+spriteno = 3,0
+start = -88,0
+delta = 2,2
+mask=1
+
+[BG Center Front]
+type = normal
+spriteno = 3,1
+start = -88,0
+delta = 2,2
+mask=1
+
+[BG Right Front]
+type = normal
+spriteno = 3,2
+start = -88,0
+delta = 2,2
+mask=1
+
+[BG Fog]
+type=normal
+spriteno=4,0
+start=0,0
+delta = 2.2, 2.2
+trans=add
+tile=1,0
+mask=1
+velocity= 2,0
+layerno= 1
+
+;============================================================================================
+;----------
+[BG back0]
+type = normal
+spriteno = 1000,0
+start = -512,-1532
+delta = .6,1;.7
+mask = 1
+
+;----------
+[BG back1]
+type = normal
+spriteno = 1000,1
+start = -512,-1404
+delta = .6,1;.7
+mask = 1
+
+;----------
+[BG back2]
+type = normal
+spriteno = 1000,2
+start = -512,-1372
+delta = .6,1;.7
+mask = 1
+
+;----------
+[BG back3]
+type = normal
+spriteno = 1000,3
+start = -512,-1340
+delta = .6,1;.7
+mask = 1
+
+;----------
+[BG back4]
+type = normal
+spriteno = 1000,4
+start = -512,-1308
+delta = .6,1;.7
+mask = 1
+
+;----------
+[BG back5]
+type = normal
+spriteno = 1000,5
+start = -512,-1276
+delta = .6,1;.7
+mask = 1
+
+;----------
+[BG back6]
+type = normal
+spriteno = 1000,6
+start = -512,-1244
+delta = .6,1;.7
+mask = 1
+
+;----------
+[BG back7]
+type = normal
+spriteno = 1000,7
+start = -512,-1180
+delta = .6,1;.7
+mask = 1
+
+;----------
+[BG back16]
+type = normal
+spriteno = 1000,16
+start = -512,-1532
+delta = 0.64,1;.75
+mask = 1
+
+;----------
+[BG back17]
+type = normal
+spriteno = 1000,17
+start = -512,-1280
+delta = .83,1;.83
+mask = 1
+
+;----------
+[BG Torchlight]
+type = anim
+actionno = 1002
+start = -86,-1261
+delta = .83,1;.83
+mask = 1
+
+;----------
+[BG prefore1]
+type = normal
+spriteno = 1001,11
+start = -512,-1276
+delta = .9,1;.9
+mask = 1
+
+;----------
+[BG prefore2]
+type = normal
+spriteno = 1001,12
+start = -256,-1276
+delta = .9,1;.9
+mask = 1
+
+;----------
+[BG fore0]
+type = normal
+spriteno = 1001,0
+start = -512,-1532
+delta = .9,1;.9
+mask = 1
+
+;----------
+;[BG fore1]
+;type = normal
+;spriteno = 1001,1
+;start = -512,-1276
+;delta = 2,1;1
+;mask = 1
+
+;----------
+;[BG fore2]
+;type = normal
+;spriteno = 1001,2
+;start = -256,-1276
+;delta = 2,1;1
+;mask = 1
+
+;----------
+[BG fore3]
+type = normal
+spriteno = 1001,3
+start = 0,-1532
+delta = 2,1;1
+mask = 1
+
+;----------
+[BG fore4]
+type = normal
+spriteno = 1001,4
+start = 0,-1276
+delta = 2,1;1
+mask = 1
+
+;----------
+[BG fore5]
+type = normal
+spriteno = 1001,5
+start = 256,-1532
+delta = 2,1;1
+mask = 1
+
+;----------
+[BG fore6]
+type = normal
+spriteno = 1001,6
+start = 256,-1276
+delta = 2,1;1
+mask = 1
+
+;----------
+[BG foreFinal]
+type = normal
+spriteno = 2000,1
+start = -256,-1276
+delta = 2,1;1
+mask = 1
+
+;----------
+[BG Halo0]
+type = anim
+actionno = 1030
+start = 0,-1516
+delta = .6,1;.5
+mask = 1
+layerno = 1
+
+;----------
+[BG Halo1]
+type = anim
+actionno = 1031
+start = 0,-1398
+delta = .6,1;.5
+mask = 1
+layerno = 1
+
+;----------
+[BG Halo2]
+type = anim
+actionno = 1032
+start = 0,-1346
+delta = .6,1;.5
+mask = 1
+layerno = 1
+
+;----------
+[BG Halo3]
+type = anim
+actionno = 1033
+start = 0,-1282
+delta = .6,1;.5
+mask = 1
+layerno = 1
+
+;----------
+[BG Halo4]
+type = anim
+actionno = 1034
+start = 0,-1222
+delta = .6,1;.5
+mask = 1
+layerno = 1
+
+;----------
+[BG Halo5]
+type = anim
+actionno = 1035
+start = 0,-1162
+delta = .6,1;.5
+mask = 1
+trans = add
+layerno = 1
+
+
+[Begin action 1002]
+1002,0, 0,0, 4,, A
+1002,1, 0,0, 4,, A
+1002,2, 0,0, 4,, A
+1002,3, 0,0, 4,, A
+1002,4, 0,0, 4,, A
+1002,5, 0,0, 4,, A
+1002,6, 0,0, 4,, A
+1002,7, 0,0, 4,, A
+1002,8, 0,0, 4,, A
+1002,9, 0,0, 4,, A
+1002,10, 0,0, 4,, A
+1002,11, 0,0, 4,, A
+1002,12, 0,0, 4,, A
+1002,13, 0,0, 4,, A
+1002,0, 0,0, 4,, A
+1002,1, 0,0, 4,, A
+1002,2, 0,0, 4,, A
+1002,3, 0,0, 4,, A
+1002,4, 0,0, 4,, A
+1002,5, 0,0, 4,, A
+1002,6, 0,0, 4,, A
+1002,7, 0,0, 4,, A
+1002,8, 0,0, 4,, A
+1002,9, 0,0, 4,, A
+1002,10, 0,0, 4,, A
+1002,11, 0,0, 4,, A
+1002,12, 0,0, 4,, A
+1002,13, 0,0, 4,, A
+1002,0, 167,0, 4,H, A
+1002,1, 167,0, 4,H, A
+1002,2, 167,0, 4,H, A
+1002,3, 167,0, 4,H, A
+1002,4, 167,0, 4,H, A
+1002,5, 167,0, 4,H, A
+1002,6, 167,0, 4,H, A
+1002,7, 167,0, 4,H, A
+1002,8, 167,0, 4,H, A
+1002,9, 167,0, 4,H, A
+1002,10, 167,0, 4,H, A
+1002,11, 167,0, 4,H, A
+1002,12, 167,0, 4,H, A
+1002,13, 167,0, 4,H, A
+
+[Begin action 1030]
+1003,0, 0,0, 2,, A
+1003,0, 1,1, 2,, A
+
+[Begin action 1031]
+1003,1, 0,0, 2,, A
+1003,1, 1,1, 2,, A
+
+[Begin action 1032]
+1003,2, 0,0, 2,, A
+1003,2, 1,1, 2,, A
+
+[Begin action 1033]
+1003,3, 0,0, 2,, A
+1003,3, 1,1, 2,, A
+
+[Begin action 1034]
+1003,4, 0,0, 2,, A
+1003,4, 1,1, 2,, A
+
+[Begin action 1035]
+1003,5, 0,0, 2,, A
+1003,5, 1,1, 2,, A
+

@@ -1,0 +1,39 @@
+; Player information
+[Info]
+name = "Kain"
+displayname = "Kain"
+mugenversion = 1.0
+author = "ThePaper"         
+pal.defaults = 1,2
+localcoord = 427,240
+;based by sancyo and butti's Kain
+;used some codes by jin's Ash
+;Thank you!
+
+; Files for the player
+[Files]
+cmd      = kain.cmd     ;Command set
+cns      = kain.cns     ;Constants
+st       = kain.cns     ;States
+st1      = kain_n.cns   ;States
+st2      = kain_s1.cns  ;States
+st3      = kain_s2.cns  ;States
+st4      = kain_s3.cns  ;States
+st5      = kain_s4.cns  ;States
+st6      = kain_s5.cns  ;States
+st7      = kain_s6.cns  ;States
+st8      = kain_o.cns   ;States
+st9      = AI.cns
+stcommon = common1.cns  ;Common states
+sprite   = kain.sff     ;Sprite
+anim     = kain.air     ;Animation
+sound    = kain.snd     ;Sound
+
+pal1     = kain_new_01.act
+pal2     = kain1.act
+
+
+;Arcade mode
+[Arcade]
+ending.storyboard  = kainend.def
+

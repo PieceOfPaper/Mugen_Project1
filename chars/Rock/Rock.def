@@ -1,0 +1,36 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "Rock"
+displayname = "Rock Howard"
+versiondate = 12,06,2009
+mugenversion = 1.0
+author = "jin"
+pal.defaults = 1,2,3,4,5,6
+localcoord = 427,240
+
+[Files]
+sprite = Rock.sff
+anim = Rock.air
+sound = Rock.snd
+cmd = Rock.cmd
+cns = Rock.cns
+stcommon = common1.cns
+st = Rock.cns
+st1 = Rock-S.cns
+st2 = Rock-H.cns
+st3 = Rock-2-3.cns
+st4 = Rock-N.cns
+pal1 = Rock01.act
+pal2 = Rock02.act
+pal3 = Rock03.act
+pal4 = Rock04.act
+pal5 = Rock05.act
+pal6 = Rock06.act
+
+[Arcade]
+;intro.storyboard = 
+;ending.storyboard = 

@@ -1,0 +1,28 @@
+;--------------------------------------;
+;      MUGEN MEMORIAL ZELGADIS         ;
+;                                      ;
+;              Play KOF                ;
+;--------------------------------------;
+
+
+Memorialmugen web By = Satoshi
+Kof Memorial SP By = Zelgadis
+
+
+www.memorialmugen.com.ar
+;======================================================================================
+28/05/2010
+
+Lanzamiento Del Char
+Reprogramacion del Char Para Mugen Normal.(Añadido de Sparks y Explods)
+
+
+;======================================================================================
+PD: ya sabes, si tienes alguna duda o quieres modificar alguno
+de mis chars no dudes en comunicarte con migo por MP a www.memorialmugen.com.ar
+
+;======================================================================================
+
+ATENCION!! : el contenido del KOF Memorial es Absoluta y totalmente solo para este game.
+no pidas el contenido del game para mugen normal por que no se te darán.
+Solo algunos de los chars son lanzados para mugen normal por mi y todo es a su debido tiempo.

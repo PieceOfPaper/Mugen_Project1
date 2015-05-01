@@ -1,0 +1,740 @@
+;---------------------------------------------------------------------------
+; 前進Walk AI用
+[Statedef 19]
+type    = S
+physics = S
+sprpriority = 0
+anim = 20
+ctrl = 0
+
+[State 19, 1]
+type = Turn
+trigger1 = P2dist X < 0
+
+[State 19, 2]
+type = VelSet
+trigger1 = 1
+x = const(velocity.walk.fwd.x)
+
+[State 19, 5]
+type = changestate
+trigger1 = roundstate != 2
+trigger2 = P2BodyDist X <= 0
+trigger3 = inguarddist
+trigger3 = random <= 100*var(20)
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; 後退Walk AI用
+[Statedef 21]
+type    = S
+physics = S
+sprpriority = 0
+anim = 21
+ctrl = 0
+
+[State 21, 1]
+type = Turn
+trigger1 = P2dist X < 0
+
+[State 21, 2]
+type = VelSet
+trigger1 = 1
+x = const(velocity.walk.back.x)
+
+[State 21, 5]
+type = changestate
+trigger1 = roundstate != 2
+trigger2 = P2BodyDist X >= 240
+trigger3 = inguarddist
+trigger3 = random <= 100*var(20)
+trigger4 = BackEdgeBodyDist <= 0
+value = 0
+ctrl = 1
+
+
+
+;---------------------------------------------------------------------------
+; AIジャンプ
+[Statedef 30,前ジャンプ]
+type    = S
+physics = S
+anim = 40
+ctrl = 0
+sprpriority = 1
+
+[State 191,]
+type = null;PlaySnd
+triggerall = AnimElem = 1
+trigger1 = Alive
+value = s2,0
+channel = 4
+
+[State 40, 2]
+type = VarSet
+trigger1 = 1
+sysvar(1) = 1
+
+[State 40, 1]
+type = VarSet
+trigger1 = 1
+var(4) = 0
+
+[State 40, 4]
+type = VelSet
+trigger1 = AnimTime = 0
+trigger1 = Var(4) = 0
+x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
+y = const(velocity.jump.y)
+
+[State 40, 4];小ジャンプ
+type = VelSet
+trigger1 = AnimTime = 0
+trigger1 = Var(4) = 1
+x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
+y = -6
+
+[State 40, 5]
+type = null;VelSet
+trigger1 = AnimTime = 0
+trigger1 = prevstateno = 100 ;RUN_FWD
+trigger1 = sysvar(1) = 1
+x = const(velocity.runjump.fwd.x)
+
+[State 40, 6]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+
+[Statedef 31,後ろジャンプ]
+type    = S
+physics = S
+anim = 40
+ctrl = 0
+sprpriority = 1
+
+[State 191,]
+type = PlaySnd
+triggerall = AnimElem = 1
+trigger1 = Alive
+value = s2,0
+channel = 4
+
+[State 40, 2]
+type = VarSet
+trigger1 = 1
+sysvar(1) = -1
+
+[State 40, 1]
+type = VarSet
+trigger1 = 1
+var(4) = 0
+
+[State 40, 4]
+type = VelSet
+trigger1 = AnimTime = 0
+trigger1 = Var(4) = 0
+x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
+y = const(velocity.jump.y)
+
+[State 40, 4];小ジャンプ
+type = VelSet
+trigger1 = AnimTime = 0
+trigger1 = Var(4) = 1
+x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
+y = -6
+
+[State 40, 5]
+type = null;VelSet
+trigger1 = AnimTime = 0
+trigger1 = prevstateno = 100 ;RUN_FWD
+trigger1 = sysvar(1) = 1
+x = const(velocity.runjump.fwd.x)
+
+[State 40, 6]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+
+[Statedef 32,前小ジャンプ]
+type    = S
+physics = S
+anim = 40
+ctrl = 0
+sprpriority = 1
+
+[State 191,]
+type = null;PlaySnd
+triggerall = AnimElem = 1
+trigger1 = Alive
+value = s2,0
+channel = 4
+
+[State 40, 2]
+type = VarSet
+trigger1 = 1
+sysvar(1) = 1
+
+[State 40, 1]
+type = VarSet
+trigger1 = 1
+var(4) = 1
+
+[State 40, 4]
+type = VelSet
+trigger1 = AnimTime = 0
+trigger1 = Var(4) = 0
+x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
+y = const(velocity.jump.y)
+
+[State 40, 4];小ジャンプ
+type = VelSet
+trigger1 = AnimTime = 0
+trigger1 = Var(4) = 1
+x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
+y = -6
+
+[State 40, 5]
+type = null;VelSet
+trigger1 = AnimTime = 0
+trigger1 = prevstateno = 100 ;RUN_FWD
+trigger1 = sysvar(1) = 1
+x = const(velocity.runjump.fwd.x)
+
+[State 40, 6]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+
+[Statedef 33,後ろ小ジャンプ]
+type    = S
+physics = S
+anim = 40
+ctrl = 0
+sprpriority = 1
+
+[State 191,]
+type = null;PlaySnd
+triggerall = AnimElem = 1
+trigger1 = Alive
+value = s2,0
+channel = 4
+
+[State 40, 2]
+type = VarSet
+trigger1 = 1
+sysvar(1) = -1
+
+[State 40, 1]
+type = VarSet
+trigger1 = 1
+var(4) = 1
+
+[State 40, 4]
+type = VelSet
+trigger1 = AnimTime = 0
+trigger1 = Var(4) = 0
+x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
+y = const(velocity.jump.y)
+
+[State 40, 4];小ジャンプ
+type = VelSet
+trigger1 = AnimTime = 0
+trigger1 = Var(4) = 1
+x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
+y = -6
+
+[State 40, 5]
+type = null;VelSet
+trigger1 = AnimTime = 0
+trigger1 = prevstateno = 100 ;RUN_FWD
+trigger1 = sysvar(1) = 1
+x = const(velocity.runjump.fwd.x)
+
+[State 40, 6]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+
+[Statedef 34,前中ジャンプ]
+type    = S
+physics = S
+anim = 40
+ctrl = 0
+sprpriority = 1
+
+[State 191,]
+type = null;PlaySnd
+triggerall = AnimElem = 1
+trigger1 = Alive
+value = s2,0
+channel = 4
+
+[State 40, 2]
+type = VarSet
+trigger1 = 1
+sysvar(1) = 1
+
+[State 40, 1]
+type = VarSet
+trigger1 = 1
+var(4) = 1
+
+[State 40, 4]
+type = VelSet
+trigger1 = AnimTime = 0
+trigger1 = Var(4) = 0
+x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
+y = const(velocity.jump.y)
+
+[State 40, 4];小ジャンプ
+type = VelSet
+trigger1 = AnimTime = 0
+trigger1 = Var(4) = 1
+x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
+y = -6
+
+[State 40, 5]
+type = null;VelSet
+trigger1 = AnimTime = 0
+trigger1 = prevstateno = 100 ;RUN_FWD
+trigger1 = sysvar(1) = 1
+x = const(velocity.runjump.fwd.x)
+
+[State 40, 6]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+
+[Statedef 35,後ろ中ジャンプ]
+type    = S
+physics = S
+anim = 40
+ctrl = 0
+sprpriority = 1
+
+[State 191,]
+type = null;PlaySnd
+triggerall = AnimElem = 1
+trigger1 = Alive
+value = s2,0
+channel = 4
+
+[State 40, 2]
+type = VarSet
+trigger1 = 1
+sysvar(1) = -1
+
+[State 40, 1]
+type = VarSet
+trigger1 = 1
+var(4) = 1
+
+[State 40, 4]
+type = VelSet
+trigger1 = AnimTime = 0
+trigger1 = Var(4) = 0
+x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
+y = const(velocity.jump.y)
+
+[State 40, 4];小ジャンプ
+type = VelSet
+trigger1 = AnimTime = 0
+trigger1 = Var(4) = 1
+x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
+y = -6
+
+[State 40, 5]
+type = null;VelSet
+trigger1 = AnimTime = 0
+trigger1 = prevstateno = 100 ;RUN_FWD
+trigger1 = sysvar(1) = 1
+x = const(velocity.runjump.fwd.x)
+
+[State 40, 6]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+
+[Statedef 36,前大ジャンプ]
+type    = S
+physics = S
+anim = 40
+ctrl = 0
+sprpriority = 1
+
+[State 191,]
+type = null;PlaySnd
+triggerall = AnimElem = 1
+trigger1 = Alive
+value = s2,0
+channel = 4
+
+[State 40, 2]
+type = VarSet
+trigger1 = 1
+sysvar(1) = 1
+
+[State 40, 1]
+type = VarSet
+trigger1 = 1
+var(4) = 0
+
+[State 40, 4]
+type = VelSet
+trigger1 = AnimTime = 0
+trigger1 = Var(4) = 0
+x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
+y = const(velocity.jump.y)
+
+[State 40, 4];小ジャンプ
+type = VelSet
+trigger1 = AnimTime = 0
+trigger1 = Var(4) = 1
+x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
+y = -6
+
+[State 40, 5]
+type = null;VelSet
+trigger1 = AnimTime = 0
+trigger1 = prevstateno = 100 ;RUN_FWD
+trigger1 = sysvar(1) = 1
+x = const(velocity.runjump.fwd.x)
+
+[State 40, 6]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+
+[Statedef 37,後ろ大ジャンプ]
+type    = S
+physics = S
+anim = 40
+ctrl = 0
+sprpriority = 1
+
+[State 191,]
+type = null;PlaySnd
+triggerall = AnimElem = 1
+trigger1 = Alive
+value = s2,0
+channel = 4
+
+[State 40, 2]
+type = VarSet
+trigger1 = 1
+sysvar(1) = -1
+
+[State 40, 1]
+type = VarSet
+trigger1 = 1
+var(4) = 0
+
+[State 40, 4]
+type = VelSet
+trigger1 = AnimTime = 0
+trigger1 = Var(4) = 0
+x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
+y = const(velocity.jump.y)
+
+[State 40, 4];小ジャンプ
+type = VelSet
+trigger1 = AnimTime = 0
+trigger1 = Var(4) = 1
+x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
+y = -6
+
+[State 40, 5]
+type = null;VelSet
+trigger1 = AnimTime = 0
+trigger1 = prevstateno = 100 ;RUN_FWD
+trigger1 = sysvar(1) = 1
+x = const(velocity.runjump.fwd.x)
+
+[State 40, 6]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+
+[Statedef 38,上ジャンプ]
+type    = S
+physics = S
+anim = 40
+ctrl = 0
+sprpriority = 1
+
+[State 191,]
+type = null;PlaySnd
+triggerall = AnimElem = 1
+trigger1 = Alive
+value = s2,0
+channel = 4
+
+[State 40, 2]
+type = VarSet
+trigger1 = 1
+sysvar(1) = 0
+
+[State 40, 1]
+type = VarSet
+trigger1 = 1
+var(4) = 0
+
+[State 40, 4]
+type = VelSet
+trigger1 = AnimTime = 0
+trigger1 = Var(4) = 0
+x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
+y = const(velocity.jump.y)
+
+[State 40, 4];小ジャンプ
+type = VelSet
+trigger1 = AnimTime = 0
+trigger1 = Var(4) = 1
+x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
+y = -6
+
+[State 40, 5]
+type = null;VelSet
+trigger1 = AnimTime = 0
+trigger1 = prevstateno = 100 ;RUN_FWD
+trigger1 = sysvar(1) = 1
+x = const(velocity.runjump.fwd.x)
+
+[State 40, 6]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+
+[Statedef 39,垂直小ジャンプ]
+type    = S
+physics = S
+anim = 40
+ctrl = 0
+sprpriority = 1
+
+[State 191,]
+type = null;PlaySnd
+triggerall = AnimElem = 1
+trigger1 = Alive
+value = s2,0
+channel = 4
+
+[State 40, 2]
+type = VarSet
+trigger1 = 1
+sysvar(1) = 0
+
+[State 40, 1]
+type = VarSet
+trigger1 = 1
+var(4) = 1
+
+[State 40, 4]
+type = VelSet
+trigger1 = AnimTime = 0
+trigger1 = Var(4) = 0
+x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
+y = const(velocity.jump.y)
+
+[State 40, 4];小ジャンプ
+type = VelSet
+trigger1 = AnimTime = 0
+trigger1 = Var(4) = 1
+x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
+y = -6
+
+[State 40, 5]
+type = null;VelSet
+trigger1 = AnimTime = 0
+trigger1 = prevstateno = 100 ;RUN_FWD
+trigger1 = sysvar(1) = 1
+x = const(velocity.runjump.fwd.x)
+
+[State 40, 6]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 50
+ctrl = 1
+
+[Statedef 10000]
+anim=10000;なにも表示しないｱﾆﾒでもいいけど入れなくても全然問題ない
+ctrl=0
+
+[State 10000,間違いで本体が来たら立ちへ移行]
+type=selfstate
+trigger1=!ishelper
+value=0
+
+[State 10000,プレイヤー判定]
+type=varset
+trigger1=command="up"&&root,command="up"
+trigger2=command="down"&&root,command="down"
+trigger3=command="back"&&root,command="back"
+trigger4=command="fwd"&&root,command="fwd"
+trigger5=command="a"&&root,command="a"
+trigger6=command="b"&&root,command="b"
+trigger7=command="c"&&root,command="c"
+trigger8=command="x"&&root,command="x"
+trigger9=command="y"&&root,command="y"
+trigger10=command="z"&&root,command="z"
+trigger11=command="start"&&root,command="start"
+var(20)=-1
+
+[State 10000,立ったら消失]
+Type = DestroySelf
+triggerAll = isHelper
+Trigger1 = root,var(20)||var(20)=-1
+trigger2=command="up"&&root,command="up"
+trigger3=command="down"&&root,command="down"
+trigger4=command="back"&&root,command="back"
+trigger5=command="fwd"&&root,command="fwd"
+trigger6=command="a"&&root,command="a"
+trigger7=command="b"&&root,command="b"
+trigger8=command="c"&&root,command="c"
+trigger9=command="x"&&root,command="x"
+trigger10=command="y"&&root,command="y"
+trigger11=command="z"&&root,command="z"
+trigger12=command="start"&&root,command="start"
+
+[State 10000,ﾌﾗｸﾞON]
+type=varset
+triggerall=var(20)!=-1
+trigger1=root,command="up"
+trigger2=root,command="down"
+trigger3=root,command="back"
+trigger4=root,command="fwd"
+trigger5=root,command="a"
+trigger6=root,command="b"
+trigger7=root,command="c"
+trigger8=root,command="x"
+trigger9=root,command="y"
+trigger10=root,command="z"
+trigger11=root,command="start"
+var(20)=1
+
+;仰け反り時間
+
+[Statedef 10001]
+anim=10001;なにも表示しないｱﾆﾒでもいいけど入れなくても全然問題ない
+ctrl=0
+
+[State -2];ガード時間・のけぞり時間・受身不能時間。
+type=varadd
+trigger1=var(0) > 0
+var(0)=-1
+ignorehitpause=1
+
+[State -2];ガード時間・のけぞり時間・受身不能時間
+type=varset
+triggerall=var(0)>0
+trigger1=EnemyNear(root,Var(59)),Movetype!=H
+var(0)=0
+
+[State -2];ガード硬直
+type=varset
+triggerall=EnemyNear(root,var(59)),Movetype=H
+triggerall=EnemyNear(root,var(59)),stateno < 200
+triggerall=EnemyNear(root,var(59)),Statetype=A
+trigger1=!EnemyNear(root,var(59)),gethitvar(fall)
+trigger1=!(EnemyNear(root,var(59)),hitshakeover)
+trigger1=EnemyNear(root,var(59)),time=1 || var(0)=0
+var(0)=EnemyNear(root,var(59)),gethitvar(ctrltime)+EnemyNear(root,var(59)),gethitvar(hitshaketime)+1
+ignorehitpause=1
+
+[State -2];ガード硬直
+type=varset
+triggerall=EnemyNear(root,var(59)),Movetype=H
+triggerall=EnemyNear(root,var(59)),stateno < 200
+triggerall=EnemyNear(root,var(59)),Statetype!=A
+trigger1=!EnemyNear(root,var(59)),gethitvar(fall)
+trigger1=!(EnemyNear(root,var(59)),hitshakeover)
+trigger1=EnemyNear(root,var(59)),time=1 || var(0)=0
+var(0)=ifelse(EnemyNear(root,var(59)),gethitvar(ctrltime)<EnemyNear(root,var(59)),gethitvar(hittime),EnemyNear(root,var(59)),gethitvar(ctrltime),EnemyNear(root,var(59)),gethitvar(hittime))+EnemyNear(root,var(59)),gethitvar(hitshaketime)+1
+ignorehitpause=1
+
+[State -2];のけぞり時間
+type=varset
+triggerall=EnemyNear(root,var(59)),Movetype=H
+triggerall=EnemyNear(root,var(59)),stateno > 199
+trigger1=!EnemyNear(root,var(59)),gethitvar(fall)
+trigger1=!(EnemyNear(root,var(59)),hitshakeover)
+trigger1=EnemyNear(root,var(59)),time=1
+var(0)=EnemyNear(root,var(59)),gethitvar(hittime)+EnemyNear(root,var(59)),gethitvar(hitshaketime)+1
+ignorehitpause=1
+
+[State 10000,立ったら消失]
+Type = DestroySelf
+triggerAll = isHelper
+Trigger1 = ishelper && (root,life <= 0 || !root,Alive)
+
+[Statedef 21000]
+Type = A
+Ctrl = 0
+Anim = 0
+Velset = ifelse(ishelper(21005),5,-5),0
+Movetype = I
+Physics = N
+Sprpriority = 1
+
+[State 21000]
+type = assertspecial
+trigger1 = 1
+flag = invisible
+flag2 = noshadow
+
+[State 21000]
+type = NotHitBy
+value = SCA
+trigger1 = 1
+
+[State 21000]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 21000]
+type = SprPriority
+trigger1 = 1
+value = -5
+
+[State 21000]
+type=selfstate
+trigger1=!ishelper
+value=0
+
+[state 21000]
+Type=Projectile
+Trigger1 = time = 0
+Velocity = ifelse(ishelper(21005),5,-5),0
+ProjID = ifelse(ishelper(21005),21005,21000)
+Projanim = 0
+projhits = 9999
+projpriority = 9999
+Offset = 0,9999
+projstagebound = const(size.ground.front)
+Projedgebound = 100000
+Projremovetime = -1
+supermovetime = 9999
+pausemovetime = 9999
+
+
+[state 21000]
+type = velset
+Trigger1 = !Root,NumProjID(ifelse(ishelper(21005),21005,21000)) && time
+x = 0
+y = 0
+
+[State 21000]
+Type = DestroySelf
+Trigger1 = ishelper && Root,Life <= 0

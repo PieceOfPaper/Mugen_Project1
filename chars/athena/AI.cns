@@ -1,0 +1,315 @@
+[Statedef -3]
+
+[State -1, Stand Strong Punch]
+type = ChangeState
+value = 120
+triggerall = random < (AILevel*250)
+triggerall = RoundState = 2
+triggerall = P2MoveType = A
+triggerall = statetype != A
+triggerall = ctrl
+trigger1 = p2bodydist X = [0,45]
+;trigger2 = enemy,NumProj
+
+[State -1, Stand Strong Punch]
+type = ChangeState
+value = 100
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = P2MoveType != A
+triggerall = P2StateType != L
+triggerall = statetype != A
+triggerall = ctrl
+triggerall = Stateno !=100
+triggerall = !enemy,NumProj
+trigger1 = p2bodydist X > 50
+
+[State -1, Stand Strong Punch]
+type = ChangeState
+value = 105
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = P2StateType = L
+triggerall = P2MoveType != A
+triggerall = statetype != A
+triggerall = ctrl
+triggerall = !enemy,NumProj
+trigger1 = p2bodydist X = [0,50]
+
+[State -1, Throw]
+type = ChangeState
+value = 291
+triggerall = random < (AILevel*2)
+triggerall = RoundState = 2
+triggerall = P2MoveType = A
+triggerall = statetype != A
+triggerall = p2bodydist X =[0,40]
+trigger1 = power >= 1000
+trigger1 = stateno = [150,151]
+
+[State -1, Stand Strong Punch]
+type = StateTypeset
+triggerall = random < (AILevel*250)
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = P2statetype = C
+trigger1 = Stateno = 120
+StateType = C
+
+[State -1, Stand Strong Punch]
+type = StateTypeset
+triggerall = random < (AILevel*250)
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = P2statetype = A
+trigger1 = Stateno = 120
+StateType = S
+
+[State -1, T S]
+type = ChangeState
+value = 701
+triggerall = random < (AILevel*1)
+triggerall = RoundState = 2
+triggerall = P2MoveType = A
+triggerall = statetype != A
+triggerall = p2bodydist X !=[0,40]
+trigger1 = ctrl
+
+[State -1, T S]
+type = ChangeState
+value = 700
+triggerall = random < (AILevel*2)
+triggerall = RoundState = 2
+triggerall = P2MoveType = A
+triggerall = statetype != A
+triggerall = p2bodydist X !=[0,40]
+trigger1 = ctrl
+trigger2 = power >= 1000
+trigger2 = stateno = [150,151]
+trigger3 = stateno = 100
+
+[State -1, Crouching Light Kick]
+type = ChangeState
+value = 430
+triggerall = random < (AILevel*25)
+triggerall = RoundState = 2
+triggerall = P2StateType != L
+triggerall = P2StateType = S
+triggerall = statetype != A
+triggerall = p2bodydist X =[0,25]
+trigger1 = ctrl
+trigger2 = stateno = 430 && TIME = [5,8]
+trigger2 = gametime%10 = 0
+
+[State -1, Stand Light Punch]
+type = ChangeState
+value = 200  + cond(P2dist X >50,0,5)
+triggerall = random < (AILevel*25)
+triggerall = RoundState = 2
+triggerall = P2StateType != L
+triggerall = P2StateType != C
+triggerall = statetype != A
+triggerall = p2bodydist X =[0,40]
+trigger1 = ctrl
+trigger2 = stateno = 200 && animelem = 4,>=0
+trigger2 = gametime%12 = 0
+trigger3 = stateno = 205 && animelem = 4,>=0
+trigger3 = gametime%12 = 0
+
+[State -1, Crouching Light Punch]
+type = ChangeState
+value = 400
+triggerall = random < (AILevel*25)
+triggerall = RoundState = 2
+triggerall = P2StateType != L
+triggerall = P2StateType = S
+triggerall = statetype != A
+triggerall = p2bodydist X =[0,30]
+trigger1 = stateno = 400 && animelem = 3,>=0
+trigger1 = gametime%11 = 0
+trigger2 = stateno = 430 && movecontact
+
+
+[State -1, 연환퇴]
+type = ChangeState
+value = 250
+triggerall = random < (AILevel*205)
+triggerall = RoundState = 2
+triggerall = P2StateType != L
+triggerall = statetype != A
+triggerall = p2bodydist X =[0,40]
+triggerall = random%2 = 0
+trigger1 = stateno = 200 && movecontact
+trigger2 = stateno = 205 && movecontact
+trigger3 = stateno = 215 && movecontact
+trigger4 = stateno = 230 && movecontact
+trigger5 = stateno = 235 && movecontact
+trigger6 = stateno = 245 && movecontact
+trigger7 = stateno = 400 && movecontact
+trigger8 = stateno = 410 && movecontact
+
+[State -1, 발경]
+type = ChangeState
+value = 260
+triggerall = random < (AILevel*200)
+triggerall = RoundState = 2
+triggerall = P2StateType != L
+triggerall = statetype != A
+triggerall = p2bodydist X =[0,20]
+triggerall = random%2 = 1
+trigger1 = stateno = 200 && movecontact
+trigger2 = stateno = 205 && movecontact
+trigger3 = stateno = 215 && movecontact
+trigger4 = stateno = 230 && movecontact
+trigger5 = stateno = 235 && movecontact
+trigger6 = stateno = 245 && movecontact
+trigger7 = stateno = 400 && movecontact
+trigger8 = stateno = 410 && movecontact
+
+[State -1, 사이코리플렉터]
+type = ChangeState
+value = 1200
+triggerall = random < (AILevel*250)
+triggerall = RoundState = 2
+triggerall = p2bodydist X = [0,40]
+triggerall = statetype != A
+trigger1 = stateno = 260 && movecontact
+
+[State -1, 사이코소드]
+type = ChangeState
+value = 1100
+triggerall = random < (AILevel*200)
+triggerall = RoundState = 2
+triggerall = p2bodydist X =[0,40]
+trigger1 = stateno = 250 && movecontact
+trigger1 = time > 20
+
+[State -1, 사이코 소드]
+type = ChangeState
+value = 1100
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = p2bodydist X =[0,30]
+triggerall = p2bodydist Y =[-70,0]
+;triggerall = p2StateType = A
+triggerall = movehit
+trigger1 = ctrl
+trigger1 = 0
+trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = 205 && movecontact
+trigger4 = stateno = 215 && movecontact
+trigger5 = stateno = 230 && movecontact
+trigger6 = stateno = 235 && movecontact
+trigger7 = stateno = 245 && movecontact
+trigger8 = stateno = 400 && movecontact
+trigger9 = stateno = 410
+trigger10= stateno = 290
+trigger11= stateno = 600
+trigger12= stateno = 651
+trigger13= stateno = 250 && movecontact
+trigger14= stateno = 1355
+trigger15= stateno = 260 && movecontact
+
+[State -1, 피닉스 애로우]
+type = ChangeState
+value = 1400
+triggerall = random < (AILevel*200)
+triggerall = RoundState = 2
+triggerall = p2bodydist X > 40
+triggerall = random%2 = 1
+trigger1 = stateno = 250 && movehit
+trigger1 = time < 20
+
+[State -1, 텔레포트]
+type = ChangeState
+value = 1350
+triggerall = random < (AILevel*200)
+triggerall = RoundState = 2
+triggerall = p2bodydist X > 40
+triggerall = random%2 = 0
+trigger1 = stateno = 250 && moveguarded
+trigger1 = time < 20
+
+[State -1, 사이코 볼]
+type = ChangeState
+value = 1000
+triggerall = random < (AILevel*50)
+triggerall = RoundState = 2
+triggerall = p2bodydist X > 150
+triggerall = numproj = 0
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = 205 && movecontact
+trigger4 = stateno = 215 && movecontact
+trigger5 = stateno = 230 && movecontact
+trigger6 = stateno = 235 && movecontact
+trigger7 = stateno = 245 && movecontact
+trigger8 = stateno = 400 && movecontact
+trigger9 = stateno = 410
+trigger10= stateno = 290
+trigger11= stateno = 1355
+trigger12= stateno = 260 && movecontact
+
+[State -1, 사이코리플렉터]
+type = ChangeState
+value = 1200
+triggerall = random < (AILevel*250)
+triggerall = RoundState = 2
+;triggerall = p2bodydist X > 100
+triggerall = enemy,numproj
+triggerall = p2bodydist X < 200
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = 205 && movecontact
+trigger4 = stateno = 215 && movecontact
+trigger5 = stateno = 230 && movecontact
+trigger6 = stateno = 235 && movecontact
+trigger7 = stateno = 245 && movecontact
+trigger8 = stateno = 400 && movecontact
+trigger9 = stateno = 410
+trigger10= stateno = 290
+trigger11= stateno = 1355
+trigger12= stateno = 260 && movecontact
+
+[State -1, 피닉스 애로우]
+type = ChangeState
+value = 1400
+triggerall = random < (AILevel*250)
+triggerall = RoundState = 2
+triggerall = p2bodydist X  = [0,70]
+triggerall = p2bodydist Y = [-100,-40]
+triggerall = !enemy,numproj
+triggerall = statetype = A
+trigger1 = ctrl
+trigger2 = stateno = 600
+trigger3 = stateno = 651
+
+[State -1, 크리스탈 비트(공중)]
+type = ChangeState
+value = 2010
+triggerall = random < (AILevel*150)
+triggerall = power >= 1000 || var(44) = 1 || var(45) = 1
+triggerall = statetype = A
+trigger1 = stateno = 1100 && pos y < Helper(100000),var(0)-20&& movecontact
+
+[State -1, 크리스탈 비트(공중)]
+type = ChangeState
+value = 2100
+triggerall = random < (AILevel*150)
+triggerall = power >= 1000 || var(44) = 1 || var(45) = 1
+triggerall = statetype = A
+trigger1 = stateno = 1400 && pos y < Helper(100000),var(0)-20&& movecontact
+
+[State -1, 슈퍼 피닉스 인피니티]
+type = ChangeState
+value = 3200
+triggerall = random < (AILevel*50)
+triggerall = power >= 2000 || var(44) = 1 && power >= 1000 || var(45) = 1 && power >= 1000
+;triggerall = statetype != A
+trigger1= stateno = 1100 && movecontact
+trigger2= stateno = 1400 && movecontact
+trigger3= stateno = 1355
+trigger4= stateno = 2100 && movecontact
+

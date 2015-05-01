@@ -1,0 +1,42 @@
+
+[Info]
+name = "Reichel_TP"
+displayname = "Reichel"
+versiondate = 2012,11,12
+mugenversion = 1.0
+author = "ThePaper"
+pal.defaults = 1,2,3,4,5,6
+localcoord = 427,240
+
+
+[Files]
+cmd     = Reichel_TP.cmd
+cns     = Reichel_TP.cns
+st      = Reichel_TP.cns
+st2      = Reichel_TP_S.cns
+st3      = Reichel_TP_N.cns
+st4      = Reichel_TP_H.cns
+st5      = Reichel_TP_-2.cns
+st6      = Reichel_TP_AI.cns
+stcommon = common1.cns
+sprite  = Reichel_TP_v1.sff
+anim    = Reichel_TP.air
+sound   = Reichel_TP.snd
+pal1 = Reichel_TP_01.act
+pal2 = Reichel_TP_02.act
+pal3 = Reichel_TP_03.act
+pal4 = Reichel_TP_04.act
+pal5 = Reichel_TP_05.act
+pal6 = Reichel_TP_06.act
+pal7 = Reichel_TP_01.act
+pal8 = Reichel_TP_02.act
+pal9 = Reichel_TP_03.act
+pal10 = Reichel_TP_04.act
+pal11 = Reichel_TP_05.act
+pal12 = Reichel_TP_06.act
+
+
+
+[Arcade]
+intro.storyboard = intro.def
+ending.storyboard = ending.def

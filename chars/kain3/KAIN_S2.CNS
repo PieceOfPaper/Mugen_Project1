@@ -1,0 +1,2209 @@
+;=====================================================================================================================================================================
+;ヒリッシュ・アテ  LEVEL1
+;=====================================================================================================================================================================
+[Statedef 3000] 
+type    = S
+movetype= A
+physics = S
+poweradd = -1000
+velset = 0,0
+ctrl = 0 
+anim = 3000
+
+[State 3000,2]
+type = SuperPause
+trigger1 = AnimElem = 1
+pos = 20, 0
+time = 25
+movetime = 17
+anim = -1
+darken = 0
+
+;LEVEL1オバ
+[State 3000, 4]
+type = Explod
+trigger1 = time = 0
+persistent = 0
+anim = F100
+pos = 14,-124
+postype = p1
+sprpriority = 2
+bindtime = -1
+ignorehitpause = 1
+supermove = 1
+ownpal = 1
+
+[State 3000, 1]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 9,0             
+
+
+[State 3000, 3]
+type = ChangeState 
+trigger1 = animtime = 0
+value = 3001
+
+;--------------------------
+;モション 
+[Statedef 3001]
+type    = S
+movetype= A
+physics = S
+anim = 3001
+ctrl = 0
+
+[State 3001, 1]
+type = PlaySnd
+trigger1 = time = 0
+value = 100,18
+
+;ヒリッシュ・アテ エフェクト呼び出し
+[state 1020, 4]
+type = helper
+trigger1 = time = 0
+ID = 7700
+pos = 90, -240
+postype = p1
+stateno = 7700
+helpertype = normal
+name = "a-tem"
+ownpal = 1
+keyctrl = 0
+
+[State 230, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;----------------------
+;ヒリッシュ・アテ （エフェクト繰り返し）LEVEL2
+[Statedef 7700]
+type    = A
+movetype= A
+physics = N
+poweradd= 0
+velset = 0, 10
+anim = 7700
+
+[State 3001, 1]
+type = PlaySnd
+trigger1 = time = 0
+value = 230,5
+
+[state 7020, 7]
+type = sprpriority
+trigger1 = time = 0
+value = 2
+
+[STate 7000]
+type=VarRandom
+trigger1=Time=0
+v=1
+range=99
+
+[state 7000, 1]
+type = hitdef
+trigger1=Var(1)= [0,44]
+trigger1=Time>=1
+trigger1=Movecontact=0
+;triggerall = WinKO != 1
+trigger1 = AnimElem = 2
+attr = S, SP
+damage    = 270,50
+animtype = hard
+hitflag = MAFD
+guardflag = MA
+pausetime = 5,10
+sparkxy = -30,0
+sparkno = 2
+guard.sparkno = 42
+hitsound   = S1,4
+guardsound = S2,1
+ground.type = Low
+ground.slidetime = 14
+ground.hittime  = 16
+ground.velocity = -4,-4
+air.animtype = Back
+fall = 1
+air.velocity = -2.5,-3
+air.fall = 1
+fall.recover = 0
+
+[state 7000, 1]
+type = hitdef
+trigger1=Var(1)= [45,99]
+trigger1=Time>=1
+trigger1=Movecontact=0
+;triggerall = WinKO != 1
+trigger1 = AnimElem = 2
+attr = S, SP
+damage    = 270,50
+animtype = hard
+hitflag = MAF;D
+guardflag = MA
+pausetime = 5,10
+sparkxy = -30,0
+sparkno = 2
+guard.sparkno = 42
+hitsound   = S1,4
+guardsound = S2,1
+ground.type = Low
+ground.slidetime = 14
+ground.hittime  = 16
+ground.velocity = -4,-4
+air.animtype = Back
+fall = 1
+air.velocity = -2.5,-3
+air.fall = 1
+fall.recover = 0
+
+[state 7020, 7]
+type = changeAnim
+trigger1 = Animtime = 0
+value = 7700
+
+;フラッシュ
+[State 3001, 5]
+type = Envcolor
+trigger1 = movehit = 1
+ignorehitpause = 1
+sprpriority = 5
+value = 255, 255, 255
+time = 1
+ownpal = 1
+
+[State 201, 4]
+type = MoveHitReset
+trigger1 = movehit = 1
+
+[state 7020, 2]
+type = changestate
+trigger1 = movehit = 1
+trigger2 = moveguarded = 1
+trigger3 = Pos Y >= Helper(100000),var(0)
+;trigger4 = parent, stateno = [5000,5210]
+value = 7701
+ignorehitpause = 1
+
+;----------------------
+;消滅
+[Statedef 7701]
+type    = S
+movetype= A
+physics = N
+poweradd= 0
+ctrl = 0
+anim = 7701
+VelSet = 0,0
+
+[state 7020, 7]
+type = sprpriority
+trigger1 = time = 0
+value = 2
+
+[state 7021, 2]
+type = destroyself
+trigger1 = animtime = 0
+
+;=====================================================================================================================================================================
+;ヒリッシュ・アテ  LEVEL2
+;=====================================================================================================================================================================
+[Statedef 3010] 
+type    = S
+movetype= A
+physics = S
+poweradd = -2000
+velset = 0,0
+ctrl = 0 
+anim = 3000
+
+[State 3000,2]
+type = SuperPause
+trigger1 = AnimElem = 1
+pos = 20, 0
+time = 25
+movetime = 17
+anim = -1
+darken = 0
+
+;LEVEL1オバ
+[State 3000, 4]
+type = Explod
+trigger1 = time = 0
+persistent = 0
+anim = F101
+pos = 14,-124
+postype = p1
+sprpriority = 2
+bindtime = -1
+ignorehitpause = 1
+supermove = 1
+ownpal = 1
+
+[State 3000, 1]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 9,1     
+
+;?期化
+[State 5000, 21]
+type = VarSet
+trigger1 = time = 0
+v = 23
+value = 0
+
+;コ?ド入力確認
+[State 5000, 20]
+type = VarSet
+triggerall = time >= 0
+triggerall = time < 30
+trigger1 = command = "xx"
+trigger2 = command = "yy"
+trigger3 = command = "zz"
+v = 23
+value = 1
+      
+
+[State 3000, 3]
+type = ChangeState 
+trigger1 = animtime = 0
+value = 3011
+
+;--------------------------
+;モション 
+[Statedef 3011]
+type    = S
+movetype= A
+physics = S
+anim = 3001
+ctrl = 0
+
+[State 3001, 1]
+type = PlaySnd
+trigger1 = time = 0
+value = 100,18
+
+;ヒリッシュ・アテ エフェクト呼び出し
+[state 1020, 4]
+type = helper
+trigger1 = time = 0
+trigger1 = Var(23) != 1
+ID = 7710
+pos = 90, -240
+postype = p1
+stateno = 7710
+helpertype = normal
+name = "a-tem"
+ownpal = 1
+keyctrl = 0
+
+;ヒリッシュ・アテ エフェクト呼び出し
+[state 1020, 4]
+type = helper
+trigger1 = time = 10
+trigger1 = Var(23) != 1
+ID = 7710
+pos = 90, -240
+postype = p1
+stateno = 7710
+helpertype = normal
+name = "a-tem"
+ownpal = 1
+keyctrl = 0
+
+;ヒリッシュ・アテ エフェクト呼び出し
+[state 1020, 4]
+type = helper
+trigger1 = time = 20
+trigger1 = Var(23) != 1
+ID = 7715
+pos = 90, -240
+postype = p1
+stateno = 7715
+helpertype = normal
+name = "a-tem"
+ownpal = 1
+keyctrl = 0
+
+;ヒ??ッシ?・アテ? エフェクト呼び出し カ?７ TYPEB
+[state 1020, 4]
+type = helper
+trigger1 = time = 0
+trigger1 = Var(23) = 1
+ID = 7715
+pos = 90, -240
+postype = p1
+stateno = 7710
+helpertype = normal
+name = "a-tem"
+ownpal = 1
+keyctrl = 0
+
+[state 1020, 4]
+type = helper
+trigger1 = Var(23) = 1
+trigger1 = time = 10
+ID = 7715
+pos = 120, -240
+postype = p1
+stateno = 7710
+helpertype = normal
+name = "a-tem"
+ownpal = 1
+keyctrl = 0
+
+[state 1020, 4]
+type = helper
+trigger1 = Var(23) = 1
+trigger1 = time = 20
+ID = 7715
+pos = 150, -240
+postype = p1
+stateno = 7715
+helpertype = normal
+name = "a-tem"
+ownpal = 1
+keyctrl = 0
+
+;?期化
+[State 5000, 21]
+type = VarSet
+triggerall = palno >= 7
+trigger1 = AnimTime = 0
+v = 23
+value = 0
+
+[State 230, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;----------------------
+;ヒリッシュ・アテ （エフェクト繰り返し）LEVEL2
+[Statedef 7710]
+type    = A
+movetype= A
+physics = N
+poweradd= 0
+velset = 0, 10
+anim = 7700
+
+[State 3001, 1]
+type = PlaySnd
+trigger1 = time = 0
+value = 230,12
+
+[state 7020, 7]
+type = sprpriority
+trigger1 = time = 0
+value = 2
+
+[STate 7000]
+type=VarRandom
+trigger1=Time=0
+v=1
+range=99
+
+[state 7000, 1]
+type = hitdef
+trigger1=Var(1)= [0,54]
+trigger1=Time>=1
+trigger1=Movecontact=0
+;triggerall = WinKO != 1
+trigger1 = AnimElem = 2
+attr = S, SP
+damage    = 90,20
+animtype = hard
+hitflag = MAF;D
+guardflag = MA
+pausetime = 5,16
+sparkxy = -30,0
+sparkno = 2
+guard.sparkno = 42
+hitsound   = S1,4
+guardsound = S2,1
+ground.type = Low
+ground.slidetime = 24
+ground.hittime  = 24
+ground.velocity = -2
+air.animtype = Back
+air.velocity = -2.5,-3
+air.fall = 1
+fall.recover = 0
+
+[state 7000, 1]
+type = hitdef
+trigger1=Var(1)= [55,99]
+trigger1=Time>=1
+trigger1=Movecontact=0
+;triggerall = WinKO != 1
+trigger1 = AnimElem = 2
+attr = S, SP
+damage    = 90,20
+animtype = hard
+hitflag = MAFD
+guardflag = MA
+pausetime = 5,16
+sparkxy = -30,0
+sparkno = 2
+guard.sparkno = 42
+hitsound   = S1,4
+guardsound = S2,1
+ground.type = Low
+ground.slidetime = 24
+ground.hittime  = 24
+ground.velocity = -2
+air.animtype = Back
+air.velocity = -2.5,-3
+air.fall = 1
+fall.recover = 0
+
+[state 7020, 7]
+type = changeAnim
+trigger1 = Animtime = 0
+value = 7700
+
+;フラッシュ
+[State 3001, 5]
+type = Envcolor
+trigger1 = movehit = 1
+ignorehitpause = 1
+sprpriority = 5
+value = 255, 255, 255
+time = 1
+ownpal = 1
+
+[State 201, 4]
+type = MoveHitReset
+trigger1 = AnimElem = 2
+
+[state 7020, 2]
+type = changestate
+trigger1 = movehit = 1
+trigger2 = moveguarded = 1
+trigger3 = Pos Y >= Helper(100000),var(0)
+;trigger4 = parent, stateno = [5000,5210]
+value = 7701
+ignorehitpause = 1
+
+;----------------------
+;ヒリッシュ・アテ （エフェクト繰り返し）LEVEL2
+[Statedef 7715]
+type    = A
+movetype= A
+physics = N
+poweradd= 0
+velset = 0, 10
+anim = 7700
+
+[State 3001, 1]
+type = PlaySnd
+trigger1 = time = 0
+value = 230,5
+
+[state 7020, 7]
+type = sprpriority
+trigger1 = time = 0
+value = 2
+
+[STate 7000]
+type=VarRandom
+trigger1=Time=0
+v=1
+range=99
+
+[state 7000, 1]
+type = hitdef
+trigger1=Var(1)= [0,49]
+trigger1=Time>=1
+trigger1=Movecontact=0
+;triggerall = WinKO != 1
+trigger1 = AnimElem = 2
+attr = S, SP
+damage    = 270,50
+animtype = hard
+hitflag = MAFD
+guardflag = MA
+pausetime = 5,10
+sparkxy = -30,0
+sparkno = 2
+guard.sparkno = 42
+hitsound   = S1,4
+guardsound = S2,1
+ground.type = Low
+ground.slidetime = 14
+ground.hittime  = 16
+ground.velocity = -4,-4
+air.animtype = Back
+fall = 1
+air.velocity = -2.5,-3
+air.fall = 1
+fall.recover = 0
+
+[state 7000, 1]
+type = hitdef
+trigger1=Var(1)= [50,99]
+trigger1=Time>=1
+trigger1=Movecontact=0
+;triggerall = WinKO != 1
+trigger1 = AnimElem = 2
+attr = S, SP
+damage    = 270,50
+animtype = hard
+hitflag = MAF;D
+guardflag = MA
+pausetime = 5,10
+sparkxy = -30,0
+sparkno = 2
+guard.sparkno = 42
+hitsound   = S1,4
+guardsound = S2,1
+ground.type = Low
+ground.slidetime = 14
+ground.hittime  = 16
+ground.velocity = -4,-4
+air.animtype = Back
+fall = 1
+air.velocity = -2.5,-3
+air.fall = 1
+fall.recover = 0
+
+[state 7020, 7]
+type = changeAnim
+trigger1 = Animtime = 0
+value = 7700
+
+;フラッシュ
+[State 3001, 5]
+type = Envcolor
+trigger1 = movehit = 1
+ignorehitpause = 1
+sprpriority = 5
+value = 255, 255, 255
+time = 1
+ownpal = 1
+
+[State 201, 4]
+type = MoveHitReset
+trigger1 = AnimElem = 2
+
+
+[state 7020, 2]
+type = changestate
+trigger1 = movehit = 1
+trigger2 = moveguarded = 1
+trigger3 = Pos Y >= Helper(100000),var(0)
+;trigger4 = parent, stateno = [5000,5210]
+value = 7701
+ignorehitpause = 1
+
+;=====================================================================================================================================================================
+;ヒリッシュ・アテ  LEVEL3
+;=====================================================================================================================================================================
+[Statedef 3020] 
+type    = S
+movetype= A
+physics = S
+poweradd = -3000
+velset = 0,0
+ctrl = 0 
+anim = 3000
+
+[State 3000, 1]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 220,0
+
+[State 3000, 1]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 100,4
+
+[State 3000,2]
+type = SuperPause
+trigger1 = AnimElem = 1
+pos = 20, 0
+time = 33
+movetime = 33
+anim = -1
+
+[State 1300, 5]
+type = Envcolor
+trigger1 = Time = 0
+persistent = 0
+ignorehitpause = 1
+value = 0, 0, 0
+time = 30
+under = 1
+supermove = 1
+
+;LEVEL3 オル
+[State 225, 4]
+type = Explod
+trigger1 = AnimElem = 1
+persistent = 0
+anim = 7302
+pos = 0,0
+postype = left
+sprpriority = -2
+bindtime = 1
+ignorehitpause = 1
+supermove = 1
+ownpal = 1
+
+;LEVEL2アン
+[State 225, 4]
+type = Explod
+trigger1 = time = 22
+persistent = 0
+anim = 7301
+pos = 14,-124
+postype = p1
+sprpriority = -1
+bindtime = 1
+ignorehitpause = 1
+supermove = 1
+ownpal = 1
+
+;LEVEL2オバ
+[State 225, 4]
+type = Explod
+trigger1 = time = 20
+persistent = 0
+anim = 7300
+pos = 14,-124
+postype = p1
+sprpriority = 2
+bindtime = 1
+ignorehitpause = 1
+supermove = 1
+ownpal = 1
+
+[State 3000, 1]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = F20,0             
+
+;?期化
+[State 5000, 21]
+type = VarSet
+trigger1 = time = 0
+v = 23
+value = 0
+
+;コ?ド入力確認
+[State 5000, 20]
+type = VarSet
+triggerall = time >= 0
+triggerall = time < 30
+trigger1 = command = "xx"
+trigger2 = command = "yy"
+trigger3 = command = "zz"
+v = 23
+value = 1
+
+;アテ スパズ エフェクト
+[State 7901, 4]
+type = Explod
+trigger1 = AnimElem = 6
+anim = 7705
+pos = 0,0
+postype = p1
+sprpriority = 3
+bindtime = 1
+ignorehitpause = 1
+ownpal = 1
+supermove = 1
+
+[State 3000, 3]
+type = ChangeState 
+trigger1 = animtime = 0
+value = 3021
+
+;--------------------------
+;モション 
+[Statedef 3021]
+type    = S
+movetype= A
+physics = S
+anim = 3001
+ctrl = 0
+
+[State 3001, 1]
+type = PlaySnd
+trigger1 = time = 0
+value = 100,5
+
+;ヒリッシュ・アテ エフェクト呼び出し
+[state 1020, 4]
+type = helper
+triggerall = var(23) != 1
+trigger1 = time = 0
+ID = 7720
+pos = 90,-240
+postype = p1
+stateno = 7720
+helpertype = normal
+name = "a-tem"
+ownpal = 1
+keyctrl = 0
+
+;ヒリッシュ・アテ エフェクト呼び出し
+[state 1020, 4]
+type = helper
+triggerall = var(23) != 1
+trigger1 = time = 10
+ID = 7720
+pos = 90,-240
+postype = p1
+stateno = 7720
+helpertype = normal
+name = "a-tem"
+ownpal = 1
+keyctrl = 0
+
+;ヒリッシュ・アテ エフェクト呼び出し
+[state 1020, 4]
+type = helper
+triggerall = var(23) != 1
+trigger1 = time = 20
+ID = 7720
+pos = 90,-240
+postype = p1
+stateno = 7720
+helpertype = normal
+name = "a-tem"
+ownpal = 1
+keyctrl = 0
+
+;ヒリッシュ・アテ エフェクト呼び出し
+[state 1020, 4]
+type = helper
+triggerall = var(23) != 1
+trigger1 = time = 30
+ID = 7720
+pos = 90,-240
+postype = p1
+stateno = 7720
+helpertype = normal
+name = "a-tem"
+ownpal = 1
+keyctrl = 0
+
+;ヒリッシュ・アテ エフェクト呼び出し
+[state 1020, 4]
+type = helper
+triggerall = var(23) != 1
+trigger1 = time = 40
+ID = 7725
+pos = 90,-240
+postype = p1
+stateno = 7725
+helpertype = normal
+name = "a-tem"
+ownpal = 1
+keyctrl = 0
+
+;ヒ??ッシ?・アテ? エフェクト呼び出し  TYPB
+[state 1020, 4]
+type = helper
+triggerall = var(23) = 1
+trigger1 = time = 0
+ID = 7720
+pos = 90, -240
+postype = p1
+stateno = 7725
+helpertype = normal
+name = "a-tem"
+ownpal = 1
+keyctrl = 0
+
+[state 1020, 4]
+type = helper
+triggerall = var(23) = 1
+trigger1 = time = 10
+ID = 7720
+pos = 120, -240
+postype = p1
+stateno = 7725
+helpertype = normal
+name = "a-tem"
+ownpal = 1
+keyctrl = 0
+
+[state 1020, 4]
+type = helper
+triggerall = var(23) = 1
+trigger1 = time = 20
+ID = 7720
+pos = 150, -240
+postype = p1
+stateno = 7725
+helpertype = normal
+name = "a-tem"
+ownpal = 1
+keyctrl = 0
+
+[state 1020, 4]
+type = helper
+triggerall = var(23) = 1
+trigger1 = time = 30
+ID = 7725
+pos = 180, -240
+postype = p1
+stateno = 7720
+helpertype = normal
+name = "a-tem"
+ownpal = 1
+keyctrl = 0
+
+[state 1020, 4]
+type = helper
+triggerall = var(23) = 1
+trigger1 = time = 40
+ID = 7725
+pos = 210, -240
+postype = p1
+stateno = 7725
+helpertype = normal
+name = "a-tem"
+ownpal = 1
+keyctrl = 0
+
+;?期化
+[State 5000, 21]
+type = VarSet
+trigger1 = AnimTime = 0
+v = 23
+value = 0
+
+[State 230, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;----------------------
+;ヒリッシュ・アテ （エフェクト繰り返し）LEVEL2
+[Statedef 7720]
+type    = A
+movetype= A
+physics = N
+poweradd= 0
+velset = 0, 10
+anim = 7700
+
+[State 3001, 1]
+type = PlaySnd
+trigger1 = time = 0
+value = 230,6
+
+[state 7020, 7]
+type = sprpriority
+trigger1 = time = 0
+value = 2
+
+[STate 7000]
+type=VarRandom
+trigger1=Time=0
+v=1
+range=99
+
+[state 7000, 1]
+type = hitdef
+trigger1=Var(1)= [0,49]
+trigger1=Time>=1
+trigger1=Movecontact=0
+;triggerall = WinKO != 1
+trigger1 = AnimElem = 2
+attr = S, SP
+damage    = 90,20
+animtype = hard
+hitflag = MAF;D
+guardflag = MA
+pausetime = 5,16
+sparkno = -1
+guard.sparkno = -1
+hitsound   = S230,7
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 24
+ground.hittime  = 24
+ground.velocity = -2
+air.animtype = Back
+air.velocity = -2.5,-3
+air.fall = 1
+fall.recover = 0
+
+[state 7000, 1]
+type = hitdef
+trigger1=Var(1)= [50,99]
+trigger1=Time>=1
+trigger1=Movecontact=0
+;triggerall = WinKO != 1
+trigger1 = AnimElem = 2
+attr = S, SP
+damage    = 90,20
+animtype = hard
+hitflag = MAFD
+guardflag = MA
+pausetime = 5,16
+sparkno = -1
+guard.sparkno = -1
+hitsound   = S230,7
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 24
+ground.hittime  = 24
+ground.velocity = -2
+air.animtype = Back
+air.velocity = -2.5,-3
+air.fall = 1
+fall.recover = 0
+
+;ヒットスパク３
+[State 7000, 4]
+type = Explod
+trigger1 = movehit = 1
+anim = 7102
+pos = -5,13
+postype = p2
+sprpriority = 2
+bindtime = 1
+ignorehitpause = 1
+ownpal = 1
+
+;ヒットスパク４ 
+[State 7010, 4]
+type = Explod
+trigger1 = movehit = 1
+anim = 7103
+pos = -5,15
+postype = p2
+sprpriority = 2
+bindtime = 1
+ignorehitpause = 1
+ownpal = 1
+
+;ガドスパク２
+[State 7000, 4]
+type = Explod
+trigger1 = moveguarded = 1
+anim = 7121
+pos = 95,-65
+postype = p2
+sprpriority = 2
+bindtime = 1
+ignorehitpause = 1
+ownpal = 1
+
+[state 7020, 7]
+type = changeAnim
+trigger1 = Animtime = 0
+value = 7700
+
+;フラッシュ
+[State 3001, 5]
+type = Envcolor
+trigger1 = movehit = 1
+ignorehitpause = 1
+sprpriority = 5
+value = 255, 255, 255
+time = 1
+ownpal = 1
+
+[State 201, 4]
+type = MoveHitReset
+trigger1 = AnimElem = 2
+
+[state 7020, 2]
+type = changestate
+trigger1 = movehit = 1
+trigger2 = moveguarded = 1
+trigger3 = Pos Y >= Helper(100000),var(0)
+;trigger4 = parent, stateno = [5000,5210]
+value = 7701
+ignorehitpause = 1
+
+;----------------------
+;ヒリッシュ・アテ （エフェクト繰り返し）LEVEL2
+[Statedef 7725]
+type    = A
+movetype= A
+physics = N
+poweradd= 0
+velset = 0, 10
+anim = 7700
+
+[state 7020, 7]
+type = sprpriority
+trigger1 = time = 0
+value = 2
+
+[STate 7000]
+type=VarRandom
+trigger1=Time=0
+v=1
+range=99
+
+[state 7000, 1]
+type = hitdef
+trigger1=Var(1)= [0,49]
+trigger1=Time>=1
+trigger1=Movecontact=0
+;triggerall = WinKO != 1
+trigger1 = AnimElem = 2
+attr = S, SP
+damage    = 270,50
+animtype = hard
+hitflag = MAFD
+guardflag = MA
+pausetime = 5,10
+sparkno = -1
+guard.sparkno = -1
+hitsound   = S200,8
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 14
+ground.hittime  = 16
+ground.velocity = -4,-4
+air.animtype = Back
+fall = 1
+air.velocity = -2.5,-3
+air.fall = 1
+fall.recover = 0
+
+[state 7000, 1]
+type = hitdef
+trigger1=Var(1)= [50,99]
+trigger1=Time>=1
+trigger1=Movecontact=0
+;triggerall = WinKO != 1
+trigger1 = AnimElem = 2
+attr = S, SP
+damage    = 270,50
+animtype = hard
+hitflag = MAF;D
+guardflag = MA
+pausetime = 5,10
+sparkno = -1
+guard.sparkno = -1
+hitsound   = S200,8
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 14
+ground.hittime  = 16
+ground.velocity = -4,-4
+air.animtype = Back
+fall = 1
+air.velocity = -2.5,-3
+air.fall = 1
+fall.recover = 0
+
+;ヒットスパク３
+[State 7000, 4]
+type = Explod
+trigger1 = movehit = 1
+anim = 7102
+pos = -5,13
+postype = p2
+sprpriority = 2
+bindtime = 1
+ignorehitpause = 1
+ownpal = 1
+
+;ヒットスパク４ 
+[State 7010, 4]
+type = Explod
+trigger1 = movehit = 1
+anim = 7103
+pos = -5,15
+postype = p2
+sprpriority = 2
+bindtime = 1
+ignorehitpause = 1
+ownpal = 1
+
+;ガドスパク２
+[State 7000, 4]
+type = Explod
+trigger1 = moveguarded = 1
+anim = 7120
+pos = 8,-30
+postype = p2
+sprpriority = 2
+bindtime = 1
+ignorehitpause = 1
+ownpal = 1
+
+[state 7020, 7]
+type = changeAnim
+trigger1 = Animtime = 0
+value = 7700
+
+;フラッシュ
+[State 3001, 5]
+type = Envcolor
+trigger1 = movehit = 1
+ignorehitpause = 1
+sprpriority = 5
+value = 255, 255, 255
+time = 1
+ownpal = 1
+
+[State 201, 4]
+type = MoveHitReset
+trigger1 = AnimElem = 2
+
+
+[state 7020, 2]
+type = changestate
+trigger1 = movehit = 1
+trigger2 = moveguarded = 1
+trigger3 = Pos Y >= Helper(100000),var(0)
+;trigger4 = parent, stateno = [5000,5210]
+value = 7701
+ignorehitpause = 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;=====================================================================================================================================================================
+;ヒリッシュ・レ LEVEL1
+;=====================================================================================================================================================================
+[Statedef 3100] 
+type    = S
+movetype= A
+physics = S
+poweradd = -1000
+velset = 0,0
+ctrl = 0 
+anim = 3100
+
+[State 3100, 1]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 9,0
+
+[State 3100,2]
+type = SuperPause
+trigger1 = AnimElem = 1
+pos = 20, 0
+time = 40
+movetime = 40
+anim = -1
+darken = 0
+
+;LEVEL1ア?
+[State 3100, 4]
+type = Explod
+trigger1 = time = 0
+persistent = 0
+anim = F100
+pos = 11,-54
+postype = p1
+sprpriority = -1
+bindtime = -1
+ignorehitpause = 1
+supermove = 1
+ownpal = 1
+
+[State 3100, 3]
+type = ChangeState 
+trigger1 = animtime=0
+value = 3101
+
+;--------------------------
+;?シ?? 
+[Statedef 3101]
+type    = S
+movetype= A
+physics = S
+anim = 3101
+ctrl = 0
+
+[State 3101, 1]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 100,28
+
+;ヒ??ッシ?・? エフェクト呼び出し
+[state 3101, 4]
+type = helper
+trigger1 = time = 0
+ID = 7900
+pos = 34,-8
+postype = p1
+stateno = 7900
+helpertype = normal
+name = "a-tem"
+ownpal = 1
+keyctrl = 0
+
+[State 3101, 9]
+type = ChangeAnim 
+trigger1 = AnimTime = 0 
+value = 3101
+
+[State 3102, 3]
+type = ChangeState
+trigger1 = Time = 30
+value = 3102
+
+;--------------------------
+;?シ?? 
+[Statedef 3102]
+type    = S
+movetype= A
+physics = S
+anim = 3102
+ctrl = 0
+
+[State 3102, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;----------------------
+;ヒ??ッシ?・? （エフェクト?め）LEVEL1
+[Statedef 7900]
+type    = A
+movetype= A
+physics = N
+velset = 0, 0
+anim = 7900
+
+[state 7900, 7]
+type = sprpriority
+trigger1 = time = 0
+value = 2
+
+[state 7900, 2]
+type = changestate
+trigger1 = AnimTime = 0
+value = 7901
+
+;----------------------
+;ヒ??ッシ?・? （エフェクト繰り返し）LEVEL1
+[Statedef 7901]
+type    = A
+movetype= A
+physics = N
+velset = 2.6,0
+anim = 7901
+
+[State 3101, 1]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 230,8
+
+;ノ?
+[State 7000, 5]
+type = VelSet
+triggerall = parent,palno < 7
+trigger1 = time > 0
+trigger1 = time <=10
+y = -0.1
+
+[State 7000, 5]
+type = VelSet
+triggerall = parent,palno < 7
+trigger1 = time > 10
+trigger1 = time <=30
+y = 0.1
+
+[State 7000, 5]
+type = VelSet
+triggerall = parent,palno < 7
+trigger1 = time > 30
+trigger1 = time <=60
+y = -0.1
+
+[State 7000, 5]
+type = VelSet
+triggerall = parent,palno < 7
+trigger1 = time > 60
+trigger1 = time <=90
+y = 0.1
+
+[State 7000, 5]
+type = VelSet
+triggerall = parent,palno < 7
+trigger1 = time > 90
+trigger1 = time <=120
+y = -0.1
+
+[State 7000, 5]
+type = VelSet
+triggerall = parent,palno < 7
+trigger1 = time > 120
+trigger1 = time <=150
+y = 0.1
+
+[State 7000, 5]
+type = VelSet
+triggerall = parent,palno < 7
+trigger1 = time > 150
+trigger1 = time <=180
+y = -0.1
+
+;カ?７
+[State 7000, 5]
+type = VelSet
+triggerall = parent,palno >= 7
+trigger1 = time > 0
+trigger1 = time <=10
+y = -1
+
+[State 7000, 5]
+type = VelSet
+triggerall = parent,palno >= 7
+trigger1 = time > 10
+trigger1 = time <=30
+y = 1
+
+[State 7000, 5]
+type = VelSet
+triggerall = parent,palno >= 7
+trigger1 = time > 30
+trigger1 = time <=60
+y = -1
+
+[State 7000, 5]
+type = VelSet
+triggerall = parent,palno >= 7
+trigger1 = time > 60
+trigger1 = time <=90
+y = 1
+
+[State 7000, 5]
+type = VelSet
+triggerall = parent,palno >= 7
+trigger1 = time > 90
+trigger1 = time <=120
+y = -1
+
+[State 7000, 5]
+type = VelSet
+triggerall = parent,palno >= 7
+trigger1 = time > 120
+trigger1 = time <=150
+y = 1
+
+[State 7000, 5]
+type = VelSet
+triggerall = parent,palno >= 7
+trigger1 = time > 150
+trigger1 = time <=180
+y = -1
+
+;ノ?
+[state 7901, 1]
+type = hitdef
+trigger1 = AnimElem = 2
+trigger2 = AnimElem = 6
+trigger3 = AnimElem = 8
+attr = S, SP
+damage    = 40,8
+animtype = hard
+guardflag = MA
+pausetime = 2,8
+sparkxy = 0,-60
+sparkno = 2
+guard.sparkno = 42
+hitsound   = S1,4
+guardsound = S2,1
+ground.type = Low
+ground.slidetime = 14
+ground.hittime  = 16
+ground.velocity = -4   
+air.animtype = Back
+air.velocity = -2.5,-3
+air.fall = 1
+fall.recover = 0
+fall = 1 
+
+
+[State 1054, 5]
+type = VelSet
+trigger1 = movehit = 1
+trigger2 = moveguarded = 1
+x = 1
+
+[State 7901, 4]
+type = MoveHitReset
+trigger1 = movehit = 1
+trigger2 = moveguarded = 1
+
+[state 7901, 7]
+type = changeAnim
+trigger1 = Animtime = 0
+value = 7901
+
+;フ?ッシ?
+[State 1300, 5]
+type = Envcolor
+trigger1 = movehit = 1
+ignorehitpause = 1
+sprpriority = 5
+value = 255, 255, 255
+time = 1
+ownpal = 1
+
+;消滅
+;[State 7900, 4]
+;type = Explod
+;trigger1 = Time = 100
+;trigger2 = parent, stateno = [5000,5210]
+;anim = 7902
+;;pos = 0,-50
+;postype = p1
+;sprpriority = 2
+;bindtime = 1
+;ignorehitpause = 1
+;ownpal = 1
+
+[State 9000, 2]
+type = HitOverride
+trigger1 = time = 0
+time = -1
+attr = SCA, AA, AT, AP
+slot = 0
+stateno = 7902
+
+;ガドされた?
+[state 7900, 2]
+type = changestate
+trigger1 = moveguarded = 1
+trigger1 = time >= 50
+value = 7902
+ignorehitpause = 1
+
+[state 7900, 2]
+type = changestate
+trigger1 = HitCount = 7
+trigger2 = time = 100
+value = 7902
+ignorehitpause = 1
+
+;----------------------
+;消滅
+[Statedef 7902]
+type    = A
+movetype= A
+physics = N
+ctrl = 0
+anim = 7902
+VelSet = 0,0
+
+[State 3105, 2]
+type = DestroySelf
+;trigger1 = parent, stateno = [5000,5210]
+trigger1 = animtime = 0
+
+
+;=====================================================================================================================================================================
+;ヒリッシュ・レ LEVEL2
+;=====================================================================================================================================================================
+[Statedef 3110] 
+type    = S
+movetype= A
+physics = S
+poweradd = -2000
+velset = 0,0
+ctrl = 0 
+anim = 3100
+
+[State 3100, 1]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 9,1
+
+[State 3100,2]
+type = SuperPause
+trigger1 = AnimElem = 1
+pos = 20, 0
+time = 40
+movetime = 40
+anim = -1
+darken = 0
+
+;LEVEL2ア?
+[State 225, 4]
+type = Explod
+trigger1 = time = 0
+persistent = 0
+anim = F101
+pos = 11,-54
+postype = p1
+sprpriority = -1
+bindtime = 1
+ignorehitpause = 1
+supermove = 1
+ownpal = 1
+
+[State 3100, 3]
+type = ChangeState 
+trigger1 = animtime=0
+value = 3111
+
+;--------------------------
+;?シ?? 
+[Statedef 3111]
+type    = S
+movetype= A
+physics = S
+anim = 3101
+ctrl = 0
+
+[State 3101, 1]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 100,28
+
+;ヒ??ッシ?・? エフェクト呼び出し
+[state 3101, 4]
+type = helper
+trigger1 = time = 0
+ID = 7910
+pos = 30,5
+postype = p1
+stateno = 7910
+helpertype = normal
+name = "a-tem"
+ownpal = 1
+keyctrl = 0
+
+[State 3101, 9]
+type = ChangeAnim 
+trigger1 = AnimTime = 0 
+value = 3101
+
+[State 3102, 3]
+type = ChangeState
+trigger1 = Time = 30
+value = 3102
+
+;--------------------------
+;?シ?? 
+[Statedef 3112]
+type    = S
+movetype= A
+physics = S
+anim = 3102
+ctrl = 0
+
+[State 3102, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;--------------------------------------------
+;ヒ??ッシ?・? 
+;?め LEVEL2
+[Statedef 7910]
+type    = A
+movetype= A
+physics = N
+velset = 0, 0
+anim = 7910
+
+[state 7900, 7]
+type = sprpriority
+trigger1 = time = 0
+value = 2
+
+[state 7900, 2]
+type = changestate
+trigger1 = AnimTime = 0
+value = 7911
+
+;----------------------
+;繰り返し LEVEL2
+[Statedef 7911]
+type    = A
+movetype= A
+physics = N
+;velset = 1.6,0
+anim = 7911
+
+;ノ?
+[State 7000, 5]
+type = VelSet
+trigger1 = time = 0
+x = 1.6
+
+[State 3101, 1]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 230,9
+
+[State 7000, 5]
+type = VelSet
+trigger1 = time > 0
+trigger1 = time <=20
+y = -1
+
+[State 7000, 5]
+type = VelSet
+trigger1 = time > 20
+trigger1 = time <=50
+y = 1
+
+[State 7000, 5]
+type = VelSet
+trigger1 = time > 50
+trigger1 = time <=80
+y = -1
+
+[State 7000, 5]
+type = VelSet
+trigger1 = time > 80
+trigger1 = time <=110
+y = 1
+
+[State 7000, 5]
+type = VelSet
+trigger1 = time > 110
+trigger1 = time <=150
+y = -1
+
+[State 7000, 5]
+type = VelSet
+trigger1 = time > 150
+
+trigger1 = time <=180
+y = 1
+
+[State 7000, 5]
+type = VelSet
+trigger1 = time > 180
+trigger1 = time <=210
+y = -1
+
+;ノ?
+[state 7901, 1]
+type = hitdef
+trigger1 = AnimElem = 2
+trigger2 = AnimElem = 6
+trigger3 = AnimElem = 8
+attr = S, SP
+damage    = 40,10
+animtype = hard
+guardflag = MA
+pausetime = 2,8
+sparkxy = 0,-60
+sparkno = 2
+guard.sparkno = 42
+hitsound   = S1,4
+guardsound = S2,1
+ground.type = Low
+ground.slidetime = 14
+ground.hittime  = 16
+ground.velocity = -0.95 ,-6  
+air.animtype = Back
+fall = 1
+air.velocity = -0.95,-6
+air.fall = 1
+fall.recover = 0
+
+[State 1054, 5]
+type = VelSet
+trigger1 = movehit = 1
+trigger2 = moveguarded = 1
+x = 1.0
+
+
+
+[state 7901, 7]
+type = changeAnim
+trigger1 = Animtime = 0
+value = 7911
+
+;フ?ッシ?
+[State 1300, 5]
+type = Envcolor
+trigger1 = movehit = 1
+ignorehitpause = 1
+sprpriority = 5
+value = 255, 255, 255
+time = 1
+ownpal = 1
+
+[State 7901, 4]
+type = MoveHitReset
+trigger1 = movehit = 1
+trigger2 = moveguarded = 1
+
+;消滅
+;[State 7900, 4]
+;type = Explod
+;trigger1 = Time = 100
+;trigger2 = parent, stateno = [5000,5210]
+;anim = 7912
+;;pos = 0,-50
+;postype = p1
+;sprpriority = 2
+;bindtime = 1
+;ignorehitpause = 1
+;ownpal = 1
+
+[State 9000, 2]
+type = HitOverride
+trigger1 = time = 0
+time = -1
+attr = SCA, AA, AT, AP
+slot = 0
+stateno = 7912
+
+;ガドされた?
+[state 7900, 2]
+type = changestate
+trigger1 = moveguarded = 1
+trigger1 = time >= 60
+value = 7912
+ignorehitpause = 1
+
+[state 7900, 2]
+type = changestate
+trigger1 = HitCount = 10
+trigger2 = time = 120
+value = 7912
+ignorehitpause = 1
+
+;----------------------
+;消滅
+[Statedef 7912]
+type    = A
+movetype= A
+physics = N
+ctrl = 0
+anim = 7912
+VelSet = 0,0
+
+[State 3105, 2]
+type = DestroySelf
+trigger1 = animtime = 0
+
+;=====================================================================================================================================================================
+;ヒリッシュ・レ LEVEL3
+;=====================================================================================================================================================================
+[Statedef 3120] 
+type    = S
+movetype= A
+physics = S
+poweradd = -3000
+velset = 0,0
+ctrl = 0 
+anim = 3098
+
+[State 3100, 1]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 220,0
+
+[State 3100, 1]
+type = PlaySnd
+trigger1 = AnimElem = 5
+value = 100,25
+
+[State 3100,2]
+type = SuperPause
+trigger1 = AnimElem = 1
+pos = 20, 0
+time = 50
+movetime = 50
+anim = -1
+
+[State 1300, 5]
+type = Envcolor
+trigger1 = Time = 0
+persistent = 0
+ignorehitpause = 1
+value = 0, 0, 0
+time = 34
+under = 1
+supermove = 1
+
+;LEVEL3 オ?
+[State 225, 4]
+type = Explod
+trigger1 = AnimElem = 1
+persistent = 0
+anim = 7302
+pos = 0,0
+postype = left
+sprpriority = -2
+bindtime = 1
+ignorehitpause = 1
+supermove = 1
+ownpal = 1
+
+;LEVEL2ア?
+[State 225, 4]
+type = Explod
+trigger1 = time = 25
+persistent = 0
+anim = 7301
+pos = 11,-54
+postype = p1
+sprpriority = -1
+bindtime = 1
+ignorehitpause = 1
+supermove = 1
+ownpal = 1
+
+;LEVEL2オバ
+[State 225, 4]
+type = Explod
+trigger1 = time = 25
+persistent = 0
+anim = 7300
+pos = 11,-54
+postype = p1
+sprpriority = 2
+bindtime = 1
+ignorehitpause = 1
+supermove = 1
+ownpal = 1
+
+[State 1400, 2] 
+type = Afterimage
+trigger1 = time = 10
+time = 40
+length = 12
+PalBright   =   0,   0,  40
+PalContrast = 200, 200, 250
+PalAdd      =  10,  10,  10
+PalMul      =   1,   1,   1
+FrameGap = 8
+Trans = Add1
+sprpriority = 2
+supermove = 1
+
+[State 3100, 3]
+type = ChangeState 
+trigger1 = animtime=0
+value = 3121
+
+;--------------------------
+;?シ?? 
+[Statedef 3121]
+type    = S
+movetype= A
+physics = S
+anim = 3101
+ctrl = 0
+
+[State 3101, 1]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 100,28
+
+;ヒ??ッシ?・? エフェクト呼び出し
+[state 3101, 4]
+type = helper
+trigger1 = time = 0
+ID = 7920
+pos = 20,0
+postype = p1
+stateno = 7920
+helpertype = normal
+name = "a-tem"
+ownpal = 1
+keyctrl = 0
+
+[State 3101, 9]
+type = ChangeAnim 
+trigger1 = AnimTime = 0 
+value = 3101
+
+[State 3102, 3]
+type = ChangeState
+trigger1 = Time = 30
+value = 3122
+
+;--------------------------
+;?シ?? 
+[Statedef 3122]
+type    = S
+movetype= A
+physics = S
+anim = 3102
+ctrl = 0
+
+[State 3102, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;--------------------------------------------
+;ヒ??ッシ?・? 
+;?めLEVEL3
+[Statedef 7920]
+type    = A
+movetype= A
+physics = N
+velset = 0, 0
+anim = 7910
+
+[state 7900, 7]
+type = sprpriority
+trigger1 = time = 0
+value = 2
+
+[state 7900, 2]
+type = changestate
+trigger1 = AnimTime = 0
+value = 7921
+
+;----------------------
+;繰り返し LEVEL3
+[Statedef 7921]
+type    = A
+movetype= A
+physics = N
+;velset = 1.2,0
+anim = 7911
+
+;ノ?
+[State 7000, 5]
+type = VelSet
+triggerall = parent,palno < 7
+trigger1 = time = 0
+x = 1.2
+
+;カ?７
+[State 7000, 5]
+type = VelSet
+triggerall = parent,palno >= 7
+trigger1 = time = 0
+x = 1.6
+
+[State 3101, 1]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 230,9
+
+[State 7000, 5]
+type = VelSet
+trigger1 = time > 0
+trigger1 = time <=20
+y = -1.2
+
+[State 7000, 5]
+type = VelSet
+trigger1 = time > 20
+trigger1 = time <=55
+y = 1.2
+
+[State 7000, 5]
+type = VelSet
+trigger1 = time > 55
+trigger1 = time <=90
+y = -1.2
+
+[State 7000, 5]
+type = VelSet
+trigger1 = time > 90
+trigger1 = time <=125
+y = 1.2
+
+[State 7000, 5]
+type = VelSet
+trigger1 = time > 125
+trigger1 = time <=160
+y = -1.2
+
+[State 7000, 5]
+type = VelSet
+trigger1 = time > 160
+trigger1 = time <=195
+y = 1.2
+
+[State 7000, 5]
+type = VelSet
+trigger1 = time > 195
+trigger1 = time <=230
+y = -1.2
+
+;ノ?
+[state 7901, 1]
+type = hitdef
+triggerall = parent,palno < 7
+trigger1 = AnimElem = 2
+trigger2 = AnimElem = 6
+trigger3 = AnimElem = 8
+attr = S, SP
+damage    = 40,12
+animtype = hard
+guardflag = MA
+pausetime = 2,8
+sparkno = -1
+guard.sparkno = -1
+hitsound   = S200,8
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 22
+ground.hittime  = 22
+ground.velocity = -4   
+air.animtype = Back
+fall = 1
+air.velocity = -2.5,-3
+air.fall = 1
+fall.recover = 0
+
+;カ?７
+[state 7901, 1]
+type = hitdef
+triggerall = parent,palno >= 7
+trigger1 = AnimElem = 2
+trigger2 = AnimElem = 6
+trigger3 = AnimElem = 8
+attr = S, SP
+damage    = 40,12
+animtype = hard
+guardflag = MA
+pausetime = 2,8
+sparkno = -1
+guard.sparkno = -1
+hitsound   = S200,8
+guardsound = 6,0
+ground.type = Low
+ground.slidetime = 22
+ground.hittime  = 22
+ground.velocity = -4   
+air.animtype = Back
+fall = 1
+air.velocity = -2.5,-3
+air.fall = 1
+fall.recover = 0
+;PalFX
+palfx.time = 16
+palfx.add = 250,200,0
+palfx.sinadd = 90,90,90,60
+palfx.mul = 250,200,0
+
+[State 1054, 5]
+type = VelSet
+trigger1 = movehit = 1
+trigger2 = moveguarded = 1
+x = 1
+
+;ヒットスパク３
+[State 7901, 4]
+type = Explod
+trigger1 = movehit = 1
+anim = 7102
+pos = -5,13
+postype = p2
+sprpriority = 2
+bindtime = 1
+ignorehitpause = 1
+ownpal = 1
+
+;ヒットスパク４ 
+[State 7010, 4]
+type = Explod
+triggerall = movehit = 1
+trigger1 = HitCount = 1
+trigger2 = HitCount = 3
+trigger3 = HitCount = 6
+trigger4 = HitCount = 9
+trigger5 = HitCount = 12
+trigger6 = HitCount = 16
+trigger7 = HitCount = 18
+anim = 7103
+pos = -2,8
+postype = p2
+sprpriority = 2
+bindtime = 1
+ignorehitpause = 1
+ownpal = 1
+
+;ガドスパク２
+[State 7901, 4]
+type = Explod
+trigger1 = moveguarded = 1
+anim = 7121
+pos = 8,-20
+postype = p2
+sprpriority = 2
+bindtime = 1
+ignorehitpause = 1
+ownpal = 1
+
+[state 7901, 7]
+type = changeAnim
+trigger1 = Animtime = 0
+value = 7911
+
+;フ?ッシ?
+[State 1300, 5]
+type = Envcolor
+trigger1 = movehit = 1
+ignorehitpause = 1
+sprpriority = 5
+value = 255, 255, 255
+time = 1
+ownpal = 1
+
+[State 7901, 4]
+type = MoveHitReset
+trigger1 = movehit = 1
+trigger2 = moveguarded = 1
+
+[State 9000, 2]
+type = HitOverride
+trigger1 = time = 0
+time = -1
+attr = SCA, AA, AT, AP
+slot = 0
+stateno = 7922
+
+;ガドされた?
+[state 7900, 2]
+type = changestate
+trigger1 = moveguarded = 1
+trigger1 = time >= 70
+value = 7922
+ignorehitpause = 1
+
+[state 7900, 2]
+type = changestate
+trigger1 = HitCount = 12
+trigger2 = time = 140
+value = 7922
+ignorehitpause = 1
+
+;----------------------
+;消滅
+[Statedef 7922]
+type    = A
+movetype= A
+physics = N
+ctrl = 0
+anim = 7912
+VelSet = 0,0
+
+[State 3105, 2]
+type = DestroySelf
+trigger1 = animtime = 0
+
+

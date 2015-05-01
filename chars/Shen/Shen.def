@@ -1,0 +1,36 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "Shen"
+displayname = "Shen Woo"
+versiondate = 12,06,2009
+mugenversion = 1.0
+author = "jin"
+pal.defaults = 1,2,3,4,5,6
+localcoord = 427,240
+
+[Files]
+sprite = Shen.sff
+anim = Shen.air
+sound = Shen.snd
+cmd = Shen.cmd
+cns = Shen.cns
+stcommon = common1.cns
+st = Shen.cns
+st1 = Shen-S.cns
+st2 = Shen-H.cns
+st3 = Shen-2-3.cns
+st4 = Shen-N.cns
+pal1 = Shen01.act
+pal2 = Shen02.act
+pal3 = Shen03.act
+pal4 = Shen04.act
+pal5 = Shen05.act
+pal6 = Shen06.act
+
+[Arcade]
+;intro.storyboard = 
+;ending.storyboard = 

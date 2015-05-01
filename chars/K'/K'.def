@@ -1,0 +1,39 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "K'"
+displayname = "K'"
+versiondate = 04,22,2012
+mugenversion = 1.0
+author = "ikaruga"
+pal.defaults = 1,2,3,4,5,6
+localcoord = 427,240
+
+[Files]
+sprite = K'.sff
+anim = K'.air
+sound = K'.snd
+cmd = K'.cmd
+cns = K'.cns
+stcommon = common1.cns
+st = K'.cns
+st1 = K'-N.cns
+st2 = K'-S.cns
+st3 = K'-H.cns
+st4 = helper.cns
+st5 = config.cns
+st6 = K'-2.cns
+st7 = K'-3.cns
+pal1 = act\act01.act
+pal2 = act\act04.act
+pal3 = act\act06.act
+pal4 = act\act02.act
+pal5 = act\act03.act
+pal6 = act\act05.act
+
+[Arcade]
+;intro.storyboard = 
+;ending.storyboard = 

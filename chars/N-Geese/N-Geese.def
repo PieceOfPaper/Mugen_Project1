@@ -1,0 +1,43 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "Geese"
+displayname = "N-Geese"
+versiondate = 12,06,2009
+mugenversion = 1.0
+author = "jin"
+pal.defaults = 1,2,3,4,5,6
+localcoord = 427,240
+
+[Files]
+sprite = N-Geese.sff
+anim = N-Geese.air
+sound = N-Geese.snd
+cmd = N-Geese.cmd
+cns = N-Geese.cns
+stcommon = common1.cns
+st = N-Geese.cns
+st1 = N-Geese-S.cns
+st2 = N-Geese-EX.cns
+st3 = N-Geese-H.cns
+st4 = N-Geese-2-3.cns
+st5 = N-Geese-N.cns
+pal1 = N-Geese01.act
+pal2 = N-Geese02.act
+pal3 = N-Geese03.act
+pal4 = N-Geese04.act
+pal5 = N-Geese05.act
+pal6 = N-Geese06.act
+pal7 = N-Geese07.act
+pal8 = N-Geese08.act
+pal9 = N-Geese09.act
+pal10 = N-Geese10.act
+pal11 = N-Geese11.act
+pal12 = N-Geese12.act
+
+[Arcade]
+;intro.storyboard = 
+;ending.storyboard = 

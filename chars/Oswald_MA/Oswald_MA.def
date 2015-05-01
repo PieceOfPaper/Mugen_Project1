@@ -1,0 +1,29 @@
+; ここにキャラ情報を書いてください
+[Info]
+name = "Oswald"        ;キャラの名前
+displayname = "Oswald" ;示されるキャラの名前
+versiondate = 11,22,2000    ;キャラの更新情報
+mugenversion = 1.0   ;キャラが動くmugenのバジョン
+author = "みかえる"         ;キャラの製作者名
+pal.defaults = 1,2      ;敵としてでるキャラのパレット
+localcoord = 427,240
+
+; Files for the player
+[Files]
+cmd     = Oswald_XI.cmd   ;キャラのコンド
+cns     = Oswald_XI.cns   ;キャラのプログラ
+st      = Oswald_XI.cns   ;基動作、必殺技、特殊ゲジ、-2、-3
+st2     = Oswald_XI2.cns  ;超必殺技
+st3     = helper.st
+st4     = -3.st
+stcommon = common1.cns 
+sprite  = Oswald_XI.sff   ;キャラの絵
+anim    = Oswald_XI.air   ;キャラの動き
+sound   = Oswald_XI.snd   ;キャラの音
+pal1    = Oswald_XI.act
+pal2    = Oswald_XI2.act
+pal3    = Oswald_XI3.act
+pal4    = Oswald_XI.act
+pal5    = Oswald_XI2.act
+pal6    = Oswald_XI3.act
+pal12    = Oswald_XI4.act

@@ -1,0 +1,35 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "Ken Masters"
+displayname = "Ken Masters"
+versiondate = 05,02,2006
+mugenversion = 1.0
+author = "GoD_Ryu"
+pal.defaults = 1,2,3,4,5
+localcoord = 427,240
+
+[Files]
+sprite = MeDiA\Ken_XI.sff
+anim = CnS\Ken_XI.air
+sound = MeDiA\Ken_XI.snd
+cmd = CnS\Ken_XI.cmd
+cns = CnS\Ken_XI01.cns
+stcommon = common1.cns
+st = CnS\Ken_XI01.cns
+st1 = CnS\Ken_XI02.cns
+st2 = CnS\Ken_XI03.cns
+st3 = CnS\Ken_XI04.cns
+st4 = CnS\Ken_XI05.cns
+pal1 = PaL\Ken_XI01.act
+pal2 = PaL\Ken_XI02.act
+pal3 = PaL\Ken_XI03.act
+pal4 = PaL\Ken_XI04.act
+pal5 = PaL\Ken_XI05.act
+
+[Arcade]
+;intro.storyboard = 
+;ending.storyboard = 

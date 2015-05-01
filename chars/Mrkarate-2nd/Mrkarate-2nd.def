@@ -1,0 +1,38 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "Mrkarate-2nd"
+displayname = "Ryo Sakazaki"
+versiondate = 09,07,2010
+mugenversion = 1.0
+author = "jin"
+pal.defaults = 1,2,3,4,5,6
+localcoord = 427,240
+
+[Files]
+sprite = Mrkarate-2nd.sff
+anim = Mrkarate-2nd.air
+sound = Mrkarate-2nd.snd
+cmd = tobikage\Mrkarate-2nd.cmd
+cns = tobikage\Mrkarate-2nd.cns
+stcommon = common1.cns
+st = tobikage\Mrkarate-2nd.cns
+st1 = tobikage\Mrkarate-2nd-S.cns
+st2 = tobikage\Mrkarate-2nd-H.cns
+st3 = tobikage\Mrkarate-2nd-2-3.cns
+st4 = tobikage\AI.txt
+st5 = tobikage\aistate.cns
+st6 = Mrkarate-2nd-N.cns
+pal1 = Mrkarate-2nd01.act
+pal2 = Mrkarate-2nd02.act
+pal3 = Mrkarate-2nd03.act
+pal4 = Mrkarate-2nd04.act
+pal5 = Mrkarate-2nd05.act
+pal6 = Mrkarate-2nd06.act
+
+[Arcade]
+;intro.storyboard = 
+;ending.storyboard = 

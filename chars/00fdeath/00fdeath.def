@@ -1,0 +1,28 @@
+[Info]
+name = "Tin's fdeath"
+displayname = "Fernandeath"
+versiondate = 16,12,2003
+mugenversion = 1.0
+author = "Tin"
+pal.defaults =2
+localcoord = 427,240
+
+; Files for the player
+[Files]
+cmd     = 00fdeath.cmd
+cns     = 00fdeath.cns
+st      = 00fdeath.cns
+st2      = 01fdeath.cns
+st3      = 02fdeath.cns
+st4      = 03fdeath.cns
+st5     = txt/fernandeath_config.txt
+stcommon = common1.cns 
+sprite  = 00fdeath.sff
+anim    = 00fdeath.air 
+sound   = 00fdeath.snd
+;pal1    = pal/00fdeath.act
+;pal2    = pal/01fdeath.act
+;pal3    = pal/02fdeath.act
+;pal4    = pal/03fdeath.act
+;pal5    = 04fdeath.act
+;pal6    = 05fdeath.act

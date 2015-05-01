@@ -1,0 +1,2362 @@
+;-----------------------------------------------------------------------------
+; ここからはヘルパのステト
+;-----------------------------------------------------------------------------
+;-----------------------------------------------------------------------------
+; KO勝利演出
+;-----------------------------------------------------------------------------
+;(HELPER)KO勝利演出(2002)・待
+[Statedef 9900]
+type = A
+ctrl = 0
+anim = 9999
+velset = 0,0
+movetype = I
+physics = N
+sprpriority = 7
+
+[state a]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+flag2 = invisible
+
+[state a]
+type = bindtoroot
+trigger1 = 1
+pos = 0,0
+
+[state a]
+type = changestate
+trigger1 = winko
+value = 9910
+
+;---------------------------------------------------------------------------
+;(HELPER)KO勝利演出(2002)
+[Statedef 9910]
+type = A
+ctrl = 0
+anim = 9999
+velset = 0,0
+movetype = I
+physics = N
+sprpriority = 7
+
+[state a]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+flag2 = invisible
+
+[state a]
+type = bindtoroot
+trigger1 = 1
+pos = 0,0
+
+[State 200, 1];
+type = PlaySnd
+trigger1 = time = 0
+value = s7,0
+
+[State 200, 1];
+type = PlaySnd
+trigger1 = time = 0
+value = s7,1
+
+[State 3040, 7];画面フラッシュ
+type = EnvColor
+trigger1 = time % 9 = 0
+trigger1 = time <= 33
+time = 3
+value = 0,0,0
+under = 1
+
+[State 3040, 7];画面フラッシュ
+type = EnvColor
+trigger1 = time % 9 = 3
+trigger1 = time <= 33
+time = 3
+value = 255,0,0
+under = 1
+
+[State 3040, 7];画面フラッシュ
+type = EnvColor
+trigger1 = time % 9 = 6
+trigger1 = time <= 33
+time = 3
+value = 255,255,255
+under = 1
+
+;---------------------------------------------------------------------------
+;(HELPER)KO勝利演出(XI)・待
+[Statedef 9950]
+type = A
+ctrl = 0
+anim = 9999
+velset = 0,0
+movetype = I
+physics = N
+sprpriority = 7
+
+[state a]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+flag2 = invisible
+
+[state a]
+type = bindtoroot
+trigger1 = 1
+pos = 0,0
+
+[state a]
+type = changestate
+trigger1 = winko
+value = 9960
+
+;---------------------------------------------------------------------------
+;(HELPER)KO勝利演出(XI)
+[Statedef 9960]
+type = A
+ctrl = 0
+anim = 9999
+velset = 0,0
+movetype = I
+physics = N
+sprpriority = 7
+
+[state a]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+flag2 = invisible
+
+[state a]
+type = bindtoroot
+trigger1 = 1
+pos = 0,0
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = matchover
+trigger1 = winko
+flag = nomusic
+
+[State 200, 1];
+type = PlaySnd
+trigger1 = time = 0
+value = s7,2
+
+[state 0, EnvColor]
+type = EnvColor
+trigger1 = time = 0
+time = 2
+value = 255,255,255
+under = 0
+ignorehitpause = 1
+persistent = 0
+
+[State 0, Pause]
+type = Pause
+trigger1 = time = 0
+time = 15
+movetime = 15
+
+[State 0, EnvShake]
+type = EnvShake
+trigger1 = time = 0
+time = 15
+freq = 120
+ampl = -3
+phase = 90
+
+;-----------------------------------------------------------------------------
+; パワ＆スキルゲジ
+;-----------------------------------------------------------------------------
+[Statedef 10100]
+type = A
+movetype= I
+physics = N
+anim = 9999
+velset = 0,0
+ctrl = 0
+
+;全部ontop=1
+;sprpriority無効になるので最奥の画像から示させ順番を制御
+
+
+;--------------P1--------------
+;ゲジ枠影
+[State 10100,2]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 1
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10110)=0
+anim = 10110
+id = 10110
+postype = left;  ---X,Y---
+pos = 99,229+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .55,.6
+facing = -1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;スキル枠影
+[State 10100,1]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 1
+trigger1 = Numexplod(10103)=0
+anim = 10103
+id = 10103
+postype = left;                           ---X,Y---
+pos = 2+(root,Teammode=simul)*-20,237+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+facing = 1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;--------------P2--------------
+;ゲジ枠影
+[State 10100,2]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 2
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10110)=0
+anim = 10110
+id = 10110
+postype = right;       ---X,Y---
+pos = -99,229+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .55,.6
+facing = 1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;スキル枠影
+[State 10100,1]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 2
+trigger1 = Numexplod(10103)=0
+anim = 10103
+id = 10103
+postype = right;                                ---X,Y---
+pos = -2+(root,Teammode=simul)*20,237+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+facing = -1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;-------------------ゲジ・数値 P1---------------
+;LV0数値
+[State 10100,2]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 1
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10120)=0
+anim = 10120
+id = 10120
+postype = left; ---X,Y---
+pos = 2,237+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+facing = 1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;LV1数値
+[State 10100,3]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 1
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10121)=0
+anim = 10121
+id = 10121
+postype = left; ---X,Y---
+pos = 2,237+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;LV2数値
+[State 10100,4]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 1
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10122)=0
+anim = 10122
+id = 10122
+postype = left; ---X,Y---
+pos = 2,237+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;LV3数値
+[State 10100,5]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 1
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10123)=0
+anim = 10123
+id = 10123
+postype = left; ---X,Y---
+pos = 2,237+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;LV4数値
+[State 10100,5]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 1
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10124)=0
+anim = 10124
+id = 10124
+postype = left; ---X,Y---
+pos = 2,237+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;LV5数値
+[State 10100,5]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 1
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10125)=0
+anim = 10125
+id = 10125
+postype = left; ---X,Y---
+pos = 2,237+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;-------------------ゲジ・数値 P2---------------
+;LV0数値
+[State 10100,2]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 2
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10120)=0
+anim = 10120
+id = 10120
+postype = right;       ---X,Y---
+pos = -25,237+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+facing = 1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;LV1数値
+[State 10100,3]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 2
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10121)=0
+anim = 10121
+id = 10121
+postype = right;       ---X,Y---
+pos = -25,237+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;LV2数値
+[State 10100,4]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 2
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10122)=0
+anim = 10122
+id = 10122
+postype = right;       ---X,Y---
+pos = -25,237+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;LV3数値
+[State 10100,5]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 2
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10123)=0
+anim = 10123
+id = 10123
+postype = right;       ---X,Y---
+pos = -25,237+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;LV4数値
+[State 10100,5]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 2
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10124)=0
+anim = 10124
+id = 10124
+postype = right;      ---X,Y---
+pos = -25,237+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;LV5数値
+[State 10100,5]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 2
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10125)=0
+anim = 10125
+id = 10125
+postype = right;      ---X,Y---
+pos = -25,237+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+
+;RemoveExplodで切り替えると画面振動でズレる
+;なので最初から出しっぱなし
+;LV0数値
+[State 3802]
+type = ModifyExplod
+trigger1 = NumExplod(10120)
+ID = 10120
+scale = ifelse((root,Power=[0,999]),.5,0),.5
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;LV1数値
+[State 3802]
+type = ModifyExplod
+trigger1 = NumExplod(10121)
+ID = 10121
+scale = ifelse((root,Power=[1000,1999]),.5,0),.5
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;LV2数値
+[State 3802]
+type = ModifyExplod
+trigger1 = NumExplod(10122)
+ID = 10122
+scale = ifelse((root,Power=[2000,2999]),.5,0),.5
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;LV3数値
+[State 3802]
+type = ModifyExplod
+trigger1 = NumExplod(10123)
+ID = 10123
+scale = ifelse((root,Power=[3000,3999]),.5,0),.5
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;LV4数値
+[State 3802]
+type = ModifyExplod
+trigger1 = NumExplod(10124)
+ID = 10124
+scale = ifelse((root,Power=[4000,4999]),.5,0),.5
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;LV5数値
+[State 3802]
+type = ModifyExplod
+trigger1 = NumExplod(10125)
+ID = 10125
+scale = ifelse(root,Power>=5000,.5,0),.5
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+
+;-------------------ゲジ・バ変動 P1---------------
+;ゲジバLV1
+[State 10100,10]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 1
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10111)=0
+anim = 10111
+id = 10111
+postype = left;  ---X,Y---
+pos = 99,229+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .6,.5
+facing = -1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;ゲジバLV2
+[State 10100,10]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 1
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10112)=0
+anim = 10112
+id = 10112
+postype = left;  ---X,Y---
+pos = 99,229+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .6,.5
+facing = -1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;ゲジバLV3
+[State 10100,10]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 1
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10113)=0
+anim = 10113
+id = 10113
+postype = left;  ---X,Y---
+pos = 99,229+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .6,.5
+facing = -1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;ゲジバLV4
+[State 10100,10]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 1
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10114)=0
+anim = 10114
+id = 10114
+postype = left;  ---X,Y---
+pos = 99,229+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .6,.5
+facing = -1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;ゲジバLV5
+[State 10100,10]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 1
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10115)=0
+anim = 10115
+id = 10115
+postype = left;  ---X,Y---
+pos = 99,229+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .6,.5
+facing = -1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;-------------------ゲジ・バ変動 P2---------------
+;ゲジバLV1
+[State 10100,10]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 2
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10111)=0
+anim = 10111
+id = 10111
+postype = right;       ---X,Y---
+pos = -99,229+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .6,.5
+facing = 1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;ゲジバLV2
+[State 10100,10]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 2
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10112)=0
+anim = 10112
+id = 10112
+postype = right;       ---X,Y---
+pos = -99,229+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .6,.5
+facing = 1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;ゲジバLV3
+[State 10100,10]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 2
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10113)=0
+anim = 10113
+id = 10113
+postype = right;       ---X,Y---
+pos = -99,229+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .6,.5
+facing = 1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;ゲジバLV4
+[State 10100,10]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 2
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10114)=0
+anim = 10114
+id = 10114
+postype = right;       ---X,Y---
+pos = -99,229+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .6,.5
+facing = 1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;ゲジバLV5
+[State 10100,10]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 2
+triggerall = !root,var(38) && !root,Teammode = simul
+trigger1 = Numexplod(10115)=0
+anim = 10115
+id = 10115
+postype = right;       ---X,Y---
+pos = -99,229+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .6,.5
+facing = 1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+
+;ゲジLV1
+[State 3802]
+type = ModifyExplod
+trigger1 = NumExplod(10111)
+ID = 10111; power******の間はXsizeを変動、***以上でXsize=.52、それ以外はXsize=0で消す。
+scale = ifelse((root,Power=[0,1000]),(root,Power)/2000.0,ifelse(root,Power>=1000,.52,0)),.6
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;ゲジLV2
+[State 3802]
+type = ModifyExplod
+trigger1 = NumExplod(10112)
+ID = 10112;      power******の間はXsizeを変動、***以上でXsize=.52、それ以外はXsize=0で消す。
+scale = ifelse((root,Power=[1000,1999]),(root,Power-1000)/2000.0,ifelse(root,Power>=2000,.52,0)),.6
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;ゲジLV3
+[State 3802]
+type = ModifyExplod
+trigger1 = NumExplod(10113)
+ID = 10113;      power******の間はXsizeを変動、***以上でXsize=.52、それ以外はXsize=0で消す。
+scale = ifelse((root,Power=[2000,2999]),(root,Power-2000)/2000.0,ifelse(root,Power>=3000,.52,0)),.6
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;ゲジLV4
+[State 3802]
+type = ModifyExplod
+trigger1 = NumExplod(10114)
+ID = 10114;      power******の間はXsizeを変動、***以上でXsize=.52、それ以外はXsize=0で消す。XXX,YYY-MAX3000時の示防
+scale = ifelse((root,Power=[3000,3999]),(root,Power-3000)/2000.0,ifelse(root,Power>=4000,.52,0)),ifelse(root,var(49)>=4000,.6,0)
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;ゲジLV5
+[State 3802]
+type = ModifyExplod
+trigger1 = NumExplod(10115)
+ID = 10115;      power******の間はXsizeを変動、***以上でXsize=.52、それ以外はXsize=0で消す。XXX,YYY-MAX4000時の示防
+scale = ifelse((root,Power=[4000,4999]),(root,Power-4000)/2000.0,ifelse(root,Power>=5000,.52,0)),ifelse(root,var(49)>=5000,.6,0)
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;-------------------スキルP1------------------------------
+;スキルイント滅 黄個目
+[State 10100,10]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 1
+trigger1 = Numexplod(10104)=0
+trigger1 = root,fvar(35)>=0
+anim = 10104
+id = 10104
+postype = left;                            ---X,Y---
+pos = 33+(root,Teammode=simul)*-20,223+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .6,.6
+;facing = ifelse(Teamside=2,-1,1)
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;スキルイント滅 青個目
+[State 10100,10]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 1
+trigger1 = Numexplod(10105)=0
+trigger1 = root,fvar(35)>=0
+anim = 10105
+id = 10105
+postype = left;                            ---X,Y---
+pos = 33+(root,Teammode=simul)*-20,223+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .6,.6
+;facing = ifelse(Teamside=2,-1,1)
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;スキルイント滅 青②個目
+[State 10100,10]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 1
+trigger1 = Numexplod(101051)=0
+trigger1 = root,fvar(35)>=0
+anim = 10105
+id = 101051
+postype = left;                            ---X,Y---
+pos = 26+(root,Teammode=simul)*-20,223+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .6,.6
+;facing = ifelse(Teamside=2,-1,1)
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+
+;黄バ
+[State 10100]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 1
+trigger1 = Numexplod(10106)=0
+trigger1 = root,fvar(35)>=0
+anim = 10106
+id = 10106
+postype = left;                            ---X,Y---
+pos = 78+(root,Teammode=simul)*-20,223+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+facing = -1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;青バ
+[State 10100]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 1
+trigger1 = Numexplod(10107)=0
+trigger1 = root,fvar(35)>=0
+anim = 10107
+id = 10107
+postype = left;                            ---X,Y---
+pos = 78+(root,Teammode=simul)*-20,223+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+facing = -1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;バ滅
+[State 10100,10]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 1
+trigger1 = NumExplod(10108)=0
+anim = 10108
+ID = 10108
+postype = left                             ---X,Y---
+pos = 78+(root,Teammode=simul)*-20,223+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+bindtime = -1
+removetime = -1
+scale = .52,.5
+facing = -1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;------------スキルP2------------------------------
+;スキルイント滅 黄個目
+[State 10100,10]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 2
+trigger1 = Numexplod(10104)=0
+trigger1 = root,fvar(35)>=0
+anim = 10104
+id = 10104
+postype = right;                                  ---X,Y---
+pos = -32+(root,Teammode=simul)*20,223+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .6,.6
+;facing = ifelse(Teamside=2,-1,1)
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;スキルイント滅 青個目
+[State 10100,10]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 2
+trigger1 = Numexplod(10105)=0
+trigger1 = root,fvar(35)>=0
+anim = 10105
+id = 10105
+postype = right;                                ---X,Y---
+pos = -32+(root,Teammode=simul)*20,223+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .6,.6
+;facing = ifelse(Teamside=2,-1,1)
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;スキルイント滅 青②個目
+[State 10100,10]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 2
+trigger1 = Numexplod(101051)=0
+trigger1 = root,fvar(35)>=0
+anim = 10105
+id = 101051
+postype = right;                                ---X,Y---
+pos = -26+(root,Teammode=simul)*20,223+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .6,.6
+;facing = ifelse(Teamside=2,-1,1)
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;黄バ
+[State 10100]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 2
+trigger1 = Numexplod(10106)=0
+trigger1 = root,fvar(35)>=0
+anim = 10106
+id = 10106
+postype = right;                                ---X,Y---
+pos = -78+(root,Teammode=simul)*20,223+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+facing = 1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;青バ
+[State 10100]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 2
+trigger1 = Numexplod(10107)=0
+trigger1 = root,fvar(35)>=0
+anim = 10107
+id = 10107
+postype = right;                                ---X,Y---
+pos = -78+(root,Teammode=simul)*20,223+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+facing = 1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;バ滅
+[State 10100,10]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 2
+trigger1 = NumExplod(10108)=0
+anim = 10108
+ID = 10108
+postype = right;                                ---X,Y---
+pos = -78+(root,Teammode=simul)*20,223+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+bindtime = -1
+removetime = -1
+scale = .52,.5
+facing = 1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+
+;スキルイント滅 黄>変更
+[State 10100]
+type = ModifyExplod
+trigger1 = NumExplod(10104)
+ID = 10104
+scale = ifelse((root,fvar(35)=[100,199]),.6,0),.6
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;スキルイント滅 青>変更
+[State 10100]
+type = ModifyExplod
+trigger1 = NumExplod(10105)
+ID = 10105
+scale = ifelse(root,fvar(35)>=200,.6,0),.6
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;スキルイント滅 青<変更
+[State 10100]
+type = ModifyExplod
+trigger1 = NumExplod(101051)
+ID = 101051
+scale = ifelse(root,fvar(35)>=200,.6,0),.6
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;黄バ変更
+[State 10100]
+type = ModifyExplod
+trigger1 = NumExplod(10106)
+ID = 10106
+scale = ifelse(root,fvar(35)<=100,root,fvar(35)/195.0,.52),.5
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;青バ変更
+[State 10100]
+type = ModifyExplod
+trigger1 = NumExplod(10107)
+ID = 10107
+scale = ifelse(root,fvar(35)<100,0,(root,fvar(35)-100)/195.0),.5
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;バ滅変更
+[State 10100]
+type = ModifyExplod
+trigger1 = NumExplod(10108)
+ID = 10108
+scale = ifelse(root,fvar(35)>=200,.55,0),.5
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;--------------------枠P1--------------------
+;枠（シングルン(SPゲジ＆パワゲジ
+[State 10100,1]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 1
+triggerall = !root,var(38) && !root,Teammode=simul
+trigger1 = Numexplod(10100)=0
+anim = ifelse(Teamside=1,10100,10101)
+id = 10100
+postype = left; ---X,Y---
+pos = 2,237+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+facing = 1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;枠（ッグ(SPゲジのみ
+[State 10100,1]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 1
+triggerall = root,Teammode = simul || root,var(38) && !root,Teammode=simul
+trigger1 = Numexplod(10102)=0
+anim = 10102
+id = 10102
+postype = left;                                 ---X,Y---
+pos = ifelse(root,Teammode=simul,-18,2),237+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+facing = 1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;--------------------枠P2--------------------
+;枠（シングルン(SPゲジ＆パワゲジ
+[State 10100,1]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 2
+triggerall = !root,var(38) && !root,Teammode=simul
+trigger1 = Numexplod(10100)=0
+anim = ifelse(Teamside=1,10100,10101)
+id = 10100
+postype = right;       ---X,Y---
+pos = -2,237+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+facing = -1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+;枠（ッグ（SPゲジのみ
+[State 10100,1]
+type = Explod
+triggerall = root,var(36) = 0
+triggerall = Teamside = 2
+triggerall = root,Teammode = simul || root,var(38) && !root,Teammode=simul
+trigger1 = Numexplod(10102)=0
+anim = 10102
+id = 10102
+postype = right;                                       ---X,Y---
+pos = ifelse(root,Teammode=simul,18,-2),237+(root,var(37)*-10)-ceil(root,fvar(39)/2.5)
+ontop=1
+ownpal = 1
+bindtime = -1
+removetime = -1
+scale = .5,.5
+facing = -1
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+[State -2,mode-off]
+type = RemoveExplod
+trigger1 = root,var(36) = 1
+
+;-----------------------------------------------------------------------------
+; MAXゲジ
+;-----------------------------------------------------------------------------
+;(HELPER)MAXゲジ
+[Statedef 10130]
+type = A
+ctrl = 0
+anim = 10130
+velset = 0,0
+movetype = I
+physics = N
+sprpriority = 10
+
+;---------------------[]
+[state a]
+type = varset
+trigger1 = time = 0
+v = 1
+value = 0
+
+[state a]
+type = changestate
+triggerall = Root,movetype != H
+trigger1 = Root,stateno = [900,901]
+trigger2 = Root,var(40) = 900
+value = 10131
+
+;---------------------------------------------------------------------------
+;(HELPER)MAXゲジ
+[Statedef 10131]
+type = A
+ctrl = 0
+anim = 10130
+velset = 0,0
+movetype = I
+physics = N
+sprpriority = 10
+
+;---------------------[]
+[state -2,a];ゲジ枠a
+type = Explod
+triggerall = root,var(36) = 0
+trigger1 = Facing = 1
+trigger1 = numexplod(10131) = 0
+anim = 10131
+id = 10131
+postype = back
+bindtime = -1
+pos = 36,200+(root,var(37)*-10)-ceil(root,fvar(39)/2.5);221
+sprpriority = 10
+removetime = -1
+ownpal = 1
+;ontop = 1
+
+[state -2,a];ゲジ枠a
+type = Explod
+triggerall = root,var(36) = 0
+trigger1 = Facing = -1
+trigger1 = numexplod(10131) = 0
+anim = 10132
+id = 10131
+postype = back
+bindtime = -1
+pos = 36,200+(root,var(37)*-10)-ceil(root,fvar(39)/2.5);221
+sprpriority = 10
+removetime = -1
+ownpal = 1
+facing = 1
+;ontop = 1
+
+[state a]
+type = ModifyExplod
+trigger1 = time <= 33
+ID = 10131
+scale = 1,var(2)*0.01
+
+[state a]
+type = removeexplod
+trigger1 = root,var(36) = 1
+id = 10131
+
+;---------------------[]
+[state a]
+type = varset
+trigger1 = time = 0
+v = 2
+value = 0
+
+[state a]
+type = varadd
+trigger1 = time <= 4
+v = 2
+value = 20
+
+[state a]
+type = varset
+trigger1 = time = 5
+v = 2
+value = 100
+
+[state a]
+type = varadd
+trigger1 = time >= 27
+v = 2
+value = -20
+
+[state a]
+type = varset
+trigger1 = time = 32
+v = 2
+value = 100
+
+;---------------------[]
+[state a]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+flag2 = invisible
+
+;---------------------[ゲジ量]
+[state -2,a];ゲジ量
+type = Explod
+triggerall = root,var(36) = 0
+trigger1 = Facing = 1
+trigger1 = time >= 32
+anim = 10133
+id = 10133
+postype = left
+bindtime = -1
+pos = 36,200+(root,var(37)*-10)-ceil(root,fvar(39)/2.5);221
+sprpriority = 11
+;removetime = -1
+ownpal = 1
+ontop = 1
+
+[state -2,a];ゲジ量
+type = Explod
+triggerall = root,var(36) = 0
+trigger1 = Facing = -1
+trigger1 = time >= 32
+anim = 10133
+id = 10133
+postype = right
+bindtime = -1
+pos = -36,200+(root,var(37)*-10)-ceil(root,fvar(39)/2.5);221
+sprpriority = 11
+;removetime = -1
+ownpal = 1
+facing = -1
+ontop = 1
+
+[state a]
+type = ModifyExplod
+trigger1 = 1
+ID = 10133
+scale = Root,var(40) * 0.001112,1
+
+[state a]
+type = removeexplod
+trigger1 = root,var(36) = 1
+id = 10133
+
+;---------------------[]
+[state a]
+type = removeexplod
+trigger1 = Root,var(40) = 0
+id = 10131
+
+[state a]
+type = removeexplod
+trigger1 = Root,var(40) = 0
+id = 10133
+
+[state a]
+type = changestate
+trigger1 = Root,var(40) = 0
+value = 10130
+
+;-------------------------------------------------------------------------------
+; カウンヒットエフェクト
+;-------------------------------------------------------------------------------
+[Statedef 10300]
+type    = S
+movetype= I
+physics = S
+anim = 9999
+velset = 0,0
+poweradd = 0
+ctrl = 0
+sprpriority = -5
+
+;文字
+[State 1]
+type = Explod
+trigger1 = Teamside = 1
+trigger1 = time = 0
+anim = 10300
+ID = 10300
+pos = -8,105
+postype = Left
+facing = 1
+scale = 0.5,0.5
+bindtime = -1
+sprpriority = 20
+ownpal = 1
+ontop = 1
+removeongethit = 0
+supermovetime = 60
+pausemovetime = 60
+ignorehitpause = 1
+persistent = 0
+
+;文字
+[State 1]
+type = Explod
+trigger1 = Teamside = 2
+trigger1 = time = 0
+anim = 10301
+ID = 10300
+pos = 8,105
+postype = right
+facing = 1
+scale = 0.5,0.5
+bindtime = -1
+sprpriority = 20
+ownpal = 1
+ontop = 1
+removeongethit = 0
+supermovetime = 60
+pausemovetime = 60
+ignorehitpause = 1
+persistent = 0
+
+[State 75]
+type = varset
+trigger1 = time = 0
+fvar(12) = 0
+
+[State 75]
+type = varadd
+trigger1 = time > 10
+fvar(12) = .1
+
+[State 75]
+type = ModifyExplod
+trigger1 = NumExplod(10300)
+ID = 10300
+scale = .5,ifelse(time<=11,.02,ifelse(time>=20,.5,fvar(12)/1.4))
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+[State 1]
+type = DestroySelf
+trigger1 = NumExplod(10300)=0
+
+;-------------------------------------------------------------------------------
+; ガドクラッシュエフェクト
+;-------------------------------------------------------------------------------
+[Statedef 10310]
+type    = S
+movetype= I
+physics = S
+anim = 9999
+velset = 0,0
+poweradd = 0
+ctrl = 0
+sprpriority = -5
+
+;文字
+[State 1]
+type = Explod
+trigger1 = time = 0
+anim = 10310
+ID = 10310
+pos = 160,70-ceil(root,fvar(39)/2.5)
+postype = Left
+facing = 1
+scale = 0.5,0.5
+bindtime = -1
+sprpriority = 20
+ownpal = 1
+ontop = 1
+removeongethit = 0
+supermovetime = 60
+pausemovetime = 60
+ignorehitpause = 1
+persistent = 0
+
+[State 75]
+type = varset
+trigger1 = time = 0
+fvar(12) = .5
+
+[State 75]
+type = varadd
+trigger1 = time > 40
+fvar(12) = .2
+
+[State 75]
+type = varset
+trigger1 = time = 0
+fvar(13) = .5
+
+[State 75]
+type = varadd
+trigger1 = time > 40
+fvar(13) = .1
+
+[State 75]
+type = ModifyExplod
+trigger1 = NumExplod(10310)
+ID = 10310
+scale = fvar(12),fvar(13)
+ignorehitpause = 1
+supermovetime = 999
+pausemovetime = 999
+
+[State 1]
+type = DestroySelf
+trigger1 = NumExplod(10310)=0
+
+;-------------------------------------------------------------------------------
+; スパキャンセル・ドリキャンセル
+;-------------------------------------------------------------------------------
+;SCエフェクト
+[Statedef 10550]
+type    = A
+movetype= I
+physics = S
+anim = 9999
+velset = 0,0
+poweradd = 0
+ctrl = 0
+sprpriority = -2
+
+;文字
+[State 1]
+type = Explod
+trigger1 = time = 0
+anim = 10550
+pos = 73+ceil(root,fvar(38)/2.2),81-ceil(root,fvar(39)/2.5);57-ceil(root,fvar(39)/2.5)
+postype = Left
+facing = 1
+vfacing = 1
+removetime = 60
+scale = 0.5, 0.5
+bindtime = 60
+sprpriority = 50
+ownpal = 1
+removeongethit = 0
+supermovetime = 60
+pausemovetime = 60
+ignorehitpause = 1
+persistent = 1
+
+;白帯
+[State 1]
+type = Explod
+trigger1 = time = 0
+anim = 10551
+pos = 0,78-ceil(root,fvar(39)/2.5);54-ceil(root,fvar(39)/2.5)
+postype = Left
+facing = 1
+vfacing = 1
+scale = 1.5,1.09
+sprpriority = 51
+ownpal = 1
+bindtime = 60
+removetime = 53
+removeongethit = 0
+supermovetime = 60
+pausemovetime = 60
+ignorehitpause = 1
+persistent = 1
+
+;黒幕
+[State 1]
+type = Explod
+trigger1 = time = 0
+anim = 10552
+pos = 0,74-ceil(root,fvar(39)/2.5);50-ceil(root,fvar(39)/2.5)
+postype = Left
+facing = 1
+vfacing = 1
+scale = 1.5,1.08
+sprpriority = 49
+ownpal = 1
+bindtime = 60
+removetime = 53
+removeongethit = 0
+supermovetime = 60
+pausemovetime = 60
+ignorehitpause = 1
+persistent = 1
+
+[State 1]
+type = DestroySelf
+trigger1 = time = 60
+
+;-------------------------------------------------------------------------------
+;DCエフェクト
+[Statedef 10560]
+type    = A
+movetype= I
+physics = S
+anim = 9999
+velset = 0,0
+poweradd = 0
+ctrl = 0
+sprpriority = -2
+
+;文字
+[State 1]
+type = Explod
+trigger1 = time = 0
+anim = 10560
+pos = -3+ceil(root,fvar(38)/2.2),81-ceil(root,fvar(39)/2.5);45-ceil(root,fvar(39)/2.5)
+postype = Left
+facing = 1
+vfacing = 1
+removetime = 60
+scale = 0.5, 0.5
+bindtime = 60
+sprpriority = 50
+ownpal = 1
+removeongethit = 0
+supermovetime = 60
+pausemovetime = 60
+ignorehitpause = 1
+persistent = 1
+
+;白帯
+[State 1]
+type = Explod
+trigger1 = time = 0
+anim = 10561
+pos = -2,78-ceil(root,fvar(39)/2.5);41-ceil(root,fvar(39)/2.5)
+postype = Left
+facing = 1
+vfacing = 1
+scale = 1.5,1.08
+sprpriority = 51
+ownpal = 1
+bindtime = 60
+removetime = 53
+removeongethit = 0
+supermovetime = 60
+pausemovetime = 60
+ignorehitpause = 1
+persistent = 1
+
+;黒幕
+[State 1]
+type = Explod
+trigger1 = time = 0
+anim = 10562
+pos = -2,74-ceil(root,fvar(39)/2.5);37-ceil(root,fvar(39)/2.5)
+postype = Left
+facing = 1
+vfacing = 1
+scale = 1.5,2.3
+sprpriority = 49
+ownpal = 1
+bindtime = 60
+removetime = 53
+removeongethit = 0
+supermovetime = 60
+pausemovetime = 60
+ignorehitpause = 1
+persistent = 1
+
+[State 1]
+type = DestroySelf
+trigger1 = time = 60
+
+;-------------------------------------------------------------------------------
+; MAX2演出用ヘルパ
+;-------------------------------------------------------------------------------
+; MAX2背景
+
+[Statedef 10600]
+type     = A
+movetype = I
+physics  = N
+ctrl     = 0
+anim     = 9999
+sprpriority = -50
+
+[State 181, 特殊効果]
+type = AssertSpecial
+trigger1 = 1
+flag = noBG
+flag2 = noFG
+flag3 = noshadow
+ignorehitpause = 1
+
+[State 2000]
+type = Explod
+trigger1 = time = 0
+anim = 10600
+ID = 10600
+pos = 0,0
+postype = back
+ownpal = 1
+bindtime = -1
+removetime = -1
+supermove = 1
+sprpriority = -100
+
+[State 2000]
+type = Explod
+trigger1 = time = 0
+anim = 10600
+ID = 10600
+pos = -320,0
+postype = back
+ownpal = 1
+bindtime = -1
+removetime = -1
+supermove = 1
+sprpriority = -100
+
+[State 800, ステト変更]
+type = changestate
+trigger1 = root,stateno != [4500,4999]
+trigger2 = Parent,stateno = 4600
+trigger2 = Parent,AnimTime = 0
+trigger3 = Parent,stateno = 4610
+trigger3 = Parent,AnimTime = 0
+trigger4 = Parent,stateno = 4625
+trigger4 = Parent,AnimElem = 21
+value = 10605
+
+;---------------------------------------------------------------------------
+; MAX2背景
+; パリン
+
+[Statedef 10605]
+type     = A
+movetype = I
+physics  = N
+juggle   = 0
+ctrl     = 0
+anim     = 9999
+sprpriority = -50
+
+[State 200,]
+type = Posset
+trigger1 = time = 0
+x = 0
+y = 0
+
+[State 181, 特殊効果]
+type = AssertSpecial
+trigger1 = time = [0,6]
+flag = noBG
+
+[State 181, 特殊効果]
+type = AssertSpecial
+trigger1 = 1
+flag = noFG
+flag2 = noshadow
+
+[State 2000]
+type = Explod
+trigger1 = time = 0
+anim = 10605
+ID = 10605
+pos = 0,0
+postype = back
+ownpal = 1
+bindtime = -1
+supermove = 1
+sprpriority = -100
+
+[State 1000, 音を鳴らす]
+type = PlaySnd
+trigger1 = time = 7
+value = s9,5
+
+[State 1000,]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 10600
+
+[State 4110, DestroySelf]
+type = DestroySelf
+trigger1 = time = 8
+
+;-----------------------------------------------------------------------------
+; MAX2背景
+
+[Statedef 10601]
+type     = A
+movetype = I
+physics  = N
+ctrl     = 0
+anim     = 9999
+sprpriority = -50
+
+[State 181, 特殊効果]
+type = AssertSpecial
+trigger1 = 1
+flag = noBG
+flag2 = noFG
+flag3 = noshadow
+ignorehitpause = 1
+
+[State 3040, 7]
+type = EnvColor
+trigger1 = 1
+time = 1
+value = 0,0,0
+under = 2
+ignorehitpause = 1
+
+[State 2000]
+type = Explod
+trigger1 = time = 0
+anim = 10601
+ID = 10600
+pos = 0,0
+postype = back
+ownpal = 1
+bindtime = -1
+removetime = -1
+supermove = 1
+sprpriority = -100
+
+[State 2000]
+type = Explod
+trigger1 = time = 0
+anim = 10601
+ID = 10600
+pos = -320,0
+postype = back
+ownpal = 1
+bindtime = -1
+removetime = -1
+supermove = 1
+sprpriority = -100
+
+[State 800, ステト変更]
+type = changestate
+trigger1 = root,StateNo != [4500,4999]
+trigger2 = Parent,stateno = 4510
+trigger2 = Parent,AnimElem = 21
+value = 10606
+
+;---------------------------------------------------------------------------
+; MAX2背景
+; パリン(っ黒ォ！)
+
+[Statedef 10606]
+type     = A
+movetype = I
+physics  = N
+juggle   = 0
+ctrl     = 0
+anim     = 9999
+sprpriority = -50
+
+[State 200,]
+type = Posset
+trigger1 = time = 0
+x = 0
+y = 0
+
+[State 181, 特殊効果]
+type = AssertSpecial
+trigger1 = time = [0,6]
+flag = noBG
+
+[State 181, 特殊効果]
+type = AssertSpecial
+trigger1 = 1
+flag = noFG
+flag2 = noshadow
+
+[State 2000]
+type = Explod
+trigger1 = time = 0
+anim = 10606
+ID = 10606
+pos = 0,0
+postype = back
+ownpal = 1
+bindtime = -1
+supermove = 1
+sprpriority = -100
+
+[State 1000, 音を鳴らす]
+type = PlaySnd
+trigger1 = time = 7
+value = s9,5
+
+[State 1000,]
+type = RemoveExplod
+trigger1 = time = 0
+ID = 10600
+
+[State 4110, DestroySelf]
+type = DestroySelf
+trigger1 = time = 8
+
+;---------------------------------------------------------------------------
+;MAX2カットイン
+
+[Statedef 10610]
+type    = S
+movetype= I
+physics = S
+anim = 9999
+velset = 0,0
+poweradd = 0
+ctrl = 0
+sprpriority = -2
+
+[State 40001, P1 BG]
+type = Explod
+triggerall = !numexplod(10610)
+triggerall = teamside = 1
+trigger1 = !time
+anim = 10610
+ID = 10610
+pos = 0,90
+postype = left  ;p2,front,back,left,right
+pausemovetime = -1
+supermovetime = -1
+removetime = -2
+bindtime = -1
+scale = 1,1
+sprpriority = -20
+ownpal = 1
+ignorehitpause = 1
+
+[State 40001, P2 BG]
+type = Explod
+triggerall = !numexplod(10611)
+triggerall = teamside = 2
+trigger1 = !time
+anim = 10611
+ID = 10611
+pos = 0,90
+postype = right  ;p2,front,back,left,right
+pausemovetime = -1
+supermovetime = -1
+removetime = -2
+bindtime = -1
+scale = 1,1
+facing = -1
+sprpriority = -20
+ownpal = 1
+ignorehitpause = 1
+
+[State 40001, P1 PORTRAIT]
+type = Explod
+triggerall = !numexplod(10620)
+triggerall = teamside = 1
+trigger1 = !time
+anim = 10620
+ID = 10620
+pos = 0,90
+postype = left  ;p2,front,back,left,right
+pausemovetime = -1
+supermovetime = -1
+removetime = -2
+bindtime = -1
+scale = 1,1
+sprpriority = -19
+ownpal = 1
+ignorehitpause = 1
+
+[State 40001, P2 PORTRAIT]
+type = Explod
+triggerall = !numexplod(10620)
+triggerall = teamside = 2
+trigger1 = !time
+anim = 10620
+ID = 10620
+pos = 0,90
+postype = right  ;p2,front,back,left,right
+pausemovetime = -1
+supermovetime = -1
+removetime = -2
+bindtime = -1
+scale = 1,1
+facing = -1
+sprpriority = -19
+ownpal = 1
+ignorehitpause = 1
+
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 2
+ID = 10610
+scale = 1,0.3
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 4
+ID = 10610
+scale = 1,0.54
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 6
+ID = 10610
+scale = 1,0.77
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 8
+ID = 10610
+scale = 1,1
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 56
+ID = 10610
+scale = 1,0.77
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 57
+ID = 10610
+scale = 1,0.54
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 58
+ID = 10610
+scale = 1,0.3
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 59
+ID = 10610
+scale = 1,1
+
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 2
+ID = 10611
+scale = 1,0.3
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 4
+ID = 10611
+scale = 1,0.54
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 6
+ID = 10611
+scale = 1,0.77
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 8
+ID = 10611
+scale = 1,1
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 56
+ID = 10611
+scale = 1,0.77
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 57
+ID = 10611
+scale = 1,0.54
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 58
+ID = 10611
+scale = 1,0.3
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 59
+ID = 10611
+scale = 1,1
+
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 2
+ID = 10620
+scale = 1,0.3
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 4
+ID = 10620
+scale = 1,0.54
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 6
+ID = 10620
+scale = 1,0.77
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 8
+ID = 10620
+scale = 1,1
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 56
+ID = 10620
+scale = 1,0.77
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 57
+ID = 10620
+scale = 1,0.54
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 58
+ID = 10620
+scale = 1,0.3
+[State 10610, ModifyExplod]
+type = ModifyExplod
+trigger1 = time = 59
+ID = 10620
+scale = 1,1
+
+[State 1]
+type = DestroySelf
+trigger1 = time = 60
+
+;---------------------------------------------------------------------------
+;飛び道具を当てたときのスロ処理
+;---------------------------------------------------------------------------
+;スロ処理
+
+[Statedef 4900]
+type     = A
+movetype = I
+physics  = N
+juggle   = 0
+ctrl     = 0
+anim     = 4999
+sprpriority = 1
+
+[State 1001,]
+type = Pause
+triggerall = p2life > 0
+trigger1 = (GameTime%3) = 0
+trigger1 = time = [0,20]
+time = 1
+
+[State 1001,]
+type = Pause
+triggerall = p2life > 0
+trigger1 = (GameTime%6) = 0
+trigger1 = time = [21,30]
+time = 1
+
+[State 4110, DestroySelf]
+type = DestroySelf
+trigger1 = Animtime = 0
+
+;---------------------------------------------------------------------------
+;スロ処理(背景反中)
+
+[Statedef 4905]
+type     = A
+movetype = I
+physics  = N
+juggle   = 0
+ctrl     = 0
+anim     = 4999
+sprpriority = 1
+
+[State 3050, BGPalfx]
+type = null;BGPalfx
+trigger1 = 1
+invertall = 1
+time = 2
+mul = 120,120,120
+pausemovetime = 9999
+
+[State 1001,]
+type = Pause
+triggerall = p2life > 0
+trigger1 = (GameTime%3) = 0
+trigger1 = time = [0,20]
+time = 1
+
+[State 1001,]
+type = Pause
+triggerall = p2life > 0
+trigger1 = (GameTime%6) = 0
+trigger1 = time = [21,30]
+time = 1
+
+[State 4110, DestroySelf]
+type = DestroySelf
+trigger1 = Animtime = 0
+
+;---------------------------------------------------------------------------
+;スロ処理(暗中)
+
+[Statedef 4906]
+type     = A
+movetype = I
+physics  = N
+juggle   = 0
+ctrl     = 0
+anim     = 4999
+sprpriority = 1
+
+[State 3050, BGPalfx]
+type = null;BGPalfx
+trigger1 = 1
+invertall = 1
+time = 2
+add = -256,-256,-256
+pausemovetime = 9999
+
+[State 1001,]
+type = Pause
+triggerall = p2life > 0
+trigger1 = (GameTime%3) = 0
+trigger1 = time = [0,20]
+time = 1
+
+[State 1001,]
+type = Pause
+triggerall = p2life > 0
+trigger1 = (GameTime%6) = 0
+trigger1 = time = [21,30]
+time = 1
+
+[State 4110, DestroySelf]
+type = DestroySelf
+trigger1 = Animtime = 0
+
+;-----------------------------------------------------------------------------
+;炎攻撃ヒット
+;-----------------------------------------------------------------------------
+[Statedef 4910]
+type     = A
+movetype = I
+physics  = N
+juggle   = 0
+ctrl     = 0
+anim     = 9999
+sprpriority = 1
+
+[state 4910, ]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+flag2 = invisible
+
+[state 4910, ]
+type = PlaySnd
+trigger1 = time = 0
+value = s13,0+(root,var(11)*10)
+
+[state 4910, ]
+type = posset
+trigger1 = 1
+x = enemy,pos x
+y = enemy,pos y
+
+[state 4910, ]
+type = Explod
+triggerall = p2movetype = H
+trigger1 = time >= 2
+trigger1 = time % 3 = 0
+anim = 10070 + random%5
+id = 10070
+sprpriority = 5
+postype = p1
+pos = 20 - (random%40),-20 - (random%90)
+bindtime = 1
+under = 0
+
+[state 4910, ]
+type = destroyself
+trigger1 = time >= 40
+
+;-----------------------------------------------------------------------------
+[Statedef 4911]
+type     = A
+movetype = I
+physics  = N
+juggle   = 0
+ctrl     = 0
+anim     = 9999
+sprpriority = 1
+
+[state 4910, ]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+flag2 = invisible
+
+[state 4910, ]
+type = PlaySnd
+trigger1 = time = 0
+value = s13,2
+
+[state 4910, ]
+type = posset
+trigger1 = 1
+x = enemy,pos x
+y = enemy,pos y
+
+[state 4910, ]
+type = Explod
+triggerall = p2movetype = H
+trigger1 = time >= 2
+trigger1 = time % 3 = 0
+anim = 10070 + random%5
+id = 10070
+sprpriority = 5
+postype = p1
+pos = 20 - (random%40),-20 - (random%90)
+bindtime = 1
+under = 0
+
+[state 4910, ]
+type = destroyself
+trigger1 = time >= 40
+
+;この下、一行以上空ける事。

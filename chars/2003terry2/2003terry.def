@@ -1,0 +1,40 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "Terry Bogard"
+displayname = "Terry Bogard"
+versiondate = 11,22,2000
+mugenversion = 1.0
+author = "ahuron"
+pal.defaults = 1,2,3,4,5,6
+localcoord = 427,240
+
+[Files]
+sprite = 2003terry.sff
+anim = 2003terry.air
+sound = 2003terry.snd
+cmd = 2003terry.cmd
+cns = 2003terry.cns
+stcommon = common1.cns
+st = 2003terry.cns
+st2 = 2003terry2.cns
+st3 = 2003terry3.cns
+pal1 = 2003terry.act
+pal2 = 2003terry2.act
+pal3 = 2003terry3.act
+pal4 = 2003terry4.act
+pal5 = 2003terry5.act
+pal6 = 2003terry6.act
+;pal7 = 2003terry.act
+;pal8 = 2003terry.act
+;pal9 = 2003terry.act
+;pal10 = 2003terry.act
+;pal11 = 2003terry.act
+;pal12 = 2003terry.act
+
+[Arcade]
+;intro.storyboard = 
+;ending.storyboard = 

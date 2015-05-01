@@ -1,0 +1,445 @@
+[Statedef -3]
+
+[State -1, 기모으기]
+type = null;ChangeState
+value = 910
+triggerall = roundstate = 2
+triggerall = (P2life != 0) && (Life != 0)
+triggerall = random < (AiLevel*10)
+triggerall = statetype != A
+triggerall = stateno != [910,913]
+trigger1 = Power < PowerMax
+trigger1 = ctrl = 1
+trigger1 = P2BodyDist X > 200
+trigger1 = P2Movetype !=A
+
+[State -1, 기모으기]
+type = ChangeState
+value = 912
+triggerall = roundstate = 2
+triggerall = random < (AiLevel*100)
+triggerall = statetype != A
+triggerall = stateno = 911
+trigger1 = P2BodyDist X < 150
+trigger2 = P2Movetype =A
+trigger3 = enemy,vel x > 0
+
+[State -1, Taunt]
+type = ChangeState
+value = 195
+triggerall = random < (AILevel*50)
+triggerall = Stateno != 195
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = ctrl
+triggerall = p2bodydist X > 200
+trigger1 = P2StateType = L
+trigger1 = enemy,time < 10
+trigger2 = P2MoveType = H
+trigger2 = enemy,Pos Y >= Helper(100000),var(0)
+trigger2 = P2StateType != L
+
+[State -1, Stand Strong Punch]
+type = ChangeState
+value = 120
+triggerall = random < (AILevel*250)
+triggerall = RoundState = 2
+triggerall = P2MoveType = A
+triggerall = statetype != A
+triggerall = ctrl
+trigger1 = p2bodydist X = [0,50]
+trigger2 = enemy,NumProj
+
+[State -1, Stand Strong Punch]
+type = StateTypeset
+triggerall = random < (AILevel*250)
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = P2statetype = C
+trigger1 = Stateno = 120
+StateType = C
+
+[State -1, Stand Strong Punch]
+type = StateTypeset
+triggerall = random < (AILevel*250)
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = P2statetype = A
+trigger1 = Stateno = 120
+StateType = S
+
+[State -1,WindOfWorld]
+type = ChangeState
+value = 1000
+triggerall = random < (AILevel*10)
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = P2StateType != L
+triggerall = p2dist X > 50
+triggerall = ctrl
+triggerall = !enemy,numproj
+trigger1 = P2MoveType = A
+trigger2 = P2MoveType = I
+
+[State -1,WindOfWorld]
+type = ChangeState
+value = 1000
+triggerall = random < (AILevel*100)
+triggerall = Palno > 6
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = P2StateType != L
+triggerall = p2dist X > 50
+trigger1 = ctrl
+triggerall = !enemy,numproj
+trigger1 = P2MoveType = A || P2MoveType = I
+trigger2 = var(3)>0 && Stateno = [1000,1005]
+trigger2 = AnimElemTime(7) > 0
+trigger2 = AnimElemTime(10) < 0
+trigger2 = ProjHitTime(1000) < 1 || ProjHitTime(1000) > 30
+
+[State -1,WindOfWorld]
+type = Varset
+triggerall = AILevel
+triggerall = time = 1
+triggerall = RoundState = 2
+triggerall = statetype != A
+trigger1 = Stateno = 1000 || Stateno = 1400
+trigger1 = p2dist X > 50
+var(0) = ifelse(P2Dist X>200,4,((P2Dist X + (enemy,Vel X)*15))/50)
+
+[State -1,WindOfWorld]
+type = Varset
+triggerall = AILevel
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = Stateno = 1000 || Stateno = 1400
+trigger1 = p2bodydist X <= 50
+trigger2 = var(0) = 0 
+var(0) = 1
+
+[State -1,WindOfWorld]
+type = Varset
+triggerall = AILevel
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = Stateno = 1005
+trigger1 = var(0) = 0 
+var(0) = 1
+
+[State -1,WindOfWorld]
+type = Varset
+triggerall = random < (AILevel*5)
+triggerall = Stateno = 1000
+trigger1 = AnimElemTime(2) > 0
+trigger1 = AnimElemTime(10) < 0
+var(1) = 1
+
+[State -1,BingHa]
+type = ChangeState
+value = 1300 + (random%2)*50
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = ctrl
+trigger1 = P2BodyDist X > 250
+trigger1 = enemy,Vel X <= 0
+trigger1 = enemy,ctrl = 0
+trigger2 = P2BodyDist X > 200
+trigger2 = P2MoveType = A
+trigger2 = enemy,numproj
+trigger2 = enemy,time<10
+
+[State -1,BingHa]
+type = ChangeState
+value = 1360
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = statetype = A
+triggerall = ctrl
+trigger1 = P2BodyDist X > 250
+trigger1 = enemy,Vel X <= 0
+trigger1 = enemy,ctrl = 0
+trigger2 = P2BodyDist X > 200
+trigger2 = P2MoveType = A
+trigger2 = enemy,numproj
+trigger2 = enemy,time<10
+
+[State -1, Run Fwd]
+type = ChangeState
+value = 100
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = ctrl
+triggerall = Stateno != 100
+trigger1 = P2BodyDist X > 50
+trigger1 = P2StateType = L
+
+[State -1, Run Fwd]
+type = ChangeState
+value = 102
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = Stateno = 100
+trigger1 = P2BodyDist X <= 50
+trigger2 = P2StateType != L
+
+[State -1,YakaraDeath]
+type = ChangeState
+value = 2100
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = power >= 1000
+triggerall = statetype != A
+triggerall = P2BodyDist X < 5
+triggerall = P2MoveType != H
+triggerall = P2StateType != A
+triggerall = P2StateType != L
+triggerall = P2Stateno != [120,159]
+trigger1 = ctrl
+
+[State -1,WindOfWorld]
+type = ChangeState
+value = 1400
+triggerall = random < (AILevel*5)
+triggerall = RoundState = 2
+triggerall = statetype = A
+triggerall = P2StateType != L
+triggerall = P2MoveType != A
+triggerall = !enemy,numproj
+trigger1 = ctrl
+trigger2 = MoveContact && Stateno = [600,700]
+
+[State -1, UKEMI]
+type = ChangeState
+value = 902
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = alive = 1
+triggerall = canRecover
+trigger1 = stateno = 5050
+trigger1 = pos y > -30
+trigger1 = vel y > 0 && vel y < 9
+
+[State -1, Standing Strong Kick]
+type = ChangeState
+value = 800
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = P2BodyDist X < 5
+triggerall = P2MoveType != H
+triggerall = P2StateType != A
+triggerall = P2StateType != L
+triggerall = ctrl
+trigger1 = power < 1000
+trigger2 = P2Stateno = [120,159]
+
+[State -1,GenocideCutter]
+type = ChangeState
+value = 1200 + (random%2)*50
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = P2BodyDist X >= 0
+triggerall = P2BodyDist X < 60 + (enemy,Vel X)*10
+triggerall = P2BodyDist Y < -40
+trigger1 = ctrl
+trigger1 = P2statetype = A
+
+[State -1, Standing Strong Kick]
+type = ChangeState
+value = 900
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = statetype != A
+trigger1 = P2BodyDist X >= 0
+trigger1 = P2BodyDist X < 60
+trigger1 = P2MoveType = A
+trigger1 = P2StateType != A
+trigger1 = enemy,time < 10
+trigger1 = ctrl
+trigger2 = ctrl
+trigger2 = enemy,numproj
+
+[State -1,WindPunch]
+type = ChangeState
+value = 1100
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = P2BodyDist X >= 0
+triggerall = P2BodyDist X < 40
+triggerall = P2Stateno = [120,159]
+triggerall = P2StateType != A
+trigger1 = ctrl
+
+
+[State -1, Stand Strong Punch]
+type = ChangeState
+value = 215
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = P2statetype != L
+triggerall = P2BodyDist X >= 0
+triggerall = P2BodyDist X <= 5
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = MoveContact && Stateno = 200
+
+[State -1, Stand Light Punch]
+type = ChangeState
+value = 430
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = P2statetype != A
+triggerall = P2statetype != L
+triggerall = P2BodyDist X > 5
+triggerall = P2BodyDist X <= 50
+trigger1 = ctrl
+
+[State -1, Standing Strong Kick]
+type = ChangeState
+value = 300
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = P2statetype != L
+trigger1 = MoveContact && Stateno = 200
+trigger2 = MoveContact && Stateno = 210 && AnimElemtime(11) >= 0
+trigger3 = MoveContact && Stateno = 215
+trigger4 = MoveContact && Stateno = 230
+trigger5 = MoveContact && Stateno = 400
+trigger6 = MoveContact && Stateno = 410
+trigger7 = MoveContact && Stateno = 430
+
+[State -1,WindOfWorld]
+type = ChangeState
+value = 1005
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = P2statetype != L
+triggerall = random%6 = 0
+trigger1 = MoveHit && Stateno = 300 && AnimElemTime(6) >= 0
+
+[State -1,WindPunch]
+type = ChangeState
+value = 1150
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = P2statetype != L
+triggerall = random%6 = 1
+trigger1 = MoveHit && Stateno = 300 && AnimElemTime(6) >= 0
+
+[State -1,GenocideCutter]
+type = ChangeState
+value = 1250
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = P2statetype != L
+triggerall = random%6 = 2
+trigger1 = MoveHit && Stateno = 300 && AnimElemTime(6) >= 0
+
+[State -1,GenocideCutter]
+type = ChangeState
+value = 1200
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = P2statetype != L
+triggerall = random%6 = 3
+trigger1 = MoveHit && Stateno = 300 && AnimElemTime(6) >= 0
+
+[State -1,WanPyo]
+type = ChangeState
+value = 1500
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = P2statetype != L
+triggerall = random%6 = 4
+trigger1 = MoveHit && Stateno = 300 && AnimElemTime(6) >= 0
+
+[State -1,WanPyo]
+type = ChangeState
+value = 1550
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = P2statetype = A
+triggerall = random%6 = 5
+trigger1 = MoveHit && Stateno = 300 && AnimElemTime(6) >= 0
+
+[State -1,Yaotome]
+type = ChangeState
+value = 2000+ifelse(P2StateType=A&&enemy,Vel X>-7.5,50,0)
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = P2statetype != L
+triggerall = power >= ifelse(var(3)<1,1000,0)
+triggerall = power < ifelse(var(3)<1,2000,1000)
+triggerall = P2BodyDist X < 150
+triggerall = random%2 = 0
+trigger1 = Stateno = 1101 && AnimElemTime(3) >= 0
+trigger2 = MoveContact && Stateno = 1150
+trigger3 = MoveContact && Stateno = 1200
+trigger4 = MoveContact && Stateno = 1250
+trigger5 = (ProjHitTime(1500)=[1,15]) && Stateno = 1500
+trigger6 = (ProjHitTime(1500)=[1,15]) && Stateno = 1550
+trigger7 = Stateno = 1000
+trigger7 = AnimElemTime(7) > 0
+trigger7 = AnimElemTime(10) < 0
+trigger7 = ProjHitTime(1000) = [1,12]
+trigger8 = Stateno = 1203
+
+[State -1,Yaotome]
+type = ChangeState
+value = 2200
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = P2statetype != L
+triggerall = power >= ifelse(var(3)<1,2000,1000)
+triggerall = P2BodyDist X < 150
+triggerall = random%2 = 0
+trigger1 = Stateno = 1101 && AnimElemTime(3) >= 0
+trigger2 = MoveContact && Stateno = 1150
+trigger3 = MoveContact && Stateno = 1200
+trigger4 = MoveContact && Stateno = 1250
+trigger5 = (ProjHitTime(1500)=[1,15]) && Stateno = 1500
+trigger6 = (ProjHitTime(1500)=[1,15]) && Stateno = 1550
+trigger7 = Stateno = 1000
+trigger7 = AnimElemTime(7) > 0
+trigger7 = AnimElemTime(10) < 0
+trigger7 = ProjHitTime(1000) = [1,12]
+trigger8 = Stateno = 1203
+
+[State -1,Yaotome]
+type = ChangeState
+value = 2300
+triggerall = random < (AILevel*100)
+triggerall = RoundState = 2
+triggerall = statetype != A
+triggerall = P2statetype != L
+triggerall = power >= ifelse(var(3)<1,1000,0)
+triggerall = random%2 = 1
+triggerall = P2BodyDist X >= -70
+triggerall = P2BodyDist X <= 70
+trigger1 = Stateno = 1101 && AnimElemTime(3) >= 0
+trigger2 = MoveContact && Stateno = 1150
+trigger3 = MoveContact && Stateno = 1200
+trigger4 = MoveContact && Stateno = 1250
+trigger5 = (ProjHitTime(1500)=[1,15]) && Stateno = 1500
+trigger6 = (ProjHitTime(1500)=[1,15]) && Stateno = 1550
+trigger7 = Stateno = 1000
+trigger7 = AnimElemTime(7) > 0
+trigger7 = AnimElemTime(10) < 0
+trigger7 = ProjHitTime(1000) = [1,12]
+trigger8 = Stateno = 1203

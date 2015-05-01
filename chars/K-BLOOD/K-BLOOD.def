@@ -1,0 +1,36 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "K-BLOOD"
+displayname = "K-BLOOD"
+versiondate = 07,30,2010
+mugenversion = 1.0
+author = "jin"
+pal.defaults = 1,2,3,4,5,6
+localcoord = 427,240
+
+[Files]
+sprite = K-BLOOD.sff
+anim = K-BLOOD.air
+sound = K-BLOOD.snd
+cmd = K-BLOOD.cmd
+cns = K-BLOOD.cns
+stcommon = common1.cns
+st = K-BLOOD.cns
+st1 = K-BLOOD-S.cns
+st2 = K-BLOOD-H.cns
+st3 = K-BLOOD-2-3.cns
+st4 = K-BLOOD-N.cns
+pal1 = K-BLOOD01.act
+pal2 = K-BLOOD02.act
+pal3 = K-BLOOD03.act
+pal4 = K-BLOOD04.act
+pal5 = K-BLOOD05.act
+pal6 = K-BLOOD06.act
+
+[Arcade]
+;intro.storyboard = 
+;ending.storyboard = 

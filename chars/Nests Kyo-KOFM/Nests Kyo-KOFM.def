@@ -1,0 +1,37 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "Kyo Kusanagi"
+displayname = "Kyo Kusanagi"
+versiondate = 03,15,2007
+mugenversion = 1.0
+author = "OPIRUS"
+pal.defaults = 1,2,3,4,5,6
+localcoord = 427,240
+
+[Files]
+sprite = Kyo-KOFM.sff
+anim = Kyo-KOFM.air
+sound = Kyo-KOFM.snd
+cmd = Kyo-KOFM.cmd
+cns = Kyo-KOFM.cns
+stcommon = common1.cns
+st = Kyo-KOFM.cns
+st1 = Kyo-KOFM-N.cns
+st2 = Kyo-KOFM-S.cns
+st3 = Kyo-KOFM-H.cns
+st4 = Kyo-KOFM-2-3.cns
+pal1 = paletas\Kyo_ne01.act
+pal2 = Paletas\Kyo_ne05.act
+pal3 = Paletas\Kyo_ne02.act
+pal4 = Paletas\kyo_ne03.act
+pal5 = Paletas\Kyo_ne04.act
+pal6 = Paletas\Kyo_ne06.act
+pal7 = paletas\kyo_ne01.act
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

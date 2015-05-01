@@ -1,0 +1,3128 @@
+;--------------------------------------------------------
+;백라멸정
+[statedef 2000]
+type=s
+movetype=a
+physics=s
+velset=0,0
+anim= ifelse(command="a",3105,3205)
+ctrl=0
+
+[State 700,]
+type = varset
+trigger1 = time = 0
+trigger1 = var(3) > 0
+var(3) = 0
+
+[State 700,]
+type = Poweradd
+trigger1 = time = 0
+trigger1 = var(3) != 0
+value = -1000
+
+[State 700,]
+type = palfx
+triggerall = time = 0
+trigger1 = prevstateno = [1000,1999]
+time = 5
+add = 230,230,230
+
+[State -2, 슈퍼캔슬]
+type = Helper
+trigger1 = time = 1
+trigger1 = prevstateno = [1000,1999]
+ID = 100500
+name = "SuperCancel"
+postype = P1
+pos = 0,0
+sprpriority = -9
+stateno = 100500
+helpertype = normal
+keyctrl = 0
+persistent = 1
+ignorehitpause = 1
+ownpal = 1
+
+[State -2, 그림자 제거]
+type = Explod
+trigger1 = 1
+ID = 100006
+postype = P1
+pos = 0,0
+sprpriority = -9
+anim = F100000
+persistent = 1
+ignorehitpause = 1
+removetime = 1
+
+
+[state 3100,댠5]
+type=assertspecial
+trigger1=1
+flag=nofg
+flag2=noBG
+ignorehitpause=1
+
+[State 2]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -255,-255,-255
+color = 0
+invertall = 1
+ignorehitpause = 1
+
+[state 3100,댠6]
+type=superpause
+trigger1=animelemtime(4)=0
+time=40
+movetime=40
+anim=-1
+darken=0
+sound=s23,0
+
+[state 195]
+type = Explod
+trigger1=animelemtime(4)=0
+anim = F100
+postype = p1
+pos = ifelse(anim=3105,25,0),-80
+sprpriority = 10
+supermove = 1
+
+[state 3100,]
+type=playsnd
+trigger1=anim=3205
+trigger1=animelemtime(1)=0
+value=3200,ifelse(random<500,0,1)
+channel=0
+
+[state 3100,긊긤봃렞떁뿣]
+type=attackdist
+trigger1=1
+value=999
+
+[state 3100,뼰밎]
+type=nothitby
+trigger1=animelemtime(4)<=0
+value=sca
+
+[state 3100,귪귪귪귪귪귪귪]
+type=playsnd
+trigger1=animelemtime(7)=0
+value=3100,0
+channel=0
+
+[state 3100,긶깑긬]
+type=helper
+trigger1=animelemtime(7)=0
+helpertype=normal
+name="hakura"
+stateno=2002
+id=3100
+pos=30,-110
+postype=p1
+bindtime=-1
+ownpal=1
+
+[State 1034, 2]
+type = Projectile
+projID = 3104
+triggerall = enemy,Numproj > 0
+triggerall=numhelper(3100)
+trigger1=numprojID(3104)=0
+projremove = 1
+;Projremovetime = 50
+projhits = 1
+remvelocity = 5, 0
+projremanim = 3104;812
+projhitanim = 3104;812
+;projmisstime = 2
+projpriority = 7
+projanim = 3104
+offset = 0,-70
+velocity = 5,0
+attr = S, SP
+damage   =40,10
+animtype = Hard
+hitflag = D-
+guardflag = MAFD
+sparkno = S99999999999999
+guard.sparkno = S999999999
+sparkxy = 30,0
+hitsound = S1,999999999
+guardsound = S2,9999999999999
+pausetime = 0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+guard.hittime = 15
+ground.velocity = 0
+air.velocity = 0,0
+air.fall = 1
+fall.recover = 0
+Guard.Kill = 1
+
+
+[state 1611,긽긙]
+type=null;targetlifeadd
+triggerall = enemynear,teammode   = single || enemynear,teammode = turns
+trigger1 = projhittime(3100) = 1
+trigger2 = projhittime(3500) = 1
+value=-floor(const(data.attack)*target(3100),const(data.life)/100000.0*5)
+absolute=1
+id=3100
+
+[state 3100,멟뵾빁뛘똼]
+type=projectile
+triggerall=numhelper(3100)
+trigger1=helper(3100),time%15=5
+attr=s,hp
+hitflag=mafd
+guardflag=ma
+damage=25,8
+sparkno = 3
+guard.sparkno = 42
+sparkxy=floor(p2dist x-30),floor(p2dist y-50)
+hitsound=s20,5
+guardsound=s25,1
+animtype=back
+ground.velocity=-6,-6
+air.velocity=-6,-6
+yaccel=0.4
+getpower=0,0
+givepower=15,15
+guard.hittime=25
+fall=1
+fall.recover=0
+pausetime=0,10
+guard.pausetime = 0,15
+guard.dist=999
+projid=3100
+projanim=3102
+projscale=1,1
+offset=30,0
+postype=p1
+projremovetime=1
+Guard.Kill = 1
+projpriority = 7
+id=3100
+
+
+[state 3100,뚣귣뵾빁뛘똼]
+type=projectile
+triggerall=numhelper(3100)
+trigger1=helper(3100),time%15=12
+attr=s,hp
+hitflag=mafd
+guardflag=ma
+damage=10,8
+sparkno = 3
+guard.sparkno = 42
+sparkxy=floor(p2dist x-30),floor(p2dist y-50)
+hitsound=s20,5
+guardsound=s25,1
+animtype=back
+ground.velocity=-6,-6
+air.velocity=-6,-6
+yaccel=0.4
+getpower=0,0
+givepower=15,15
+guard.hittime=25
+fall=1
+fall.recover=0
+pausetime=0,10
+guard.pausetime = 0,15
+guard.dist=999
+projid=3100
+projanim=3103
+projscale=1,1
+offset=30,0
+postype=p1
+projremovetime=1
+Guard.Kill = 1
+projpriority = 7
+id=3100
+
+[state 3100,뢎뿹]
+type=changestate
+trigger1=numhelper(3100)
+trigger1=helper(3100),stateno=2003
+value=ifelse(anim=3105,2010,2011)
+;--------------------------------------------------------
+;백라멸정 배경1
+[statedef 2002]
+type=s
+movetype=a
+physics=s
+velset=0,0
+anim=3110
+ctrl=0
+sprpriority=-2
+
+[state 3110,뎓궶궢]
+type=assertspecial
+trigger1=1
+flag=noshadow
+ignorehitpause=1
+
+[state 3111,뚂믦]
+type=bindtoroot
+trigger1=root,statetype!=A
+pos=25,-95
+
+[state 3111,뚂믦]
+type=bindtoroot
+trigger1=root,statetype=A
+pos=46,-65
+
+[state 3110,긄긲긃긏긣]
+type=explod
+triggerall=time=0
+trigger1=root,anim=3200
+trigger2=root,anim=3205
+anim=7190
+pos=floor(rootdist x)+7,floor(rootdist y)-16
+postype=p1
+ontop=1
+ownpal=1
+pausemovetime=2147483647
+
+[state 3110,긄긲긃긏긣]
+type=explod
+triggerall=time=0
+trigger1=root,anim=3200
+trigger2=root,anim=3205
+anim=7191
+pos=floor(rootdist x)+7,floor(rootdist y)-16
+postype=p1
+sprpriority=-10
+ownpal=1
+pausemovetime=2147483647
+
+[state 3110,뚼됈돶]
+type=playsnd
+trigger1=root,anim=3200
+trigger2=root,anim=3205
+triggerall=time=0
+value=4,3
+
+[state 3110,뚼됈돶]
+type=playsnd
+trigger1=time=0
+value=3100,1
+channel=10
+
+[state 3110,뭙궕뷅귪궳궘귡갋1]
+type=explod
+trigger1=time%15=0
+anim=3111
+id=3101
+pos=0,0
+postype=p1
+bindtime=-1
+sprpriority=-1
+ownpal=1
+
+[state 3110,뭙궕뷅귪궳궘귡갋2]
+type=explod
+trigger1=time%15=0
+anim=3112
+id=3102
+pos=0,0
+postype=p1
+bindtime=-1
+sprpriority=-1
+ownpal=1
+
+[state 3110,뭙궕뷅귪궳궘귡갋3]
+type=explod
+trigger1=time%15=0
+anim=3113
+id=3103
+pos=0,0
+postype=p1
+bindtime=-1
+sprpriority=-1
+ownpal=1
+
+[state 3110,긓몭귟]
+type=pause
+trigger1=root,projhittime(3100)=[0,38]
+trigger2=root,projhittime(3500)=[0,38]
+time=1
+ignorehitpause=1
+
+[state 3110,뢎뿹]
+type=changestate
+trigger1=time=118
+trigger2=root,stateno!=[2000,2099]
+trigger2=root,stateno!=2500
+value=2003
+
+;---------------------------------------------------------------------------
+;백라멸정 배경2
+[statedef 2003]
+type=s
+movetype=a
+physics=s
+velset=0,0
+ctrl=0
+anim=99999
+
+
+[state 3111,뚂믦]
+type=null;bindtoroot
+trigger1=root,statetype!=A
+pos=25,-95
+
+[state 3111,뚂믦]
+type=null;bindtoroot
+trigger1=root,statetype=A
+pos=34,-65
+
+[State x];덾
+type = Explod
+trigger1 = time = 0
+anim = 3110
+id = 30023
+postype = p1
+pos = 0,0
+sprpriority = -5
+removetime = -1
+removeongethit = 1
+bindtime = -1
+
+[state 195]
+type = modifyexplod
+ID = 30023
+trigger1 = 1
+scale = 1-time/30.0,1-time/30.0
+
+[State x]
+type = removeExplod
+trigger1 = Time = 30
+id = 30023
+
+[state 3111,뎓궶궢]
+type=assertspecial
+trigger1=1
+flag=noshadow
+ignorehitpause=1
+
+
+
+[state 3111,긓몭귟]
+type=pause
+trigger1=root,projhittime(3100)=[0,38]
+trigger2=root,projhittime(3500)=[0,38]
+time=1
+ignorehitpause=1
+
+[state 3111,뢁뢫]
+type=angledraw
+trigger1=1
+scale=1-time/30.0,1-time/30.0
+
+[state 3111,뚼됈돶믠]
+type=stopsnd
+trigger1=(1-time/30.0)<=0
+channel=10
+
+
+
+[state 3111,뢎뿹]
+type=destroyself
+triggerall=ishelper
+trigger1=(1-time/30.0)<=0
+;---------------------------------------------------------------------------
+;백라멸정 끝A
+[statedef 2010]
+type=s
+movetype=a
+physics=s
+velset=0,0
+anim= 3101
+ctrl=0
+
+[State -2, 그림자 제거]
+type = Explod
+trigger1 = 1
+ID = 100006
+postype = P1
+pos = 0,0
+sprpriority = -9
+anim = F100000
+persistent = 1
+ignorehitpause = 1
+removetime = 1
+
+[State 2]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -255,-255,-255
+color = 0
+invertall = 1
+ignorehitpause = 1
+
+[state 3100,댠5]
+type=assertspecial
+trigger1=1
+flag=nofg
+flag2=noBG
+ignorehitpause=1
+
+[state 3111,뚼됈돶믠]
+type=stopsnd
+trigger1=time=3
+channel=0
+
+[state 3101,뢎뿹]
+type=changestate
+trigger1=animtime=0
+value=0
+ctrl=1
+;---------------------------------------------------------------------------
+;백라멸정 끝B
+[statedef 2011]
+type=s
+movetype=a
+physics=s
+velset=0,0
+anim= 3201
+ctrl=0
+
+[State -2, 그림자 제거]
+type = Explod
+trigger1 = 1
+ID = 100006
+postype = P1
+pos = 0,0
+sprpriority = -9
+anim = F100000
+persistent = 1
+ignorehitpause = 1
+removetime = 1
+
+[State 2]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -255,-255,-255
+color = 0
+invertall = 1
+ignorehitpause = 1
+
+[state 3100,댠5]
+type=assertspecial
+trigger1=1
+flag=nofg
+flag2=noBG
+ignorehitpause=1
+
+[state 3111,뚼됈돶믠]
+type=stopsnd
+trigger1=time=3
+channel=0
+
+[state 3101,뢎뿹]
+type=changestate
+trigger1=animtime=0
+value=0
+ctrl=1
+
+;---------------------------------------------------------------------------
+;백라멸정 공중
+[statedef 2050]
+type=A
+movetype=a
+physics=N
+velset=0,0
+anim=3150
+ctrl=0
+
+[State 700,]
+type = varset
+trigger1 = time = 0
+trigger1 = var(3) > 0
+var(3) = 0
+
+[State 700,]
+type = Poweradd
+trigger1 = time = 0
+trigger1 = var(3) != 0
+value = -1000
+
+[State 700,]
+type = palfx
+triggerall = time = 0
+trigger1 = prevstateno = [1000,1999]
+time = 5
+add = 230,230,230
+
+[State -2, 슈퍼캔슬]
+type = Helper
+trigger1 = time = 1
+trigger1 = prevstateno = [1000,1999]
+ID = 100500
+name = "SuperCancel"
+postype = P1
+pos = 0,0
+sprpriority = -9
+stateno = 100500
+helpertype = normal
+keyctrl = 0
+persistent = 1
+ignorehitpause = 1
+ownpal = 1
+
+[State -2, 그림자 제거]
+type = Explod
+trigger1 = 1
+ID = 100006
+postype = P1
+pos = 0,0
+sprpriority = -9
+anim = F100000
+persistent = 1
+ignorehitpause = 1
+removetime = 1
+
+[State 2]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -255,-255,-255
+color = 0
+invertall = 1
+ignorehitpause = 1
+
+
+[state 3100,]
+type=playsnd
+trigger1=animelemtime(1)=0
+value=3200,ifelse(random<500,1,1)
+
+[state 3100,댠5]
+type=assertspecial
+trigger1=1
+flag=nofg
+flag2=noBG
+ignorehitpause=1
+
+[state 3100,댠6]
+type=superpause;
+trigger1=animelemtime(2)=0
+time=40
+movetime=40
+anim=-1
+darken=0
+sound=s23,0
+
+[state 195]
+type = Explod
+trigger1=animelemtime(2)=0
+anim = F100
+postype = p1
+pos = -30,-80
+sprpriority = 10
+supermove = 1
+
+
+[state 3100,긊긤봃렞떁뿣]
+type=attackdist
+trigger1=1
+value=999
+
+[state 3100,뼰밎]
+type=nothitby
+trigger1=animelemtime(4)<=0
+value=sca
+
+[state 3100,귪귪귪귪귪귪귪]
+type=playsnd
+trigger1=animelemtime(13)=0
+value=3100,0
+channel=0
+
+[state 3100,긶깑긬]
+type=helper
+trigger1=animelemtime(13)=0
+helpertype=normal
+name="hakura"
+stateno=2002
+id=3100
+pos=50,-80
+postype=p1
+bindtime=-1
+ownpal=1
+
+
+[State 1034, 2]
+type = Projectile
+projID = 3104
+triggerall = enemy,Numproj > 0
+triggerall=numhelper(3100)
+trigger1=numprojID(3104)=0
+projremove = 1
+;Projremovetime = 50
+projhits = 1
+remvelocity = 5, 0
+projremanim = 3104;812
+projhitanim = 3104;812
+;projmisstime = 2
+projpriority = 7
+projanim = 3104
+offset = 0,-70
+velocity = 5,0
+attr = S, SP
+damage   = 40,10
+animtype = Hard
+hitflag = D-
+guardflag = MAFD
+sparkno = S99999999999999
+guard.sparkno = S999999999
+sparkxy = 30,0
+hitsound = S1,999999999
+guardsound = S2,9999999999999
+pausetime = 0,8
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+guard.hittime = 15
+ground.velocity = 0
+air.velocity = 0,0
+air.fall = 1
+fall.recover = 0
+Guard.Kill = 1
+
+
+
+[state 3100,멟뵾빁뛘똼]
+type=projectile
+triggerall=numhelper(3100)
+trigger1=helper(3100),time%15=5
+attr=s,hp
+hitflag=mafd
+guardflag=ma
+damage=25,8
+sparkno = 3
+guard.sparkno = 42
+sparkxy=floor(p2dist x-30),floor(p2dist y-50)
+hitsound=s20,5
+guardsound=s25,1
+animtype=back
+ground.velocity=-6,-6
+air.velocity=-6,-6
+yaccel=0.4
+getpower=0,0
+givepower=15,15
+guard.hittime=25
+fall=1
+fall.recover=0
+pausetime=0,10
+guard.pausetime = 0,15
+guard.dist=999
+projid=3100
+projanim=3102
+projscale=1,1
+offset=30,0
+postype=p1
+projremovetime=1
+Guard.Kill = 1
+projpriority = 7
+id=3100
+
+
+[state 3100,뚣귣뵾빁뛘똼]
+type=projectile
+triggerall=numhelper(3100)
+trigger1=helper(3100),time%15=12
+attr=s,hp
+hitflag=mafd
+guardflag=ma
+damage=10,8
+sparkno = 3
+guard.sparkno = 42
+sparkxy=floor(p2dist x-30),floor(p2dist y-50)
+hitsound=s20,5
+guardsound=s25,1
+animtype=back
+ground.velocity=-6,-6
+air.velocity=-6,-6
+yaccel=0.4
+getpower=0,0
+givepower=15,15
+guard.hittime=25
+fall=1
+fall.recover=0
+pausetime=0,10
+guard.pausetime = 0,15
+guard.dist=999
+projid=3100
+projanim=3103
+projscale=1,1
+offset=30,0
+postype=p1
+projremovetime=1
+Guard.Kill = 1
+projpriority = 7
+id=3100
+
+[state 1611,긽긙]
+type=null;targetlifeadd
+triggerall = enemynear,teammode   = single || enemynear,teammode = turns
+trigger1 = projhittime(3100) = 1
+trigger2 = projhittime(3500) = 1
+value=-floor(const(data.attack)*target(3100),const(data.life)/100000.0*5)
+absolute=1
+id=3100
+
+
+[state 3100,뢎뿹]
+type=changestate
+trigger1=numhelper(3100)
+trigger1=helper(3100),stateno=2003
+value=2051
+;---------------------------------------------------------------------------
+;백라멸정 공중 끝
+[statedef 2051]
+type=A
+movetype=a
+physics=N
+velset=0,0
+anim=3151
+ctrl=0
+
+[State 2]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -255,-255,-255
+color = 0
+invertall = 1
+ignorehitpause = 1
+
+[state 3100,댠5]
+type=assertspecial
+trigger1=1
+flag=nofg
+flag2=noBG
+ignorehitpause=1
+
+[state 3111,뚼됈돶믠]
+type=stopsnd
+trigger1=time=3
+channel=0
+
+[state 3101,뢎뿹]
+type=changestate
+trigger1=animtime=0
+value=50
+ctrl=1
+;---------------------------------------------------------------------------
+;옥쇄참진 지상
+[statedef 2100]
+type=s
+movetype=a
+physics=s
+velset=0,0
+anim=2000
+ctrl=0
+
+[State 700,]
+type = varset
+trigger1 = time = 0
+trigger1 = var(3) > 0
+var(3) = 0
+
+[State 700,]
+type = Poweradd
+trigger1 = time = 0
+trigger1 = var(3) != 0
+value = -1000
+
+[State 700,]
+type = palfx
+triggerall = time = 0
+trigger1 = prevstateno = [1000,1999]
+time = 5
+add = 230,230,230
+
+[State -2, 슈퍼캔슬]
+type = Helper
+trigger1 = time = 1
+trigger1 = prevstateno = [1000,1999]
+ID = 100500
+name = "SuperCancel"
+postype = P1
+pos = 0,0
+sprpriority = -9
+stateno = 100500
+helpertype = normal
+keyctrl = 0
+persistent = 1
+ignorehitpause = 1
+ownpal = 1
+
+[state 3500,댠5]
+type=assertspecial
+trigger1=animelemtime(1)=[0,30]
+flag=nofg
+;flag2=noBg
+ignorehitpause=1
+
+[state 3500,댠6]
+type=superpause
+trigger1=animelemtime(1)=0
+movetime=30
+anim=-1
+darken=0
+sound=s23,0
+
+[state 195]
+type = Explod
+trigger1=animelemtime(1)=0
+anim = F100
+postype = p1
+Pos = 0,-58
+sprpriority = 10
+supermove = 1
+
+[state 2000,긫긇귕]
+type=playsnd
+trigger1=animelemtime(1)=0
+value=2001,0
+channel=0
+
+
+[state 2000,뚼됈돶]
+type=playsnd
+trigger1=animelemtime(8)=0
+trigger2=animelemtime(29)=0
+value=3,23
+
+[state 2000,뵽믦]
+type=hitdef
+trigger1=animelemtime(8)=0
+trigger2=animelemtime(9)=0
+trigger3=animelemtime(10)=0
+trigger4=animelemtime(11)=0
+trigger5=animelemtime(12)=0
+attr=s,ha
+animtype=hard
+damage=2,8
+hitflag=maf
+guardflag=ma
+pausetime=2,12
+sparkno = 12
+guard.sparkno = 42
+sparkxy=-10,-80
+hitsound = s21,random%2
+guardsound=s25,1
+ground.type=high
+ground.slidetime=12
+ground.hittime=15
+ground.velocity=0;,-6
+air.velocity=-1,-6
+ground.cornerpush.veloff=0
+getpower=0,0
+givepower=15,15
+Guard.Kill = 1
+fall.recover = 0
+
+[state 2000,긲귻긦긞긘깄]
+type=hitdef
+trigger1=animelemtime(13)=0
+attr=s,ha
+animtype=hard
+damage=5,8
+hitflag=maf
+guardflag=ma
+pausetime=2,12
+sparkno = 12
+guard.sparkno = 42
+sparkxy=-10,-80
+hitsound = s21,random%2
+guardsound=s25,1
+ground.type=high
+ground.slidetime=12+10
+ground.hittime=35
+ground.velocity=0;,-3.5
+air.velocity=-1,-6.5
+yaccel=0.4
+p2facing=1
+id=2000
+getpower=0,0
+givepower=15,15
+Guard.Kill = 1
+fall.recover = 0
+
+[state 2000,궖귟귖귒릟궯뷅귂]
+type=null;targetstate
+trigger1=movehit=1
+trigger1=hitpausetime=1
+trigger1=numtarget(2050)
+value=1012
+id=2050
+ignorehitpause=1
+
+[state 2050,뵽믦]
+type=hitdef
+trigger1=animelemtime(33)=0
+trigger2=animelemtime(34)=0
+trigger3=animelemtime(35)=0
+trigger4=animelemtime(36)=0
+trigger5=animelemtime(37)=0
+trigger6=animelemtime(38)=0
+attr=s,ha
+animtype=hard
+damage=2,8
+hitflag=maf
+guardflag=ma
+pausetime=2,1
+sparkno = 12
+guard.sparkno = 42
+sparkxy=-10,-60
+hitsound = s21,random%2
+guardsound=s25,1
+guard.dist=180
+ground.type=high
+ground.slidetime=12
+ground.hittime=15
+ground.velocity=2;,-6
+air.velocity=.5,-6
+ground.cornerpush.veloff=0
+getpower=0,0
+givepower=15,15
+Guard.Kill = 1
+fall.recover = 0
+
+[state 2050,뵽믦]
+type=hitdef
+trigger1=animelemtime(38)=0
+attr=s,ha
+animtype=hard
+damage=5,8
+hitflag=maf
+guardflag=ma
+pausetime=2,22
+sparkno = 12
+guard.sparkno = 42
+sparkxy=-10,-60
+hitsound = s21,random%2
+guardsound=s25,1
+guard.dist=180
+ground.type=high
+ground.slidetime=12
+ground.hittime=15
+ground.velocity=2;,-6
+air.velocity=0,-6
+ground.cornerpush.veloff=0
+getpower=0,0
+givepower=15,15
+;fall=1
+fall.recover=0
+Guard.Kill = 1
+
+[state 2050,긲귻긦긞긘깄]
+type=hitdef
+trigger1=animelemtime(39)=0
+attr=s,ha
+animtype=hard
+damage=5,8
+hitflag=maf
+guardflag=ma
+pausetime=2,30
+sparkno = 12
+guard.sparkno = 42
+sparkxy=-10,-60
+hitsound = s21,random%2
+guardsound=s25,1
+guard.dist=180
+ground.type=high
+ground.slidetime=12
+ground.hittime=15
+ground.velocity=2;,-12
+air.velocity=0,-6
+;yaccel=0.6
+;fall=1
+fall.recover=0
+p2facing=1
+id=2050
+getpower=0,0
+givepower=15,15
+Guard.Kill = 1
+fall.recover = 0
+
+[state 2000,뢎뿹]
+type=changestate
+trigger1=animelemtime(47)=0
+trigger1=movehit;Movecontact
+value=2101
+
+[state 2000,뢎뿹]
+type=changestate
+trigger1=animtime=0
+value=0
+ctrl=1
+;---------------------------------------------------------------------------
+;옥쇄참진 점프준비
+[statedef 2101]
+type=s
+movetype=a
+physics=s
+velset=0,0
+anim=2100
+ctrl=0
+
+[state 2100,뼰밎]
+type=nothitby
+trigger1=animelemtime(9)<0
+value=sca
+
+[state 2000,긫긇귕]
+type=playsnd
+trigger1=animelemtime(1)=0
+value=2101,0
+channel=0
+
+
+
+[state 2100,듑궋귦]
+type=null;playsnd
+trigger1=animelemtime(8)=0
+value=1100,1
+channel=0
+
+[state 2100,뚼됈돶]
+type=playsnd
+trigger1=animelemtime(9)=0
+value=3,23
+
+[state 2100,뵽믦]
+type=hitdef
+trigger1=animelemtime(9)=0
+attr=a,Ha
+animtype=hard
+damage=5,8
+hitflag=maf
+guardflag=ma
+pausetime=2,6
+sparkno = 12
+guard.sparkno = 42
+sparkxy=-10,-60
+hitsound = s21,random%2
+guardsound=s25,1
+ground.type=high
+ground.slidetime=12
+ground.hittime=15
+ground.velocity=-1,0
+air.velocity=-1,-3
+ground.cornerpush.veloff=0
+getpower=0,0
+givepower=15,15
+Guard.Kill = 1
+fall.recover = 0
+
+[state 2100,긙긿깛긵둎럑]
+type=changestate
+trigger1=animtime=0
+value=2102
+;---------------------------------------------------------------------------
+;옥쇄참진 공중
+[statedef 2102]
+type=a
+movetype=a
+physics=n
+velset=5,0
+anim=2101
+ctrl=0
+hitcountpersist=1
+
+[state 2151,]
+type=velset
+trigger1=animelemtime(18)=0
+x=3
+y=-10
+
+
+[state 2151,뢣쀍]
+type=veladd
+trigger1=vel y<0
+trigger2=animelemtime(26)>=0
+y=1
+
+[state 2151,믠]
+type=velset
+trigger1=animelemtime(21)=0
+trigger1=vel y>=0
+x=0
+
+
+[state 2100,뚼됈돶]
+type=playsnd
+trigger1=animelemtime(11)=0
+value=3,23
+
+
+[state 2101,뵽믦]
+type=hitdef
+trigger1=animelemtime(1)=0
+trigger2=animelemtime(2)=0
+trigger3=animelemtime(3)=0
+trigger4=animelemtime(4)=0
+trigger5=animelemtime(5)=0
+trigger6=animelemtime(6)=0
+trigger7=animelemtime(7)=0
+trigger8=animelemtime(8)=0
+trigger9=animelemtime(9)=0
+trigger10=animelemtime(10)=0
+trigger11=animelemtime(11)=0
+trigger12=animelemtime(12)=0
+trigger13=animelemtime(13)=0
+trigger14=animelemtime(14)=0
+trigger15=animelemtime(15)=0
+trigger16=animelemtime(16)=0
+trigger17=animelemtime(17)=0
+trigger18=animelemtime(18)=0
+trigger19=animelemtime(19)=0
+attr=a,ha
+animtype=hard
+damage=10,8
+hitflag=maf
+guardflag=ma
+pausetime=2,6
+sparkno = 12
+guard.sparkno = 42
+sparkxy=-10,-60
+hitsound = s21,random%2
+guardsound=s25,1
+ground.type=high
+ground.slidetime=12
+ground.hittime=15
+ground.velocity=-4,0
+air.velocity=-4,-3
+ground.cornerpush.veloff=0
+getpower=0,0
+givepower=15,15
+Guard.Kill = 1
+fall.recover = 0
+
+
+[state 2101,긲귻긦긞긘깄]
+type=hitdef
+trigger1=animelemtime(20)=0
+attr=a,ha
+animtype=hard
+damage=53,8
+hitflag=maf
+guardflag=ma
+pausetime=2,6
+sparkno = 12
+guard.sparkno = 42
+sparkxy=-10,-60
+hitsound = s21,random%2
+guardsound=s25,1
+ground.type=high
+ground.slidetime=12
+ground.hittime=15
+ground.velocity=-2,-15
+air.velocity=-2,-15
+yaccel=0.6
+fall=1
+fall.recover=0
+p2facing=1
+id=2101
+getpower=0,0
+givepower=15,15
+Guard.Kill = 1
+fall.recover = 0
+
+
+[state 2101,궖귟귖귒릟궯뷅귂]
+type=targetstate
+trigger1=movehit=1
+trigger1=hitpausetime=1
+trigger1=numtarget(2101)
+value=1012
+id=2101
+ignorehitpause=1
+
+[state 2101,뭶뭤]
+type=changestate
+trigger1=pos y>=Helper(100000),var(0)
+trigger1=vel y>0
+trigger1=animelemtime(26)>=0
+value=1152
+
+;---------------------------------------------------------------------------
+;암류천파
+[statedef 2200]
+type=s
+movetype=a
+physics=s
+velset=0,0
+anim=4200
+ctrl=0
+
+[State 700,]
+type = varset
+trigger1 = time = 0
+trigger1 = var(3) > 0
+var(3) = 0
+
+[State 700,]
+type = Poweradd
+trigger1 = time = 0
+value = ifelse(var(3)=0,-1000,-2000)
+
+[State 700,]
+type = palfx
+triggerall = time = 0
+trigger1 = prevstateno = [1000,1999]
+time = 5
+add = 230,230,230
+
+[State -2, 슈퍼캔슬]
+type = Helper
+trigger1 = time = 1
+trigger1 = prevstateno = [1000,1999]
+ID = 100500
+name = "SuperCancel"
+postype = P1
+pos = 0,0
+sprpriority = -9
+stateno = 100500
+helpertype = normal
+keyctrl = 0
+persistent = 1
+ignorehitpause = 1
+ownpal = 1
+
+[state 3100,댠]
+type=superpause
+trigger1=animelemtime(1)=0
+time=30
+movetime=30
+anim=-1
+darken=0
+sound=s23,1
+p2defmul = ifelse((prevstateno>=1000)||(P2MoveType=H),1.25,1)
+
+[State 2]
+type = null;BGPalFX
+trigger1 = 1
+time = 2
+add = -255,-255,-255
+color = 0
+invertall = 1
+ignorehitpause = 1
+
+[state 195]
+type = Explod
+trigger1=animelemtime(1)=0
+anim = F101
+postype = p1
+pos = 0,-80
+sprpriority = 10
+supermove = 1
+
+
+[State 1];긇긽깋뚂믦
+type = screenbound
+trigger1 = 1
+value = 1
+movecamera = 1
+
+
+[state 4000,뼰밎]
+type=nothitby
+trigger1=animelemtime(2)>=0
+trigger2=animelemtime(3)<0
+value=sca
+
+
+[state 1500,뚼됈돶]
+type=playsnd
+trigger1=animelemtime(2)=10
+value=1500,2
+
+[state 1500,]
+type=explod
+trigger1=animelemtime(1)=15
+anim=1501
+pos=0,0
+postype=p1
+bindtime=1
+ownpal=1
+removeongethit=1
+ID = 1501
+pausemovetime = 99999
+supermovetime = 99999
+
+
+[state 4000,뵽믦]
+type=hitdef
+trigger1=time=0
+attr=s,ht
+hitflag=maf
+guardflag = m
+priority=7,miss
+sparkno=-1
+p2facing=1
+pausetime= 0, 60
+;p1stateno=2210
+;p2stateno=2220
+id=4000
+numhits=0
+guard.dist=0
+guard.sparkno = 42
+sparkxy=0,-20
+guardsound=s25,1
+
+[state 4000,렪봲]
+type=Targetstate
+trigger1=animelemtime(3)>=0
+trigger1=MoveHit
+value=2220
+
+[state 4000,렪봲]
+type=changestate
+trigger1=animelemtime(3)>=0
+trigger1=MoveHit
+value=2210
+
+[state 4000,렪봲]
+type=changestate
+trigger1=animtime=0
+value=0
+ctrl=1
+;-------------------------------------------------------------------
+;암류천파 먹기
+[statedef 2210]
+type=s
+movetype=a
+physics=n
+velset=0,0
+anim=4310
+ctrl=0
+sprpriority=0
+
+[State -2, 그림자 제거]
+type = Explod
+trigger1 = 1
+ID = 100006
+postype = P1
+pos = 0,0
+sprpriority = -9
+anim = F100000
+persistent = 1
+ignorehitpause = 1
+removetime = 1
+
+[State -1]
+Type     = PlaySnd
+Trigger1 = Time = 0
+Value    = s30000, 11
+volume    =200
+
+[State 1];긇긽깋뚂믦
+type = screenbound
+trigger1 = 1
+value = 1
+movecamera = 1
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noBG
+flag2 = noFG
+
+[State 2]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -255,-255,-255
+color = 0
+invertall = 1
+ignorehitpause = 1
+
+
+
+[state 4010,됪뽋]
+type=width
+trigger1=1
+edge=90,0
+
+[state 4010,몜롨궻뚂믦1]
+type=targetbind
+trigger1=animelemtime(31)<0
+pos=40,0
+
+[state 4010,긆깋]
+type=explod
+trigger1=animelemtime(17)=0
+anim=1611
+pos=0,0
+postype=p1
+bindtime=-1
+ownpal=1
+removeongethit=1
+
+[state 4010,뚼됈돶]
+type=playsnd
+trigger1=animelemtime(17)=0
+value=1600,1
+
+
+
+[state 4010,뚼됈돶]
+type=playsnd
+trigger1=animelemtime(31)=0
+value=4000,0
+volume    =-100
+
+[state 4010,긳깋긞긏긼깑]
+type=explod
+trigger1=animelemtime(31)=0
+anim=4212
+pos=40,-100
+postype=p1
+ownpal=1
+sprpriority=0
+
+[state 4010,몜롨궻댷벍]
+type=targetbind
+trigger1=animelemtime(31)=[0,60]
+pos=40,-animelemtime(31)
+
+[state 4010,몜롨궻뚂믦2]
+type=targetbind
+trigger1=animelemtime(31)>60
+trigger1=target(4000),stateno=84020
+pos=40,-60
+
+[state 4010,댠]
+type=allpalfx
+trigger1=animelemtime(64)=[0,51]
+time=1
+add=-5*animelemtime(64),-5*animelemtime(64),-5*animelemtime(64)
+
+[state 4010,뢷뜓랤(댠)]
+type=envcolor
+trigger1=animelemtime(64)=[51,151]
+value=0,0,0
+
+[state 4010,뢷뜓랤(긄긲긃긏긣)]
+type=explod
+triggerall=animelemtime(64)=[51,150]
+trigger1=animelemtime(64)%5=0
+anim=F3;6040+random%5
+pos=60,-100
+postype=p1
+random=50,50
+ontop=1
+ownpal=1
+id=4000
+
+[state 4010,뢷뜓랤(뚼됈돶)]
+type=playsnd
+triggerall=animelemtime(64)=[51,150]
+trigger1=animelemtime(64)%5=0
+value=s20,1+random%4;1,6+random%3
+;volume    =-100
+
+[state 4010,긽긙]
+type=targetlifeadd
+triggerall=animelemtime(64)=[51,150]
+trigger1=animelemtime(64)%5=0
+value=-20
+kill=0
+id=4000
+
+[state 4010,뷀긽긒긙몵돿]
+type=targetpoweradd
+triggerall=animelemtime(64)=[51,150]
+trigger1=animelemtime(64)%5=0
+value=12
+id=4000
+
+[state 4010,긭긞긣릶]
+type=hitadd
+triggerall=animelemtime(64)=[51,150]
+trigger1=animelemtime(64)%5=0
+value=1
+
+[state 4010,뢷뜓랤긄긲긃긏긣뤑땸]
+type=removeexplod
+trigger1=animelemtime(64)=151
+id=4000
+
+[state 4010,댠됶룣]
+type=allpalfx
+trigger1=animelemtime(64)=[151,176]
+time=1
+add=-10*(177-animelemtime(64)),-10*(177-animelemtime(64)),-10*(177-animelemtime(64))
+
+[state 4010,몜롨긚긡긣]
+type=targetstate
+trigger1=animelemtime(64)=150
+value=2221
+id=4000
+
+[state 4010,렅귉]
+type=changestate
+trigger1=target(4000),stateno=2222
+value=2211
+
+;---------------------------------------------------------------------------
+;암류천파 엔드
+[statedef 2211]
+type=s
+movetype=a
+physics=n
+velset=0,0
+anim=4211
+ctrl=0
+sprpriority=0
+
+
+
+[State 1];긇긽깋뚂믦
+type = screenbound
+trigger1 = 1
+value = 1
+movecamera = 1
+
+
+[State 40002, PlaySnd]
+type = null;PlaySnd
+trigger1=time=0
+value = S7100,0
+volume = 200
+
+[State 40001, Glass Break]
+type = null;Explod
+triggerall = !numexplod(7040)
+trigger1=time=0
+anim = 7004
+ID = 7040
+pos = 0,0
+postype = left  ;p2,front,back,left,right
+pausemovetime = -1
+supermovetime = -1
+removetime = -2
+scale = 1,1
+sprpriority = -20
+ownpal = 1
+ignorehitpause = 1
+
+
+[state 4011,긽긙(궴궵귕)]
+type=targetlifeadd
+trigger1=time=0
+value=-1
+absolute=1
+id=4000
+
+[state 4000,렪봲]
+type=changestate
+trigger1=animtime=0
+value=0
+ctrl=1
+
+;---------------------------------------------------------------------------
+;댠뿮밮봨:몜롨뫀1
+[statedef 2220]
+type=s
+movetype=h
+physics=n
+velset=0,0
+ctrl=0
+sprpriority=-1
+
+[state 4020,긇긽깋]
+type=screenbound
+trigger1=1
+movecamera=1,0
+
+[state 4020,뼰밎]
+type=nothitby
+trigger1=1
+value=sca
+
+[state 4020,럄몴뗕]
+type=afterimagetime
+trigger1=1
+time=0
+
+[state 4020,귺긦긽]
+type=changeanim2
+trigger1=time=0
+value=4220
+
+;---------------------------------------------------------------------------
+;댠뿮밮봨:몜롨뫀2
+[statedef 2221]
+type=a
+movetype=h
+physics=n
+ctrl=0
+
+[state 4021,긇긽깋]
+type=screenbound
+trigger1=1
+movecamera=1,0
+
+[state 4021,럄몴뗕]
+type=afterimagetime
+trigger1=1
+time=0
+
+[state 4021,뼰밎]
+type=nothitby
+trigger1=1
+value=sca
+
+[state 4021,귺긦긽]
+type=changeanim2
+trigger1=time=0
+value=4221
+
+[state 4021,뤵궸댷벍]
+type=posset
+trigger1=time=0
+y=Helper(100000),var(0)-300
+
+[state 4021,뿇돷]
+type=veladd
+trigger1=time>20
+y=0.35
+
+[state 4021,뭶뭤]
+type=changestate
+trigger1=pos y>=Helper(100000),var(0)
+trigger1=vel y>0
+value=2222
+
+;---------------------------------------------------------------------------
+;댠뿮밮봨:몜롨뫀(긫긂깛긤)
+[statedef 2222]
+type=a
+movetype=h
+physics=n
+velset=-4,-6
+sprpriority=0
+anim=5100
+
+[state 4022,뼰밎]
+type=nothitby
+trigger1=1
+value=sca
+
+[state 4022,뢣쀍]
+type=veladd
+trigger1=1
+y=0.4
+
+[state 4022,몜롨긚긡긣궸뽣궥]
+type=selfstate
+trigger1=pos y>=Helper(100000),var(0)
+trigger1=vel y>0
+value=5100
+
+;--------------------------------------------------------
+;쇄압진탄
+[statedef 2300]
+type=s
+movetype=a
+physics=s
+velset=0,0
+anim= 6500
+ctrl=0
+
+[State 700,]
+type = varset
+trigger1 = time = 0
+trigger1 = var(3) > 0
+var(3) = 0
+
+[State 700,]
+type = Poweradd
+trigger1 = time = 0
+value = ifelse(var(3)=0,-1000,-2000)
+
+[State 700,]
+type = palfx
+triggerall = time = 0
+trigger1 = prevstateno = [1000,1999]
+time = 5
+add = 230,230,230
+
+[State -2, 그림자 제거]
+type = Explod
+trigger1 = animelemtime(10)<0
+ID = 100006
+postype = P1
+pos = 0,0
+sprpriority = -9
+anim = F100000
+persistent = 1
+ignorehitpause = 1
+removetime = 1
+
+
+[state 3100,댠5]
+type=assertspecial
+trigger1=1
+flag=nofg
+flag2=noBG
+ignorehitpause=1
+
+[state 3100,댠6]
+type=superpause
+trigger1=animelemtime(4)=0
+time=40
+movetime=40
+anim=-1
+darken=0
+sound=s23,1
+
+[state 195]
+type = Explod
+trigger1=animelemtime(4)=0
+anim = F101
+postype = p1
+pos = 0,-80
+sprpriority = 10
+supermove = 1
+
+[state 3100,긶깑긬]
+type=PlaySnd
+trigger1=animelemtime(7)=0
+value = 4,3
+
+[state 3100,긶깑긬]
+type=helper
+trigger1=animelemtime(10)=0
+helpertype=normal
+name="Gravity"
+stateno=2301
+id=2300
+PosType = P1
+Pos = 0,60
+bindtime=1
+ownpal=1
+
+[state 3110,뢎뿹]
+type=changestate
+trigger1=animtime = 0
+value=0
+ctrl = 1
+;--------------------------------------------------------
+;쇄압진
+[statedef 2301]
+type=s
+movetype=I
+physics=N
+velset=0,0
+anim=3110
+ctrl=0
+sprpriority=-2
+
+[state 3110,뎓궶궢]
+type=assertspecial
+trigger1=1
+flag=noshadow
+flag2= NoFg
+flag3= NoBg
+ignorehitpause=1
+
+[State 2]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -255,-255,-255
+color = 0
+invertall = 1
+ignorehitpause = 1
+
+[state 3110,뎓궶궢]
+type=angledraw
+trigger1=1
+scale = 2,2
+
+[state 3110,뎓궶궢]
+type=Trans
+trigger1=1
+trans = addalpha
+alpha = 128,256
+
+
+[state 1611,됪뽋뾥귢]
+type=envshake
+trigger1=time%5=0
+time=5
+freq=120
+ampl=-6
+
+[state 1611,됪뽋뾥귢]
+type=PlaySnd
+trigger1=time%250=0
+trigger1=time<600
+trigger1=root,stateno != [2413,2414]
+value = s3100,1
+
+[state 3100,뚣귣뵾빁뛘똼]
+type=projectile
+;triggerall=P2StateType = A
+triggerall=enemy,pos y < Helper(100000),var(0)-20
+triggerall=!NumTarget(2300)
+triggerall=p2Stateno!=2310
+trigger1= root,ctrl = 1
+trigger2= enemy,ctrl = 1
+trigger3= root,ctrl = 1
+trigger4= root,Movetype = H
+attr=s,hp
+hitflag=AF
+damage=0,0
+pausetime = 0,0
+sparkno = -1
+guard.sparkno = -1
+hitsound=-1
+guardsound=-1
+animtype=Hard
+;air.velocity=0,4
+;yaccel=0.8
+getpower=0,0
+givepower=0,0
+fall=1
+fall.damage=50
+fall.recover=0
+pausetime=0,10
+projid=2300
+projanim=6501
+projscale=1,1
+offset=0,0
+postype=p2
+projremovetime=1
+projpriority = 9
+id=2300
+air.type = Trip
+p2stateno = 2310
+
+[state 3100,뚣귣뵾빁뛘똼]
+type=projectile
+trigger1= enemy,numproj
+projid=2300
+projanim=6501
+projscale=1,1
+offset=0,0
+postype=p2
+projremovetime=1
+projpriority = 9
+
+[state 3110,긄긲긃긏긣]
+type=explod
+triggerall=time=0
+trigger1=root,anim=3200
+trigger2=root,anim=3205
+anim=7190
+pos=floor(rootdist x)+7,floor(rootdist y)-16
+postype=p1
+ontop=1
+ownpal=1
+pausemovetime=2147483647
+
+[state 3110,긄긲긃긏긣]
+type=explod
+triggerall=time=0
+trigger1=root,anim=3200
+trigger2=root,anim=3205
+anim=7191
+pos=floor(rootdist x)+7,floor(rootdist y)-16
+postype=p1
+sprpriority=-10
+ownpal=1
+pausemovetime=2147483647
+
+[state 3110,뭙궕뷅귪궳궘귡갋1]
+type=explod
+trigger1=time%15=0
+anim=3111
+id=3101
+pos=0,0
+postype=p1
+bindtime=-1
+sprpriority=-1
+ownpal=1
+
+[state 3110,뭙궕뷅귪궳궘귡갋2]
+type=explod
+trigger1=time%15=0
+anim=3112
+id=3102
+pos=0,0
+postype=p1
+bindtime=-1
+sprpriority=-1
+ownpal=1
+
+[state 3110,뭙궕뷅귪궳궘귡갋3]
+type=explod
+trigger1=time%15=0
+anim=3113
+id=3103
+pos=0,0
+postype=p1
+bindtime=-1
+sprpriority=-1
+ownpal=1
+
+[State -1]
+Type = Explod
+Trigger1 = Time = 0
+ID = 3005
+PosType = Left
+Pos = 220,130
+Anim = 6505
+Facing = Parent,Facing
+Scale = 1.75,1.25
+Ownpal = 1
+SprPriority = 5
+BindTime = -1
+Removetime = -1
+SuperMoveTime = 9999
+
+[state 3110,뢎뿹]
+type=null;DestroySelf
+trigger1=time >=600
+
+[state 3110,뢎뿹]
+type=ChangeState
+trigger1=time >=600
+trigger1=root,stateno != [2400,2414]
+;trigger2=root,stateno = 2414
+value = 2302
+
+[state 3110,뎓궶궢]
+type=RemoveExplod
+trigger1=root,stateno = 2414
+ID = 3005
+
+[state 3110,뢎뿹]
+type=DestroySelf
+trigger1=root,stateno = 2414
+;---------------------------------------------------------------------------
+;쇄압진 사라짐
+[statedef 2302]
+type=s
+movetype=a
+physics=s
+velset=0,0
+ctrl=0
+anim=3110
+
+[state 3110,뎓궶궢]
+type=Trans
+trigger1=1
+trans = addalpha
+alpha = 128,256
+
+[state 3110,뎓궶궢]
+type=RemoveExplod
+trigger1=time = 0
+ID = 3005
+
+[state 3111,뎓궶궢]
+type=assertspecial
+trigger1=1
+flag=noshadow
+flag2= NoFg
+flag3= NoBg
+ignorehitpause=1
+
+[State 2]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -255,-255,-255
+color = 0
+invertall = 1
+ignorehitpause = 1
+
+[state 3111,뢁뢫]
+type=angledraw
+trigger1=1
+scale=2-time/30.0,2-time/30.0
+
+[state 3111,뢎뿹]
+type=destroyself
+triggerall=ishelper
+trigger1=(2-time/30.0)<=0
+
+;--------------------------------------------------------
+;쇄압진 피격
+[statedef 2310]
+type=A
+movetype=H
+physics=N
+;anim=5070
+ctrl=0
+
+[state 3110,뢎뿹]
+type=NotHitby
+trigger1=1
+value = sca
+
+[state 3110,뢎뿹]
+type=Velset
+trigger1=time=0
+y = 17.5
+
+[state 3110,뢎뿹]
+type=Veladd
+trigger1=1
+y = 1
+
+[state 3110,뢎뿹]
+type=SelfState
+trigger1=Pos Y >=Helper(100000),var(0)
+value=5110
+
+;--------------------------------------------------------
+;쇄압진붕(쇄압진 생성 안되어있을때)
+[statedef 2400]
+type=s
+movetype=a
+physics=s
+velset=0,0
+anim= 6600
+ctrl=0
+
+[State 700,]
+type = varset
+trigger1 = time = 0
+trigger1 = var(3) > 0
+var(3) = 0
+
+[State 700,]
+type = Poweradd
+trigger1 = time = 0
+value = ifelse(var(3)=0,-2000,-3000)
+
+[State 700,]
+type = palfx
+triggerall = time = 0
+trigger1 = prevstateno = [1000,1999]
+time = 5
+add = 230,230,230
+
+[State -2, 슈퍼캔슬]
+type = Helper
+trigger1 = time = 1
+trigger1 = prevstateno = [1000,1999]
+ID = 100500
+name = "SuperCancel"
+postype = P1
+pos = 0,0
+sprpriority = -9
+stateno = 100500
+helpertype = normal
+keyctrl = 0
+persistent = 1
+ignorehitpause = 1
+ownpal = 1
+
+[State -2, 그림자 제거]
+type = Explod
+trigger1 = 1
+ID = 100006
+postype = P1
+pos = 0,0
+sprpriority = -9
+anim = F100000
+persistent = 1
+ignorehitpause = 1
+removetime = 1
+
+
+[state 3100,댠5]
+type=assertspecial
+trigger1=1
+flag=nofg
+flag2=noBG
+ignorehitpause=1
+
+[State 2]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -255,-255,-255
+color = 0
+invertall = 1
+ignorehitpause = 1
+
+[state 3100,댠6]
+type=superpause
+trigger1=animelemtime(4)=0
+time=30
+movetime=30
+anim=-1
+darken=0
+sound=300,2
+
+[State 2000]
+type = Explod
+trigger1=animelemtime(4)=0
+anim = F279
+pos = 25,-80
+scale = 2,2
+sprpriority = 20
+ownpal = 1
+bindtime = 1
+supermove = 1
+
+[State 2000]
+type = Explod
+trigger1=animelemtime(4)=0
+anim = F278
+pos = 25,-80
+scale = 1.5,1.5
+sprpriority = -20
+ownpal = 1
+bindtime = 1
+supermove = 1
+
+[state 3100,긶깑긬]
+type=helper
+trigger1=animelemtime(5)=0
+helpertype=normal
+name="Gravity"
+stateno=2301
+id=2300
+PosType = P1
+Pos = 0,60
+bindtime=1
+ownpal=1
+
+[state 4000,뵽믦]
+type=hitdef
+trigger1=time=0
+attr=s,ht
+hitflag=m
+guardflag = m
+priority=7,miss
+sparkno=-1
+p2facing=1
+pausetime= 0, 0
+id=2400
+numhits=0
+guard.dist=0
+guard.sparkno = 42
+sparkxy=0,-40
+guardsound=s25,1
+p2stateno = 2420
+
+[state 4000,렪봲]
+type=null;Targetstate
+trigger1=animelemtime(7)<0
+trigger1=MoveHit
+value=2420
+
+[state 4000,렪봲]
+type=changestate
+trigger1=animelemtime(7)<0
+trigger1=MoveHit
+value=2410
+
+[state 4000,렪봲]
+type=changestate
+trigger1=animtime=0
+value=0
+ctrl=1
+;--------------------------------------------------------
+;쇄압진붕(쇄압진 생성 되어있을때)
+[statedef 2401]
+type=s
+movetype=a
+physics=s
+velset=0,0
+anim= 6600
+ctrl=0
+
+[State 700,]
+type = varset
+trigger1 = time = 0
+trigger1 = var(3) > 0
+var(3) = 0
+
+[State 700,]
+type = Poweradd
+trigger1 = time = 0
+value = ifelse(var(3)=0,0,-1000)
+
+[State 700,]
+type = palfx
+triggerall = time = 0
+trigger1 = prevstateno = [1000,1999]
+time = 5
+add = 230,230,230
+
+[State -2, 슈퍼캔슬]
+type = Helper
+trigger1 = time = 1
+trigger1 = prevstateno = [1000,1999]
+ID = 100500
+name = "SuperCancel"
+postype = P1
+pos = 0,0
+sprpriority = -9
+stateno = 100500
+helpertype = normal
+keyctrl = 0
+persistent = 1
+ignorehitpause = 1
+ownpal = 1
+
+[State -2, 그림자 제거]
+type = Explod
+trigger1 = 1
+ID = 100006
+postype = P1
+pos = 0,0
+sprpriority = -9
+anim = F100000
+persistent = 1
+ignorehitpause = 1
+removetime = 1
+
+
+[state 3100,댠5]
+type=assertspecial
+trigger1=1
+flag=nofg
+flag2=noBG
+ignorehitpause=1
+
+[State 2]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -255,-255,-255
+color = 0
+invertall = 1
+ignorehitpause = 1
+
+[state 3100,댠6]
+type=superpause
+trigger1=animelemtime(4)=0
+time=30
+movetime=30
+anim=-1
+darken=0
+sound=300,2
+
+[State 2000]
+type = Explod
+trigger1=animelemtime(4)=0
+anim = F279
+pos = 25,-80
+scale = 2,2
+sprpriority = 20
+ownpal = 1
+bindtime = 1
+supermove = 1
+
+[State 2000]
+type = Explod
+trigger1=animelemtime(4)=0
+anim = F278
+pos = 25,-80
+scale = 1.5,1.5
+sprpriority = -20
+ownpal = 1
+bindtime = 1
+supermove = 1
+
+[state 4000,뵽믦]
+type=hitdef
+trigger1=time=0
+attr=s,ht
+hitflag=m
+guardflag = m
+priority=7,miss
+sparkno=-1
+p2facing=1
+pausetime= 0, 0
+id=2400
+numhits=0
+guard.dist=0
+guard.sparkno = 42
+sparkxy=0,-40
+guardsound=s25,1
+p2stateno = 2420
+
+[state 4000,렪봲]
+type=null;Targetstate
+trigger1=animelemtime(7)<0
+trigger1=MoveHit
+value=2420
+
+[state 4000,렪봲]
+type=changestate
+trigger1=animelemtime(7)<0
+trigger1=MoveHit
+value=2410
+
+[state 4000,렪봲]
+type=changestate
+trigger1=animtime=0
+value=0
+ctrl=1
+;--------------------------------------------------------
+;쇄압진붕(잡았다! 손으로 장난치기)
+[statedef 2410]
+type=s
+movetype=a
+physics=s
+velset=0,0
+anim= 6610
+ctrl=0
+
+
+[state 3100,댠5]
+type=assertspecial
+trigger1=1
+flag=nofg
+flag2=noBG
+ignorehitpause=1
+
+[State 2]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -255,-255,-255
+color = 0
+invertall = 1
+ignorehitpause = 1
+
+[state 4000,렪봲]
+type=changestate
+trigger1=animtime=0
+value=2411
+
+;--------------------------------------------------------
+;쇄압진붕(점프!)
+[statedef 2411]
+type=A
+movetype=a
+physics=N
+velset=0,0
+anim= 6611
+ctrl=0
+
+
+[state 3100,댠5]
+type=assertspecial
+trigger1=1
+flag=nofg
+flag2=noBG
+ignorehitpause=1
+
+[State 2]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -255,-255,-255
+color = 0
+invertall = 1
+ignorehitpause = 1
+
+[state 4000,렪봲]
+type=velset
+trigger1=time = 0
+y = -12
+
+[state 4000,렪봲]
+type=gravity
+trigger1=1
+
+[state 4000,렪봲]
+type=changestate
+trigger1=P2Dist Y =[-15,15]
+value=2412
+
+[state 4000,렪봲]
+type=changestate
+trigger1=Pos Y >=Helper(100000),var(0)
+trigger1=Vel Y >0
+value=0
+ctrl = 1
+
+;--------------------------------------------------------
+;쇄압진붕(백라멸정으로 잡기)
+[statedef 2412]
+type=A
+movetype=a
+physics=N
+velset=0,0
+anim= 6612
+ctrl=0
+
+[state 3100,댠5]
+type=assertspecial
+trigger1=1
+flag=nofg
+flag2=noBG
+ignorehitpause=1
+
+[State 2]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -255,-255,-255
+color = 0
+invertall = 1
+ignorehitpause = 1
+
+[state 3100,긶깑긬]
+type=helper
+trigger1=time = 0
+helpertype=normal
+name="hakura"
+stateno=2430
+id=3100
+pos=-30,-110
+postype=p1
+bindtime=-1
+ownpal=1
+
+[state 4000,렪봲]
+type=changestate
+trigger1=P2Dist X =[-15,15]
+value=2413
+
+;--------------------------------------------------------
+;쇄압진붕(슈ㅣ벵 넌 뒈졌다 샠키야 ㅋㅋㅋㅋㅋㅋ)
+[statedef 2413]
+type=A
+movetype=a
+physics=N
+velset=0,0
+anim= 6613
+ctrl=0
+
+[state 3100,댠5]
+type=assertspecial
+trigger1=1
+flag=nofg
+flag2=noBG
+ignorehitpause=1
+
+[State 2]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = -255,-255,-255
+color = 0
+invertall = 1
+ignorehitpause = 1
+
+[State 2]
+type = Hitadd
+trigger1 = time = 0
+value = 1
+
+[State 2]
+type = PlaySnd
+trigger1 = time = 0
+value = s22,0
+
+[State x];덾
+type = Explod
+trigger1 = time = 0
+anim = 7180
+postype = p1
+pos = -30,-65
+sprpriority = 3
+removetime = -2
+removeongethit = 1
+bindtime = -1
+
+[State 810, 1]
+type = TargetState
+trigger1 = time = 0
+value = 2421
+
+[State 810, 1]
+type = TargetBind
+trigger1 = time = 0
+pos = -25, -92
+
+[State 810, 1]
+type = TargetBind
+trigger1 = animelemtime(2)>=0
+trigger1 = animelemtime(3)<0
+pos = -16,-118
+
+[State 810, 1]
+type = TargetBind
+trigger1 = animelemtime(3)>=0
+trigger1 = animelemtime(4)<0
+pos = 54,-81
+
+[State x];덾
+type = Explod
+trigger1 = animelemtime(3)=0
+anim = 3110
+id = 2413
+postype = p1
+pos = 46,-65
+sprpriority = 3
+removetime = -1
+removeongethit = 1
+bindtime = -1
+
+[state 195]
+type = modifyexplod
+ID = 2413
+trigger1 = (time-53)/30.0 < 2
+scale = (time-53)/30.0,(time-53)/30.0
+
+
+[State x];덾
+type = Explod
+trigger1 = animelemtime(3)=0
+anim = 3720
+id = 24132
+postype = p1
+pos = 46,30;-65
+sprpriority = 4
+removetime = -1
+removeongethit = 1
+bindtime = -1
+
+[State x];덾
+type = Explod
+trigger1 = animelemtime(3)=0
+anim = 3770
+id = 24132
+postype = p1
+pos = 46,30;-65
+sprpriority = 5
+removetime = -1
+removeongethit = 1
+bindtime = -1
+
+[State x];덾
+type = Explod
+trigger1 = animelemtime(3)=0
+anim = 3775
+id = 24132
+postype = p1
+pos = 46,30;-65
+sprpriority = 5
+removetime = -1
+removeongethit = 1
+bindtime = -1
+
+[State x];덾
+type = Explod
+trigger1 = animelemtime(3)=0
+anim = 3765
+id = 24132
+postype = p1
+pos = 46,30;-65
+sprpriority = 5
+removetime = -1
+removeongethit = 1
+bindtime = -1
+
+[State 100300, 화면 미백효과1]
+type = Explod
+trigger1 = time = 120
+anim = 6630
+postype = P1
+pos = 0, 0
+scale = 5,5
+removetime = -1
+ID = 100300
+ownpal = 1
+ontop = 1
+pausemovetime = 99999
+supermovetime = 99999
+bindtime = -1
+
+[State 100300, 화면 미백효과2]
+type = ModifyExplod
+trigger1 =time>=120
+trigger1 = ((time-120)*15)<256
+ID = 100300
+trans = addalpha
+alpha = ifelse(((time-120)*15)<256,(time-120)*15,256),256
+
+[state 3100,댠5]
+type=RemoveExplod
+trigger1=time>=140
+id= 2413
+
+[state 3100,댠5]
+type=RemoveExplod
+trigger1=time>=140
+id= 24132
+
+[state 3100,댠5]
+type=RemoveExplod
+trigger1=time>=140
+id= 24133
+
+[State 810, 1]
+type = TargetState
+trigger1=time=140
+value = 2422
+
+[State 2]
+type = Hitadd
+trigger1 = animelemtime(3)>=0
+trigger1 = time <= 140
+trigger1 = time%4=0
+value = 1
+
+[State 2]
+type = PlaySnd
+trigger1 = animelemtime(3)>=0
+trigger1 = time <= 140
+trigger1 = time%4=0
+value = s20,4
+
+[State 2]
+type = TargetLifeAdd
+trigger1 = animelemtime(3)>=0
+trigger1 = time < 140
+trigger1 = time%4=0
+value = -20
+kill = 0
+
+[State 2]
+type = TargetLifeAdd
+trigger1 = time = 140
+value = -300
+kill = 1
+
+[State 810, 1]
+type = changestate
+trigger1=time=140
+value = 2414
+;--------------------------------------------------------
+;쇄압진붕(마무리)
+[statedef 2414]
+type=A
+movetype=a
+physics=N
+velset=0,0
+anim= 6614
+ctrl=0
+
+[state 3100,댠5]
+type=assertspecial
+trigger1 = time < 80
+flag=nofg
+flag2=noBG
+ignorehitpause=1
+
+[State -2, 그림자 제거]
+type = Explod
+trigger1 = time < 80
+ID = 100006
+postype = P1
+pos = 0,0
+sprpriority = -9
+anim = F100000
+persistent = 1
+ignorehitpause = 1
+removetime = 1
+
+[State 2]
+type = BGPalFX
+trigger1 = time < 79
+time = 2
+add = -255,-255,-255
+color = 0
+invertall = 1
+ignorehitpause = 1
+
+[State 810, 1]
+type = Posset
+trigger1=time=0
+y = Helper(100000),var(0)
+
+[State 40002, PlaySnd]
+type = null;PlaySnd
+trigger1 = time = 80
+value = S7100,0
+volume = 200
+
+[State 40001, Glass Break]
+type = null;Explod
+triggerall = !numexplod(7040)
+trigger1 = time = 80
+anim = 7004
+ID = 7040
+pos = 0,0
+postype = left  ;p2,front,back,left,right
+pausemovetime = -1
+supermovetime = -1
+removetime = -2
+scale = 1,1
+sprpriority = -20
+ownpal = 1
+ignorehitpause = 1
+
+[State 100300, 화면 미백효과2]
+type = ModifyExplod
+trigger1 = numExplod(100300)
+trigger1 = time > 30
+ID = 100300
+trans = addalpha
+alpha = ifelse((256-(time-30)*5)>0,256-(time-30)*5,0),256
+
+[State 100300, 화면 미백효과2]
+type = RemoveExplod
+trigger1 = (256-(time-30)*5) <=0
+id = 100300
+
+[State 810, 1]
+type = ChangeState
+trigger1=Animtime=0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;쇄압진붕 피격
+[statedef 2420]
+type=A
+movetype=h
+physics=n
+velset=0,0
+ctrl=0
+sprpriority=-1
+
+[state 3100,댠5]
+type=ScreenBound
+trigger1=1
+value = 0
+movecamera = 0,0
+
+[state 4000,렪봲]
+type=changeanim2
+trigger1=time=0
+value=5015
+
+[state 4000,렪봲]
+type=SelfState
+trigger1=P2Stateno !=[2400,2499]
+value=50
+ctrl = 1
+
+[state 4000,렪봲]
+type=velset
+trigger1=P2Stateno =2410
+trigger1=enemy,anim=6610
+trigger1=enemy,animelemtime(2)<0
+y=-1.5
+
+[state 4000,렪봲]
+type=veladd
+trigger1=P2Stateno =2410
+trigger1=enemy,anim=6610
+trigger1=enemy,animelemtime(2)>=0
+trigger1=enemy,animelemtime(4)<0
+x=0.75
+y=0.25
+
+[state 4000,렪봲]
+type=veladd
+trigger1=P2Stateno =2410
+trigger1=enemy,anim=6610
+trigger1=enemy,animelemtime(4)>=0
+trigger1=enemy,animelemtime(7)<0
+x=-0.75
+y=-0.25
+
+[state 4000,렪봲]
+type=veladd
+trigger1=P2Stateno =2410
+trigger1=enemy,anim=6610
+trigger1=enemy,animelemtime(7)>=0
+trigger1=enemy,animelemtime(10)<0
+x=-0.0625
+y=-0.25
+
+[state 4000,렪봲]
+type=velset
+trigger1=P2Stateno =2411
+trigger2=P2Stateno =2410
+trigger2=enemy,anim=6610
+trigger2=enemy,animelemtime(10)>=0
+x=0
+y=0
+
+[state 4000,렪봲]
+type=velset
+trigger1=P2Stateno =2412
+trigger1=p2dist X > 10
+x=5
+
+[state 4000,렪봲]
+type=velset
+trigger1=P2Stateno =2412
+trigger1=p2dist X < -10
+x=-5
+
+[state 4000,렪봲]
+type=changeanim2
+trigger1=P2Stateno =2410
+trigger1=enemy,anim=6610
+trigger1=enemy,animelemtime(4)>=0
+trigger1=vel x < 0
+value=5030
+
+;---------------------------------------------------------------------------
+;쇄압진붕 피격
+[statedef 2421]
+type=A
+movetype=h
+physics=n
+velset=0,0
+ctrl=0
+sprpriority=2
+
+[state 3100,댠5]
+type=ScreenBound
+trigger1=1
+value = 0
+movecamera = 0,0
+
+[state 4000,렪봲]
+type=changeanim2
+trigger1=time=0
+value=6620
+;---------------------------------------------------------------------------
+;쇄압진붕 피격
+[statedef 2422]
+type=u
+movetype=h
+physics=n
+ctrl=0
+
+[state 3100,댠5]
+type=ScreenBound
+trigger1=1
+value = 0
+movecamera = 0,0
+
+[state 5400,몜롨궻귺긦긽빾뛛]
+type=changeanim2
+trigger1=1
+value=5400
+
+[state 5400,뛡뮳]
+type=posfreeze
+trigger1=1
+
+[state 5400,릟궯뷅귂둎럑]
+type=changestate
+trigger1=hitshakeover
+value=2423
+;---------------------------------------------------------------------------
+;쇄압진붕 피격
+[statedef 2423]
+type=a
+movetype=h
+physics=n
+ctrl=0
+
+[state 3100,댠5]
+type=ScreenBound
+trigger1=1
+value = 0
+movecamera = 0,0
+
+[state 5401,몜롨궻귺긦긽빾뛛]
+type=changeanim2
+trigger1=time=0
+value=5400
+
+[state 5401,뢣쀍]
+type=null;velset
+trigger1=time=0
+x=facing*gethitvar(xvel)
+y=gethitvar(yvel)
+
+[state 5401,뢣쀍]
+type=velset
+trigger1=time=0
+y=-30
+
+[state 5401,뢣쀍]
+type=null;veladd
+trigger1=!gethitvar(isbound)
+y=gethitvar(yaccel)
+
+[state 5401,뢣쀍]
+type=gravity
+trigger1=1
+
+[state 5401,긂깛]
+type=selfstate
+trigger1=pos y>=Helper(100000),var(0)
+trigger1=vel y>0
+value=5100
+;--------------------------------------------------------
+;백라멸정 배경1
+[statedef 2430]
+type=s
+movetype=a
+physics=s
+velset=0,0
+anim=3110
+ctrl=0
+sprpriority=-2
+
+[state 3110,뎓궶궢]
+type=assertspecial
+trigger1=1
+flag=noshadow
+ignorehitpause=1
+
+[state 3111,뚂믦]
+type=bindtoroot
+trigger1=1
+pos=-30,-65
+
+[state 3110,긄긲긃긏긣]
+type=explod
+triggerall=time=0
+trigger1=root,anim=3200
+trigger2=root,anim=3205
+anim=7190
+pos=floor(rootdist x)+7,floor(rootdist y)-16
+postype=p1
+ontop=1
+ownpal=1
+pausemovetime=2147483647
+
+[state 3110,긄긲긃긏긣]
+type=explod
+triggerall=time=0
+trigger1=root,anim=3200
+trigger2=root,anim=3205
+anim=7191
+pos=floor(rootdist x)+7,floor(rootdist y)-16
+postype=p1
+sprpriority=-10
+ownpal=1
+pausemovetime=2147483647
+
+[state 3110,뚼됈돶]
+type=playsnd
+trigger1=time=0
+value=3100,1
+channel=10
+
+[state 3110,뭙궕뷅귪궳궘귡갋1]
+type=explod
+trigger1=time%15=0
+anim=3111
+id=3101
+pos=0,0
+postype=p1
+bindtime=-1
+sprpriority=-1
+ownpal=1
+
+[state 3110,뭙궕뷅귪궳궘귡갋2]
+type=explod
+trigger1=time%15=0
+anim=3112
+id=3102
+pos=0,0
+postype=p1
+bindtime=-1
+sprpriority=-1
+ownpal=1
+
+[state 3110,뭙궕뷅귪궳궘귡갋3]
+type=explod
+trigger1=time%15=0
+anim=3113
+id=3103
+pos=0,0
+postype=p1
+bindtime=-1
+sprpriority=-1
+ownpal=1
+
+[state 3110,뢎뿹]
+type=changestate
+;trigger1=time=120
+trigger1=root,stateno!=2412
+value=2431
+
+;---------------------------------------------------------------------------
+;백라멸정 배경2
+[statedef 2431]
+type=s
+movetype=a
+physics=s
+velset=0,0
+ctrl=0
+anim=99999
+
+[State x];덾
+type = Explod
+trigger1 = time = 0
+anim = 3110
+id = 30023
+postype = p1
+pos = 0,0
+sprpriority = -5
+removetime = -1
+removeongethit = 1
+bindtime = -1
+
+[state 195]
+type = modifyexplod
+ID = 30023
+trigger1 = 1
+scale = 1-time/60.0,1-time/60.0
+
+[State x]
+type = removeExplod
+trigger1 = Time = 60
+id = 30023
+
+[state 3111,뎓궶궢]
+type=assertspecial
+trigger1=1
+flag=noshadow
+ignorehitpause=1
+
+[state 3111,뢁뢫]
+type=angledraw
+trigger1=1
+scale=1-time/60.0,1-time/60.0
+
+[state 3111,뚼됈돶믠]
+type=stopsnd
+trigger1=(1-time/60.0)<=0
+channel=10
+
+[state 3111,뢎뿹]
+type=destroyself
+triggerall=ishelper
+trigger1=(1-time/60.0)<=0
+

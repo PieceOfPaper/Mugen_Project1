@@ -1,0 +1,533 @@
+;================================================================================
+;                   Codigos Ken Masters XI - parte 5
+;================================================================================
+;---------------------Throw A
+[Statedef 800]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 800
+sprpriority = 2
+
+[State 800, 1]
+type = HitDef
+Trigger1 = !var(6)
+Trigger1 = !Time
+attr = S, NT
+hitflag = M-
+priority = 5, Miss
+sparkno = s8007
+sparkxy = -38,-68
+hitsound = S8,0
+sprpriority = 1
+;p1facing = ifelse (command = "holdfwd", -1, 1)
+p2facing = 1
+p1stateno = 810
+p2stateno = 815
+guard.dist = 0
+fall = 1
+
+[State 800, 2]
+type = ChangeState
+Trigger1 = !AnimTime
+value = 225
+
+;----------------------------------------------------------------------
+[Statedef 810]
+type = S
+movetype= A
+physics = N
+anim = 810
+poweradd = 0
+SprPriority = 1
+
+[State 1000, ChangeState]
+type = ChangeState
+triggerall = time = [0,7]
+triggerall = enemy,command = "holdfwd" || enemy,command = "holdback"
+trigger1 = enemy,command = "a"
+trigger2 = enemy,command = "b"
+trigger3 = enemy,command = "x"
+trigger4 = enemy,command = "y"
+value = 5260
+ctrl = 0
+
+[State 810, Bind 1]
+type = Width
+trigger1 = !Time
+Edge = 40,40
+
+[State 810, Bind 1]
+type = TargetBind
+trigger1 = AnimElem = 1, >= 0
+trigger1 = AnimElem = 2, < 0
+pos = 35, 0
+
+[State 810, Bind 2]
+type = TargetBind
+trigger1 = AnimElem = 2, >= 0
+trigger1 = AnimElem = 3, < 0
+pos = -9, 0
+
+[State 810, Bind 3]
+type = TargetBind
+trigger1 = AnimElem = 3, >= 0
+trigger1 = AnimElem = 4, < 0
+pos = 0, -90
+
+[State 810, Bind 4]
+type = TargetBind
+trigger1 = AnimElem = 4, >= 0
+trigger1 = AnimElem = 5, < 0
+pos = 45, -70
+
+[State 810, Bind 5]
+type = TargetBind
+trigger1 = AnimElem = 5, >= 0
+trigger1 = AnimElem = 6, < 0
+pos = 58, -67
+
+
+
+[State 810, Bind 1]
+type = PlaySnd
+trigger1 = AnimElem = 5
+Value = 200, 0
+
+[State 810, State End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;----------------------------------------------------------------------
+[Statedef 815]
+type = A
+movetype = H
+physics = N
+velset = 0,0
+
+[State 820, 1]
+type = ChangeAnim2
+Trigger1 = Time = 0
+value = 815
+
+[State 810, Hurt]
+type = LifeAdd
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= Helper(100000),var(0)-5
+value = -125
+
+[State 0, Turn]
+type = Turn
+trigger1 = Animelem = 6
+
+[State 820, 1]
+type = Velset
+Trigger1 = AnimElem = 6
+x = 4.2
+y = -8
+
+[State 821, 1] ;Gravity
+type = VelAdd
+Trigger1 = AnimElem = 6, > 0
+y = .55
+
+[State 821, 4] ;Hit ground
+type = SelfState
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= Helper(100000),var(0)
+value = 5100
+
+;---------------------Throw B
+[Statedef 801]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+velset = 0,0
+ctrl = 0
+anim = 800
+sprpriority = 2
+
+[State 810, 1]
+type = HitDef
+Trigger1 = !var(6)
+Trigger1 = !Time
+attr = S, NT
+hitflag = M-
+priority = 5, Miss
+sparkno = s8007
+sparkxy = -38,-68
+hitsound = S8,0
+sprpriority = 1
+;p1facing = ifelse (command = "holdfwd", -1, 1)
+p2facing = 1
+p1stateno = 820
+p2stateno = 825
+guard.dist = 0
+fall = 1
+
+[State 800, 2]
+type = ChangeState
+Trigger1 = !AnimTime
+value = 250
+
+;----------------------------------------------------------------------
+[Statedef 820]
+movetype= A
+physics = N
+anim = 820
+poweradd = 0
+sprpriority = 1
+
+[State 311, SVC Pause]
+type = pause
+Trigger1 = prevstateno = [950,960]
+Trigger1 = !Time
+time = 8
+
+[State 1000, ChangeState]
+type = ChangeState
+triggerall = time = [0,7]
+triggerall = enemy,command = "holdfwd" || enemy,command = "holdback"
+trigger1 = enemy,command = "a"
+trigger2 = enemy,command = "b"
+trigger3 = enemy,command = "x"
+trigger4 = enemy,command = "y"
+value = 5260
+ctrl = 0
+
+[State 820, 1]
+type = ChangeAnim
+Trigger1 = Time = 3
+Trigger1 = PrevStateNo = 815
+value = 811
+Elem = 2
+
+[State 800, 2]
+type = Gravity
+Trigger1 = Pos y < Helper(100000),var(0)
+
+[State 800, 2]
+type = Velset
+Trigger1 = Vel y >= 0
+Trigger1 = Pos y > Helper(100000),var(0)
+y = 0
+
+[State 800, 2]
+type = Posset
+Trigger1 = Pos y > Helper(100000),var(0)
+y = Helper(100000),var(0)
+
+[State 810, Out of corners]
+type = Width
+trigger1 = 1
+Edge = 40,40
+
+[State 820, Bind 1]
+type = TargetBind
+trigger1 = AnimElem = 1, >= 0
+trigger1 = AnimElem = 2, < 0
+pos = 35, 0
+
+[State 820, Bind 2]
+type = TargetBind
+trigger1 = AnimElem = 2, >= 0
+trigger1 = AnimElem = 3, < 0
+pos = 17, 0
+
+[State 820, Bind 3]
+type = TargetBind
+trigger1 = AnimElem = 3, >= 0
+trigger1 = AnimElem = 4, < 0
+pos = 27, 0
+
+[State 820, Bind 1]
+type = Velset
+trigger1 = !vel x
+trigger1 = AnimElem = 3
+x = -3
+
+[State 820, Bind 4]
+type = TargetBind
+trigger1 = AnimElem = 4, >= 0
+trigger1 = AnimElem = 5, < 0
+pos = 32, -67
+
+[State 820, Bind 5]
+type = TargetBind
+trigger1 = AnimElem = 5, >= 0
+trigger1 = AnimElem = 6, < 0
+pos = -7, -59
+
+[State 820, Bind 6]
+type = TargetBind
+trigger1 = AnimElem = 6, >= 0
+trigger1 = AnimElem = 7, < 0
+pos = -16, 0
+
+[State 820, Bind 7]
+type = TargetBind
+trigger1 = AnimElem = 7, >= 0
+trigger1 = AnimElem = 8, < 0
+pos = -45, 0
+
+[State 820, Bind 8]
+type = TargetBind
+trigger1 = AnimElem = 8, >= 0
+trigger1 = AnimElem = 9, < 0
+pos = -21, 0
+
+[State 820, Bind 9]
+type = TargetBind
+trigger1 = AnimElem = 9, >= 0
+trigger1 = AnimElem = 10, < 0
+pos = -39, -46
+
+[State 820, Bind 1]
+type = Velset
+trigger1 = AnimElem = 9
+x = 0
+
+[State 820, Bind 10]
+type = TargetBind
+trigger1 = AnimElem = 10
+pos = -107, -34
+
+
+[State 820, Hurt]
+type = TargetLifeAdd
+trigger1 = time=87
+value = -125
+
+[State 810, Bind 1]
+type = PlaySnd
+trigger1 = AnimElem = 10
+Value = 200, 0
+
+[State 820, State End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;----------------------------------------------------------------------
+[Statedef 825]
+type = A
+movetype = H
+physics = N
+velset = 0,0
+
+[State 820, 1]
+type = ChangeAnim2
+Trigger1 = !Time
+value = 825
+
+[State 820, 1]
+type = Velset
+Trigger1 = AnimElem = 10
+x = 4
+y = -8.5
+
+[State 821, 1] ;Gravity
+type = VelAdd
+Trigger1 = AnimElem = 10, > 0
+y = .5
+
+[State 5050, recovery]
+type = SelfState
+triggerall = command = "recovery"
+triggerall = alive = 1
+trigger1 = pos y > Helper(100000),var(0)
+trigger1 = vel y > 0
+value = 5201 ;HITFALL_RECOVER
+
+[State 821, 4] ;Hit ground
+type = SelfState
+Trigger1 = AnimElem = 10, > 0
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= Helper(100000),var(0)
+value = 5100
+
+;-------------------------------------------------------------------------------
+[Statedef 6010]
+type = S
+physics = S
+;anim = 6010
+poweradd = 0
+sprpriority = 8
+velset = 0,0
+ctrl = 0
+
+[State 1000, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = -7
+
+[State 1000, VelAdd]
+type = VelAdd
+trigger1 = time = 10
+x = .5
+
+[State 1000, VelSet]
+type = VelSet
+trigger1 = time >= 15
+x = 0
+
+[State 6010, PlaySound]
+type = PlaySnd
+trigger1 = time = 46
+value = s5000,1
+
+[State 6010, Explod]
+type = Explod
+trigger1 = animelem = 10
+anim = f61
+pos = 25,0
+postype = p1
+facing = 1
+vfacing = 1
+bindtime = 1
+removetime = -2
+sprpriority = -9
+
+[State 6010, PlaySound]
+type = PlaySnd
+trigger1 = animelem = 10
+value = f7,ifelse(Stagevar(Info.name)!="Boss",1,7)
+volumescale = 50
+
+[State 6010, EnvShake]
+type = EnvShake
+trigger1 = animelem = 10
+time = 10
+freq = 110
+ampl = -4
+
+[State 6010, 4]
+type = ChangeAnim
+trigger1 = time = 0
+value = 150 + 1*(command = "holddown")
+
+[State 6010, PalFX]
+type = PalFX
+trigger1 = time = 0
+time = 0
+
+[State 1000, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State 6010, anim]
+type = Changeanim
+trigger1 = time = 10
+value = 6010
+
+[State 6010, air]
+type = Changestate
+trigger1 = pos Y != Helper(100000),var(0)
+value = 5000
+
+[State 220, 3]
+type = ChangeState
+trigger1 = anim = 6010
+trigger1 = AnimTime = 0
+value = 5150
+
+
+
+
+
+;---------------------------------------------------------------------------
+; HITG_SLIDE
+[Statedef 6201]
+type    = S
+movetype= H
+physics = S
+
+[State 6000, 1]
+type = hitfallset
+trigger1 = 1
+value = 0
+ignorehitpause = 1
+
+[State 6000, 1]
+type = hitby
+trigger1 = 1
+value = SCA,HA, HP, HT
+ignorehitpause = 1
+
+[State 6000, 1]
+type = Playerpush
+trigger1 = 1
+value = 0
+
+[State 6000, 1]
+type = HitVelSet
+trigger1 = Time = 0
+x = 1
+ignorehitpause = 1
+
+[State 6000, 1]
+type = ChangeAnim
+trigger1 = AnimTime = 0
+value = 5005 + GetHitVar(animtype) + (GetHitVar(groundtype)=2)*10
+
+[State 6000, 1]
+type = VelMul
+trigger1 = Time >= GetHitVar(slidetime)
+x = .6
+
+[State 6000, 1]
+type = VelSet
+trigger1 = HitOver
+x = 0
+
+[State 6000, 1]
+type = ChangeState
+trigger1 = HitOver
+value = 6202
+
+
+;---------------------------------------------------------------------------
+; DIZZYED
+[Statedef 6202]
+type = S
+ctrl = 0
+movetype = H
+velset = 0,0
+
+[State 6000, 1]
+type = hitby
+trigger1 = 1
+value = SCA,HA, HP, HT
+ignorehitpause = 1
+
+[State 6000, 1]
+type=changeanim
+trigger1 = time = 0
+trigger1 = selfanimexist(5300)
+value = 5300
+
+[State 6000, 1]
+type = changeanim2
+trigger1 = time = 0 && !selfanimexist(5300)
+value = 5301
+
+[State 6000, 1]
+type = defencemulset
+trigger1 = time = 100
+value = 1
+
+[State 6000, 1]
+type = Selfstate
+trigger1 = time = 100
+value = 0
+ctrl = 1
+
+

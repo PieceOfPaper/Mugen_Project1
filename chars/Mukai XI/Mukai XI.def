@@ -1,0 +1,33 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "MUKAI"
+displayname = "Mukai"
+versiondate = 04,14,2001
+mugenversion = 1.0
+author = "GONZO-/Alex_Mugen"
+pal.defaults = 6,3,4,2
+localcoord = 427,240
+
+[Files]
+sprite = mukai.sff
+anim = mukai.air
+sound = mukai.snd
+cmd = mukai.cmd
+cns = mukai.cns
+stcommon = common1.cns
+st = mukai.cns
+st1 = mukai_AI.cns
+pal1 = mukai01.act
+pal2 = mukai02.act
+pal3 = mukai03.act
+pal4 = mukai04.act
+pal5 = mukai05.act
+pal6 = mukai06.act
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

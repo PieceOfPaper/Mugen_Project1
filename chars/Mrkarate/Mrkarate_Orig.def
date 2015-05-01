@@ -1,0 +1,30 @@
+[Info]
+Name         = "Mrkarate"
+DisplayName  = "Mrkarate"
+VersionDate  = 11,07,2010
+MugenVersion = 06,14,2003
+Author       = "jin"
+Pal.Defaults = 1,2,3,4,5,6
+
+[Files]
+Cmd      = Mrkarate.cmd
+Cns      = Mrkarate.cns
+St       = Mrkarate.cns
+St0      = Mrkarate-N.cns
+St1      = Mrkarate-S.cns
+St2      = Mrkarate-H.cns
+St3      = Mrkarate-2-3.cns
+StCommon = common1.cns
+Sprite   = Mrkarate.sff
+Anim     = Mrkarate.air
+Sound    = Mrkarate.snd
+
+;---カラーパレット---
+
+Pal1 = Mrkarate01.act
+Pal2 = Mrkarate02.act
+Pal3 = Mrkarate03.act
+Pal4 = Mrkarate04.act
+Pal5 = Mrkarate05.act
+Pal6 = Mrkarate06.act
+

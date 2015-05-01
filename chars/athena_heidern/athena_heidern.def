@@ -1,0 +1,36 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "Athena Asamiya"
+displayname = "Athena Asamiya"
+versiondate = 2011-12-03
+mugenversion = 1.0
+author = "S.Y.D"
+pal.defaults = 1,2,3,4,5
+localcoord = 427,240
+
+[Files]
+sprite = athena_heidern.sff
+anim = athena_heidern.air
+sound = athena_heidern.snd
+cmd = athena_heidern.cmd
+cns = athena_heidern.cns
+stcommon = common1.cns
+st = athena_heidern.cns
+st1 = AI.txt
+st2 = config.txt
+st3 = config.txt
+st4 = common.cns
+pal1 = pal\01.act
+pal2 = pal\02.act
+pal3 = pal\03.act
+pal4 = pal\04.act
+pal5 = pal\05.act
+pal6 = pal\06.act
+
+[Arcade]
+intro.storyboard = story\intro.def
+ending.storyboard = story\ending.def

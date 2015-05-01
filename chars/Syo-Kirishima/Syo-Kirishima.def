@@ -1,0 +1,35 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "Syo"
+displayname = "Syo Kirishima"
+versiondate = 
+mugenversion = 1.0
+author = "ahuron"
+pal.defaults = 1,2,3,4,5,6
+localcoord = 427,240
+
+[Files]
+sprite = Syo-Kirishima.sff
+anim = Syo-Kirishima.air
+sound = Syo-Kirishima.snd
+cmd = Syo-Kirishima.cmd
+cns = Syo-Kirishima.cns
+stcommon = common1.cns
+st = Syo-Kirishima.cns
+st2 = Syo-Kirishima2.cns
+st3 = helper.cns
+st4 = AI.cns
+pal1 = Syo-Kirishima4.act
+pal2 = Syo-Kirishima2.act
+pal3 = Syo-Kirishima3.act
+pal4 = Syo-Kirishima.act
+pal5 = Syo-Kirishima5.act
+pal6 = Syo-Kirishima6.act
+
+[Arcade]
+;intro.storyboard = 
+;ending.storyboard = 

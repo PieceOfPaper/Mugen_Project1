@@ -1,0 +1,387 @@
+;===============================================================================
+;EN ESTA SECCION SE ENCUENTRABN TODOS LOS ESTADOS DE -2 Y -3
+;DEL CHAR LA MODIFICACION SIN AUTORIZACION PUEDE SIGNIFICAR
+;UNA FALLA TOTAL EN EL MISMO
+;===============================================================================
+;-----------------------------------------------------------------------------
+[Statedef -2]
+
+
+
+[State -2]
+type = Helper
+triggerall = !NumHelper(101000)
+trigger1 = stateno = 810 && time > 59
+trigger2 = stateno = 840 && time > 59
+trigger3 = MoveHit && stateno = [1700,1750]
+trigger4 = MoveHit && Stateno = [1400,1499] 
+trigger5 = ProjHitTime(1600) = 0
+trigger6 = MoveHit && Stateno = [1350,1370] 
+trigger7 = stateno = 1825 && Anim = 1810 && AnimElem = 5
+trigger8 = stateno = 2510 && AnimElem = 56
+trigger9 = P2stateno = 2620 && P2MoveType = H
+trigger10 = ProjHitTime(3300) = 0
+trigger11 = ProjHitTime(2300) = 0
+trigger12 = ProjHitTime(2400) = 0
+trigger13 = MoveHit && stateno = [3200,3201]
+trigger14 = MoveHit && stateno = 2715
+trigger15 = stateno = 2801 && AnimElem = 62
+trigger16 = stateno = 3110 && AnimElem = 58
+ID = 101000
+name = "Fire"
+postype = P2
+pos = 0,0
+sprpriority = -9
+stateno = 101001
+helpertype = normal
+keyctrl = 0
+persistent = 1
+ignorehitpause = 1
+ownpal = 1
+
+[state 2]
+type = null;explod
+trigger1 = projhit3300 = 1
+anim = 4050
+pos = 0,-60
+postype = p2
+removetime = -2
+bindtime = 1
+supermove = 1
+pausemove = 1
+random = 40,40
+;pausemovetime = 99999
+;supermovetime = 99999
+sprpriority = 9
+ownpal = 1
+
+[state 22]
+type = playsnd
+trigger1 = projhit3300 = 1
+value = s0,ifelse((random<=500),14,15)
+
+[State -2, VarSet]
+type = VarSet
+trigger1 = p2stateno = [5000,5110]
+trigger1 = p2movetype = H
+v = 58
+value = 0
+
+[state -3, debug output]
+type = DisplayToClipboard
+trigger1 = 1
+text="Var(10): %d, hitshake: %d"
+params =var(10), (enemy,hitpausetime)
+ignorehitpause = 1
+;-------------------------------------------------------------------------------
+;Varsets De Escape al Congelarse
+[State 1000, VarSet]
+type = VarSet
+triggerall = numhelper(2525)= 0
+trigger1 = enemy,stateno = 2620
+trigger1 = enemy,movetype = H
+v = 10
+value = 200
+ignorehitpause = 1
+
+[State 325, Increase]
+type = varadd
+triggerall = enemy,stateno = 2620
+triggerall = enemy,movetype = H
+trigger1 = enemy,command = "random"
+var(10) = -10
+
+[State -2, VarSet]
+type = VarSet
+triggerall = numhelper(2525)= 0
+trigger1 = enemy,prevstateno = 2620
+trigger1 = enemy,movetype = H
+v = 10
+value = 0
+ignorehitpause = 1
+
+;----------------------------------------------------------------------------
+[State -2, Y띆뷭렔뚅뢇븳]
+type = PosSet
+triggerall = RoundState = 2
+trigger1 = stateno = [0,12]
+trigger1 = floor(Pos Y) = [-2,3]
+y = 0
+[State -2, Y띆뷭렔벍뢇맫]
+type = PosAdd
+triggerall = RoundState = 2
+triggerall = Life < Var(22)
+trigger1 = stateno = [0,30]
+trigger1 = floor(Pos Y) < -2
+y = 2
+[State -2, Y띆뷭렔벍뢇맫]
+type = PosAdd
+triggerall = RoundState = 2
+triggerall = Life < Var(22)
+trigger1 = stateno = [0,30]
+trigger1 = floor(Pos Y) > 2
+y = -2
+[State -2, Y띆뷭떗맕뢇븳]
+type = null;ChangeState
+triggerall = RoundState = 2
+triggerall = ctrl = 0
+triggerall = alive = 1
+triggerall = !Lose
+trigger1 = Pos Y < -1800
+trigger1 = GameTime % 10 = 0
+trigger2 = Pos Y > 480
+trigger2 = GameTime % 10 = 0
+value = 40
+;----------------------------------------------------------------------------
+
+[State 100,]
+type = StopSnd
+trigger1 = Anim != 100
+trigger2 = Movetype = H
+channel = 6
+
+[State -2, AfterImage]
+type = AfterImage
+trigger1 = movetype = H
+time = 0
+
+[State -2, PalFX]
+type = PalFX
+trigger1 = enemy,var(46) != 0
+trigger1 = gametime%3 = 0
+time = 1
+add = 0,0,100
+mul = 256,256,256
+color = 256
+ignorehitpause = 1
+
+;---------------------------------------------------------------------------------
+[Statedef -3]
+;---------------------------------------------------------------------------------
+
+[State -3, noautoturn]
+type = AssertSpecial
+trigger1 = BackEdgeBodyDist < 23
+flag = noautoturn
+
+[State -3, 긓?깛긤귩볺귢궫귞Var귩ON]
+type = null;VarSet
+trigger1 = command = "jump"
+trigger1 = ctrl
+trigger1 = statetype = S
+v = 3
+value = 1
+
+[State -3, sysvar귩덙똯궙]
+type = null;VarSet
+trigger1 = Var(3) = 1
+trigger1 = stateno = 40
+trigger1 = AnimTime = 0
+var(3) = ifelse(sysvar(1)=0, 2, ifelse(sysvar(1)=1, 3, 4))
+
+[State -3, var귩OFF궸궥귡긚긡?긣]
+type = null;VarSet
+triggerall = Time = 2
+trigger1 = stateno = 50
+trigger2 = stateno != [40,59]
+v = 3
+value = 0
+
+[State -3, 멟궸??깛귩돓궢궲궫귞멟궸귖돿뫊]
+type = null;VelAdd
+trigger1 = var(3) = 3
+trigger1 = stateno = 50
+x = 2
+
+[State -3, 뚣귣궶귞뚣귣궸돿뫊]
+type = null;VelAdd
+trigger1 = var(3) = 4
+trigger1 = stateno = 50
+x = -2.1
+
+[State -3, var귩OFF궸궥귡긚긡?긣]
+type = null;VarSet
+trigger1 = Var(3) != 0
+trigger2 = prevstateno = 100
+trigger2 = AnimTime = 0
+v = 2
+value = 1
+
+[State -3, var귩OFF궸궥귡긚긡?긣]
+type = null;VarSet
+trigger1 = statetype != A
+trigger1 = stateno != 40
+v = 2
+value = 0
+
+[State -3, Afterimage]
+type = null;Afterimage
+trigger1 = var(3) >= 1
+trigger1 = stateno = 50
+trigger2 = AnimTime = 0
+trigger2 = prevstateno = 100 ;RUN_FWD
+trigger2 = sysvar(1) = 1
+time = 2
+length = 7
+PalBright = 0,0,0
+PalContrast = 256,256,256
+PalAdd = 0,0,0
+PalMul = 1,1,1
+FrameGap = 3
+
+[State -3, Afterimagetime]
+type = null;Afterimagetime
+triggerall = Var(2) = 1
+triggerall = Stateno != 0
+trigger1 = stateno = 50
+trigger1 = time%2 = 0
+time = 2
+;------------------------------------------------------------------------------
+
+;----------------------------------------------------------
+;Electric PalFx
+;----------------------------------------------------------
+[State -3, palfx]
+type = palfx
+trigger1 = gethitvar(chainid) = 17000 && time%2 = 0 && movetype=h && (stateno!=[120,160]) && (StateNo !=[5100,5460])&& Stateno != [20,21]
+time = 1
+add = 0,15,75
+color = 0
+invertall = 1
+ignorehitpause = 1
+
+[State -2, ???????????]
+type = Helper
+trigger1 = !numhelper(100000)
+ID = 100000
+name = "Main_Controler"
+postype = P1
+pos = 0,0
+sprpriority = -9
+stateno = 100000
+helpertype = normal
+keyctrl = 0
+persistent = 1
+ignorehitpause = 1
+ownpal = 1
+
+[State -2, ???????????(???????]
+type = ChangeState
+trigger1 = Stateno != 105
+trigger1 = Stateno != 1220
+trigger1 = Stateno != 1270
+trigger1 = Stateno != 1400
+trigger1 = Stateno != 1450
+trigger1 = Stateno != 1700
+trigger1 = Stateno != 1750
+trigger1 = Stateno != 2100
+trigger1 = Stateno != 2150
+trigger1 = Stateno != 3200
+trigger1 = Vel Y > 0
+trigger1 = Movetype !=H
+trigger1 = Pos Y >= Helper(100000),var(0)
+value = 52
+
+[State -2, ???????????(??????)]
+type = Posset
+triggerall = numhelper(100000)
+trigger1 = numhelper(100100)
+trigger1 = helper(100100),time > 118
+trigger2 = Stateno = 5900
+trigger2 = !numhelper(100100)
+trigger2 = Stateno = 5900
+trigger3 = stateno = 0
+trigger3 = ctrl = 0
+Y = Helper(100000),var(0)
+
+[State -2, ????????(????)]
+type = ChangeState
+triggerall = Statetype != A
+;triggerall = Movetype != H
+triggerall = pos Y !=0
+triggerall = Helper(100000),var(0) = 0
+triggerall = Stateno != [40,50]
+triggerall = Stateno != 5100 && Stateno != 5101 && Stateno != 5102 && Stateno != 5110
+trigger1 = numhelper(100001)
+trigger2 = ID !=56
+trigger2 = PlayerID(56),numhelper(100001)
+value = 50
+
+[State -2, ????????(????2)]
+type = ChangeState
+triggerall = Statetype != A
+triggerall = Movetype != H
+triggerall = pos Y !=0
+triggerall = Helper(100000),var(0) = 0
+triggerall = Stateno != [40,50]
+triggerall = Stateno != 5100 && Stateno != 5101 && Stateno != 5102 && Stateno != 5110
+trigger1 = numhelper(100002)
+trigger2 = ID !=56
+trigger2 = PlayerID(56),numhelper(100002)
+value = 50
+
+[State -2, ????????(????]
+type = ChangeState
+triggerall = Stateno = 5100 || Stateno = 5101 || Stateno = 5110
+;triggerall = pos Y != 0
+triggerall = Helper(100000),var(0) = 0
+trigger1 = numhelper(100001)
+trigger2 = ID !=56
+trigger2 = PlayerID(56),numhelper(100001)
+value = 5102
+
+[State -2, ???????]
+type = AfterImage
+trigger1 = Movetype = H
+time = 1
+
+[State -2, No Air Guard]
+type = AssertSpecial
+trigger1 = 1
+flag = noairguard
+
+[State -2, Guard KO]
+type = ChangeState
+trigger1 = Stateno != 5002 && Stateno != 5150
+trigger1 = Stateno = [5000,5200]
+trigger1 = prevstateno = [120,159]
+trigger1 = Life = 0
+value = 5002
+
+[State -2, ????????]
+type = ScreenBound
+triggerall = Statetype = A
+triggerall = stateno != [5160,5179]
+trigger1 = Movetype = H
+trigger1 = Life != 0
+trigger2 = Stateno = [5000,5499]
+value = 1
+movecamera = 1,0
+
+[State -2, ????????? ????????]
+type = ChangeState
+triggerall = helper(100000),var(11) != 0
+triggerall = !win && !lose && !DrawGame
+triggerall = partner,life != 0
+trigger1 = ctrl
+value = 5610
+ctrl = 0
+
+[State -2, ???鯤???? ???? ???????.]
+type = ChangeState
+trigger1 = numhelper(100300)
+trigger1 = helper(100300),time >= 53
+trigger1 = stateno != 180
+trigger1 = movetype != H
+value = 180
+ctrl = 1
+
+[State -2, 트레이닝모드 피체우기]
+type = LifeSet
+trigger1 = numhelper(100000)
+trigger1 = helper(100000),var(26)
+trigger1 = MoveType = H
+trigger1 = time = 1
+value = LifeMax
+persistent = 1
+ignorehitpause = 1

@@ -1,0 +1,466 @@
+
+[Statedef 4900] 
+type    = S
+movetype= A
+physics = S
+poweradd = -2000
+velset = 0,0
+ctrl = 0 
+anim = 3000
+
+[State 4900, 1]
+type = PalFX
+trigger1 = prevstateno = 1052
+trigger2 = prevstateno = 1062
+trigger3 = prevstateno = 1071
+trigger4 = prevstateno = 1072
+trigger5 = prevstateno = 1151
+trigger6 = prevstateno = 1161
+trigger7 = prevstateno = 1171
+time = 2
+add = 220,220,220
+ignorehitpause = 1
+
+[State 4900, 1]
+type = PowerAdd
+triggerall = time = 0
+trigger1 = prevstateno = 1052
+trigger2 = prevstateno = 1062
+trigger3 = prevstateno = 1071
+trigger4 = prevstateno = 1072
+trigger5 = prevstateno = 1151
+trigger6 = prevstateno = 1161
+trigger7 = prevstateno = 1171
+value = -1000
+
+[State 3000,2]
+type = SuperPause
+trigger1 = AnimElem = 1
+pos = 20, 0
+time = 29
+movetime = 29
+anim = -1
+
+[State 4900, 1]
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA
+time = 60
+
+[State 3000, 1]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 220,0
+
+[State 4900, 1]
+type = BGPalFX
+trigger1 = Time = 25
+time = 80
+mul = 125,125,125
+invertall = 1
+
+画面を黒にする
+[State 3000, 5]
+type = Envcolor
+trigger1 = Time = 0
+persistent = 0
+ignorehitpause = 1
+value = 0, 0, 0
+time = 25
+under = 1
+supermove = 1
+
+;LEVEL2アン
+[State 225, 4]
+type = Explod
+trigger1 = time = 0
+persistent = 0
+anim = 7301
+pos = 14,-124
+postype = p1
+sprpriority = -1
+bindtime = 1
+ignorehitpause = 1
+supermove = 1
+ownpal = 1
+
+;LEVEL2オバ
+[State 225, 4]
+type = Explod
+trigger1 = time = 0
+persistent = 0
+anim = 7300
+pos = 14,-124
+postype = p1
+sprpriority = 2
+bindtime = 1
+ignorehitpause = 1
+supermove = 1
+ownpal = 1
+
+[State 3000, 1]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = F20,0     
+
+;アテ スパズ エフェクト
+[State 7901, 4]
+type = Explod
+trigger1 = AnimElem = 6
+anim = 7705
+pos = 0,0
+postype = p1
+sprpriority = 3
+bindtime = 1
+ignorehitpause = 1
+ownpal = 1
+supermove = 1        
+
+[State 3000, 3]
+type = ChangeState 
+trigger1 = animtime = 0
+value = 4901
+
+;--------------------------
+;モション 
+[Statedef 4901]
+type    = S
+movetype= A
+physics = S
+anim = 4901
+ctrl = 0
+
+[State 207, 4]
+type = EnvShake
+trigger1 = time = 10
+trigger2 = time = 20
+trigger3 = time = 30
+trigger4 = time = 40
+trigger5 = time = 50
+trigger6 = time = 60
+trigger7 = time = 70
+time = 12
+ampl = -4
+freq = 40
+phase = 15
+ignorehitpause = 1
+bindtime = 15
+
+[State 3001, 1]
+type = PlaySnd
+trigger1 = time = 0
+value = 100, 4
+
+[State 3001, 1]
+type = PlaySnd
+trigger1 = time = 5
+trigger2 = time = 15
+trigger3 = time = 25
+trigger4 = time = 35
+trigger5 = time = 45
+trigger6 = time = 55
+trigger7 = time = 65
+value = 600, 2
+
+;飛び道具発生
+;[state 1000, 4]
+;type = helper
+;trigger1 = animelem = 10
+;ID = 8010
+;pos = 10, 5
+;postype = p1
+;stateno = 8010
+;helpertype = normal
+;name = "yamisogi"
+;ownpal = 1
+;keyctrl = 0
+
+[State 1000, 1]
+type = Projectile
+trigger1 = time = 7
+projanim = 8010
+projhitanim = 8010
+attr = S, SP
+damage = 60,6
+animtype = heavy
+sparkno = -1
+sparkxy = 10, 15
+hitsound = S3,2
+guardflag = ML
+hitflag = MAFD
+guardsound = S2,6
+ground.type = Low
+ground.slidetime = 10
+ground.hittime = 25
+ground.velocity = -4, -4.5
+air.animtype = Low
+air.velocity = -3, -3
+offset = 60, 5
+priority = 7,dodge
+remvelocity = 0, 0
+projremovetime = 44
+projscale = 1, 1.06
+fall = 1
+air.fall = 1
+fall.recover = 0
+;PalFX
+palfx.time = 40
+palfx.add = -100,-100,7
+palfx.sinadd = 30,30,0,10
+palfx.color = 0
+palfx.invertall = 1
+
+
+[State 1000, 2]
+type = Projectile
+trigger1 = time = 17
+projanim = 8010
+projhitanim = 8010
+attr = S, SP
+damage = 60,6
+animtype = heavy
+sparkno = -1
+sparkxy = 10, 15
+hitsound = S3,2
+guardflag = ML
+hitflag = MAFD
+guardsound = S2,6
+ground.type = Low
+ground.slidetime = 10
+ground.hittime = 25
+ground.velocity = -4, -4
+air.animtype = Low
+air.velocity = -3.5, -3
+offset = 103, 5
+priority = 7,dodge
+remvelocity = 0, 0
+projremovetime = 44
+projscale = 1, 1.06
+fall = 1
+air.fall = 1
+fall.recover = 0
+;PalFX
+palfx.time = 40
+palfx.add = -100,-100,7
+palfx.sinadd = 30,30,0,10
+palfx.color = 0
+palfx.invertall = 1
+
+
+[State 1000, 3]
+type = Projectile
+trigger1 = time = 27
+projanim = 8010
+projhitanim = 8010
+attr = S, SP
+damage = 60,6
+animtype = heavy
+sparkno = -1
+sparkxy = 10, 15
+hitsound = S3,2
+guardflag = ML
+hitflag = MAFD
+guardsound = S2,6
+ground.type = Low
+ground.slidetime = 10
+ground.hittime = 25
+ground.velocity = -4, -4
+air.animtype = Low
+air.velocity = -3.5, -3
+offset = 146, 5
+priority = 7,dodge
+remvelocity = 0, 0
+projremovetime = 44
+projscale = 1, 1.06
+fall = 1
+air.fall = 1
+fall.recover = 0
+;PalFX
+palfx.time = 40
+palfx.add = -100,-100,7
+palfx.sinadd = 30,30,0,10
+palfx.color = 0
+palfx.invertall = 1
+
+
+[State 1000, 4]
+type = Projectile
+trigger1 = time = 37
+projanim = 8010
+projhitanim = 8010
+attr = S, SP
+damage = 60,6
+animtype = heavy
+sparkno = -1
+sparkxy = 10, 15
+hitsound = S3,2
+guardflag = ML
+hitflag = MAFD
+guardsound = S2,6
+ground.type = Low
+ground.slidetime = 10
+ground.hittime = 25
+ground.velocity = -4, -4
+air.animtype = Low
+air.velocity = -3.5, -3
+offset = 189, 5
+priority = 7,dodge
+remvelocity = 0, 0
+projremovetime = 44
+projscale = 1, 1.06
+fall = 1
+air.fall = 1
+
+[State 1000, 5]
+type = Projectile
+trigger1 = time = 47
+projanim = 8010
+projhitanim = 8010
+attr = S, SP
+damage = 60,6
+animtype = heavy
+sparkno = -1
+sparkxy = 10, 15
+hitsound = S3,2
+guardflag = ML
+hitflag = MAFD
+guardsound = S2,6
+ground.type = Low
+ground.slidetime = 10
+ground.hittime = 25
+ground.velocity = -4, -4
+air.animtype = Low
+air.velocity = -3.5, -3.5
+offset = 232, 5
+priority = 7,dodge
+remvelocity = 0, 0
+projremovetime = 44
+projscale = 1, 1.06
+fall = 1
+air.fall = 1
+fall.recover = 0
+;PalFX
+palfx.time = 40
+palfx.add = -100,-100,7
+palfx.sinadd = 30,30,0,10
+palfx.color = 0
+palfx.invertall = 1
+
+[State 1000, 6]
+type = Projectile
+trigger1 = time = 57
+projanim = 8010
+projhitanim = 8010
+attr = S, SP
+damage = 60,6
+animtype = heavy
+sparkno = -1
+sparkxy = 10, 15
+hitsound = S3,2
+guardflag = ML
+hitflag = MAFD
+guardsound = S2,6
+ground.type = Low
+ground.slidetime = 10
+ground.hittime = 25
+ground.velocity = -5, -6
+air.animtype = Low
+air.velocity = -4.7, -5
+offset = 275, 5
+priority = 7,dodge
+remvelocity = 0, 0
+projremovetime = 44
+projscale = 1, 1.06
+fall = 1
+air.fall = 1
+fall.recover = 0
+;PalFX
+palfx.time = 40
+palfx.add = -100,-100,7
+palfx.sinadd = 30,30,0,10
+palfx.color = 0
+palfx.invertall = 1
+
+[State 1000, 7]
+type = Projectile
+trigger1 = time = 67
+projanim = 8010
+projhitanim = 8010
+attr = S, SP
+damage = 60,6
+animtype = heavy
+sparkno = -1
+sparkxy = 10, 15
+hitsound = S3,2
+guardflag = ML
+hitflag = MAFD
+guardsound = S2,6
+ground.type = Low
+ground.slidetime = 10
+ground.hittime = 25
+ground.velocity = -7, -6
+air.animtype = Low
+air.velocity = -7, -6
+offset = 318, 5
+priority = 7,dodge
+remvelocity = 0, 0
+projremovetime = 44
+projscale = 1, 1.06
+fall = 1
+air.fall = 1
+fall.recover = 0
+p2stateno = 4920
+;PalFX
+palfx.time = 40
+palfx.add = -100,-100,7
+palfx.sinadd = 30,30,0,10
+palfx.color = 0
+palfx.invertall = 1
+
+[State 230, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+; 相手動作１
+[Statedef 4920]
+type = A
+movetype = H
+physics = N
+
+[State 4920, 1]
+type = VelSet
+trigger1 = Time = 0
+x = 0
+y = 0
+
+[State 4920, 2]
+type = ChangeAnim2
+Trigger1 = Time >= 0
+value = 4030
+
+[State 4920, 3]
+type = ChangeState
+trigger1 = HitShakeOver = 1
+value = 4925
+
+; 2
+[Statedef 4925]
+type = A
+movetype = H
+physics = N
+velset = -3.5,-11
+
+[State 4925, 1]
+type = VelAdd
+trigger1 = Time > 0
+y = .41
+
+[State 4925, 2]
+type = SelfState
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+value = 5100
+

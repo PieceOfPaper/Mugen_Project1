@@ -1,0 +1,37 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "whip"
+displayname = "Whip"
+versiondate = 10,24,2004
+mugenversion = 04,14,2001
+author = "HÅh"
+pal.defaults = 1,2,3,4,5
+
+[Files]
+sprite = whip.sff
+anim = whip.air
+sound = whip.snd
+cmd = whip.cmd
+cns = whip-N.cns
+stcommon = common1.cns
+st = whip-N.cns
+st1 = whip-S.cns
+st2 = whip-H.cns
+st3 = SNK-common.cns
+pal1 = act\whip04.act
+pal2 = act\whip05.act
+pal3 = act\whip06.act
+pal4 = act\whip01.act
+pal5 = act\whip02.act
+pal6 = act\whip03.act
+pal7 = act\whip07.act
+pal8 = act\whip08.act
+pal9 = act\whip09.act
+
+[Arcade]
+;intro.storyboard = 
+;ending.storyboard = 

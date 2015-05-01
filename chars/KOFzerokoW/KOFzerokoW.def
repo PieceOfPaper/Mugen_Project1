@@ -1,0 +1,31 @@
+
+
+[Info]
+name = "zeroko"
+displayname = "Fyra Noll"
+versiondate = 08,12,2012
+mugenversion = 1.0
+author = "ThePaper"
+pal.defaults = 1,2,3,4
+localcoord = 427,240
+
+[Files]
+sprite = KOFzerokoW.sff
+anim = KOFzerokoW.air
+sound = KOFzerokoW.snd
+cmd = KOFzerokoW.cmd
+cns = zeroko_w.cns
+stcommon = common1.cns
+st = zeroko_w.cns
+st2 = zerokoN.cns
+st3 = zerokoS.cns
+st4 = zerokoH.cns
+st5 = helper.st
+st6 = -2.st
+st7 = -3.st
+pal1 = pal\zeroko_w1p.act
+pal2 = pal\zeroko_w2p.act
+
+[Arcade]
+;intro.storyboard = 
+;ending.storyboard = 

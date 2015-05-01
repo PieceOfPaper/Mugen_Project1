@@ -1,0 +1,38 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "Mrkarate"
+displayname = "Mr.karate"
+versiondate = 11,07,2010
+mugenversion = 1.0
+author = "jin"
+pal.defaults = 1,2,3,4,5,6
+localcoord = 427,240
+
+[Files]
+sprite = Mrkarate.sff
+anim = Mrkarate.air
+sound = Mrkarate.snd
+cmd = tobikage\Mrkarate.cmd
+cns = tobikage\Mrkarate.cns
+stcommon = common1.cns
+st = tobikage\Mrkarate.cns
+st1 = tobikage\Mrkarate-S.cns
+st2 = tobikage\Mrkarate-H.cns
+st3 = tobikage\Mrkarate-2-3.cns
+st4 = tobikage\AI.txt
+st5 = tobikage\aistate.cns
+st6 = Mrkarate-N.cns
+pal1 = Mrkarate01.act
+pal2 = Mrkarate02.act
+pal3 = Mrkarate03.act
+pal4 = Mrkarate04.act
+pal5 = Mrkarate05.act
+pal6 = Mrkarate06.act
+
+[Arcade]
+;intro.storyboard = 
+;ending.storyboard = 
